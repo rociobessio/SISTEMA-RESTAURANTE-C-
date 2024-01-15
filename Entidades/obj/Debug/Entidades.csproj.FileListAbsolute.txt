@@ -1,0 +1,11 @@
+C:\Users\Rocio\Desktop\COMANDA .NET\COMANDA\Entidades\bin\Debug\Entidades.dll
+C:\Users\Rocio\Desktop\COMANDA .NET\COMANDA\Entidades\bin\Debug\Entidades.pdb
+C:\Users\Rocio\Desktop\COMANDA .NET\COMANDA\Entidades\bin\Debug\System.Data.SqlClient.dll
+C:\Users\Rocio\Desktop\COMANDA .NET\COMANDA\Entidades\bin\Debug\System.Data.SqlClient.xml
+C:\Users\Rocio\Desktop\COMANDA .NET\COMANDA\Entidades\obj\Debug\Entidades.csproj.AssemblyReference.cache
+C:\Users\Rocio\Desktop\COMANDA .NET\COMANDA\Entidades\obj\Debug\Entidades.csproj.CoreCompileInputs.cache
+C:\Users\Rocio\Desktop\COMANDA .NET\COMANDA\Entidades\obj\Debug\Entidades.csproj.CopyComplete
+C:\Users\Rocio\Desktop\COMANDA .NET\COMANDA\Entidades\obj\Debug\Entidades.dll
+C:\Users\Rocio\Desktop\COMANDA .NET\COMANDA\Entidades\obj\Debug\Entidades.pdb
+C:\Users\Rocio\Desktop\COMANDA .NET\COMANDA\Entidades\bin\Debug\Interfaces.dll
+C:\Users\Rocio\Desktop\COMANDA .NET\COMANDA\Entidades\bin\Debug\Interfaces.pdb

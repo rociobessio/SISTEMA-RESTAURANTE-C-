@@ -1,0 +1,12 @@
+C:\Users\Rocio\Desktop\COMANDA .NET\COMANDA\Excepciones\bin\Debug\net6.0\Excepciones.deps.json
+C:\Users\Rocio\Desktop\COMANDA .NET\COMANDA\Excepciones\bin\Debug\net6.0\Excepciones.dll
+C:\Users\Rocio\Desktop\COMANDA .NET\COMANDA\Excepciones\bin\Debug\net6.0\Excepciones.pdb
+C:\Users\Rocio\Desktop\COMANDA .NET\COMANDA\Excepciones\obj\Debug\net6.0\Excepciones.csproj.AssemblyReference.cache
+C:\Users\Rocio\Desktop\COMANDA .NET\COMANDA\Excepciones\obj\Debug\net6.0\Excepciones.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Rocio\Desktop\COMANDA .NET\COMANDA\Excepciones\obj\Debug\net6.0\Excepciones.AssemblyInfoInputs.cache
+C:\Users\Rocio\Desktop\COMANDA .NET\COMANDA\Excepciones\obj\Debug\net6.0\Excepciones.AssemblyInfo.cs
+C:\Users\Rocio\Desktop\COMANDA .NET\COMANDA\Excepciones\obj\Debug\net6.0\Excepciones.csproj.CoreCompileInputs.cache
+C:\Users\Rocio\Desktop\COMANDA .NET\COMANDA\Excepciones\obj\Debug\net6.0\Excepciones.dll
+C:\Users\Rocio\Desktop\COMANDA .NET\COMANDA\Excepciones\obj\Debug\net6.0\refint\Excepciones.dll
+C:\Users\Rocio\Desktop\COMANDA .NET\COMANDA\Excepciones\obj\Debug\net6.0\Excepciones.pdb
+C:\Users\Rocio\Desktop\COMANDA .NET\COMANDA\Excepciones\obj\Debug\net6.0\ref\Excepciones.dll

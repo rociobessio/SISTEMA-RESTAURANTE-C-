@@ -1,0 +1,33 @@
+CREATE TABLE Personas(
+	IDPersona INT IDENTITY(1,1) PRIMARY KEY,
+	Nombre VARCHAR(100),
+	Apellido VARCHAR(100),
+	Direccion VARCHAR(50),
+	Telefono VARCHAR(30),
+	DNI VARCHAR (20),
+	FechaNacimiento DATETIME,
+	Genero VARCHAR(12)
+);
+
+CREATE TABLE Usuarios(
+   IDUsuario INT IDENTITY(1,1) PRIMARY KEY,
+   Email VARCHAR(100) NOT NULL,
+   Clave VARCHAR(100) NOT NULL,
+   IDPersona INT NOT NULL,
+    FOREIGN KEY (IDPersona) REFERENCES Personas(IDPersona),
+  IDCliente INT NOT NULL,
+	FOREIGN KEY (IDCliente) REFERENCES Clientes(IDCliente)
+);
+
+CREATE TABLE Empleados(
+	IDEmpleado INT IDENTITY(1,1) PRIMARY KEY,
+	IDRol INT NOT NULL,
+	FOREIGN KEY (IDRol) REFERENCES Roles(ID),
+	FechaAlta DATETIME,
+	FechaBaja DATETIME,
+	IDUsuario INT NOT NULL,
+	FOREIGN KEY (IDUsuario) REFERENCES Usuarios(IDUsuario)
+);
+
+/*INSERTS*/
+INSERT INTO Roles (Rol) VALUES ('Mozo');

@@ -1,0 +1,20 @@
+********* LOGIN *************************
+1. Primero el registro de Usuarios Empleados se realizara.
+
+2.Luego al final se realizara la parte de cliente.
+
+
+***************** CLIENTE *********************************
+1. La parte de cliente podrá encargar comida y será enviada.
+2. Podrá pagar con debito o credito.
+3. Es otro perfil
+
+
+
+
+
+
+
+**************************** OTRO ****************************
+1. Ver JWT.
+2. Mejorar Formularios. 
