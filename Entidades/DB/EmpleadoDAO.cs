@@ -5,54 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using Interfaces;
-using System.Data; 
-
+using System.Data;
+using System.Diagnostics.SymbolStore;
 
 namespace Entidades.DB
 {
     public class EmpleadoDAO : AccesoDB//, ICrud<Empleado>
     {
         #region METODOS
-        /// <summary>
-        /// Me permitira Guardar un empleado en la 
-        /// tabla de empleados dentro de la DB.
-        /// </summary>
-        /// <param name="empleado"></param>
-        /// <returns></returns>
-        public bool Guardar(Empleado empleado)
-        {
-            bool pudoGuardar = false;
-
-            try
-            {
-                string querySQL = "INSERT INTO Empleados (rol,nombre,fechaAlta,clave,usuario)";
-                querySQL += $"VALUES ('{empleado.Rol}', '{empleado.Nombre}', '{empleado.FechaAlta.ToShortDateString()}'," +
-                    $"'{empleado.Usuario.IDUsuario}')";
-
-                base._comando = new SqlCommand();
-                base._comando.CommandType = CommandType.Text;
-                base._comando.CommandText = querySQL;//-->Le paso la query
-                base._comando.Connection = base._conexion;
-
-                base._conexion.Open();//-->Abro la conexion a la DB
-
-                int filasAfectadas = base._comando.ExecuteNonQuery(); ;
-                if(filasAfectadas > 0) { pudoGuardar = true; }
-
-            }
-            catch (Exception) {
-                pudoGuardar = false; 
-            }
-            finally
-            {
-                if (base._conexion.State == ConnectionState.Open)//-->Chequeo si la conexion esta abierta
-                {
-                    base._conexion.Close();//-->La cierro
-                }
-            }
-            return pudoGuardar;
-        }
-
+        
         /// <summary>
         /// Me permitira retornar la lista de empleados
         /// de la DB
@@ -170,6 +131,86 @@ namespace Entidades.DB
             return empleado;
         }
 
+        /// <summary>
+        /// Me permitira dar de alta un empleado en la
+        /// Tabla de Empleados.
+        /// Guardando sus datos en tres tablas:
+        /// 1. La tabla de Personas, 2. la tabla de Empleados
+        /// 3. una tabla Intermedia que contiene las IDs.
+        /// </summary>
+        /// <param name="empleado"></param>
+        /// <returns></returns>
+        public bool AgregarDato(Empleado empleado)
+        {
+            try
+            {
+                using (base._conexion = new SqlConnection(AccesoDB.CadenaDeConexion))
+                {
+                    base._conexion.Open();//-->Abro la conexion.
+
+                    //-->Primero se hace el INSERT en la tabla Personas y con OUTPUT se consigue el ID.
+                    string queryInsertPersonas = $"INSERT INTO Personas (Nombre, Apellido, Telefono, Direccion, DNI, Genero, FechaNacimiento) " +
+                                                 $"OUTPUT INSERTED.IDPersona " +
+                                                 $"VALUES ('{empleado.Nombre}', '{empleado.Apellido}', '{empleado.Telefono}', " +
+                                                 $"'{empleado.Direccion}', '{empleado.DNI}', '{empleado.Genero}', '{empleado.FechaNacimeinto.ToString("yyyy-MM-dd HH:mm:ss")}')";
+
+                    using (SqlCommand comando = new SqlCommand(queryInsertPersonas, base._conexion))
+                    {
+                        int idPersona = Convert.ToInt32(comando.ExecuteScalar());//-->Obtengo el ID en Personas
+
+                        //-->Segundo se hace el insert en la tabla de Empleados y se consigue el ID del Empleado.
+                        string queryInsertEmpleados = $"INSERT INTO Empleados (FechaAlta, FechaBaja) " +
+                                                     $"OUTPUT INSERTED.IDEmpleado " +
+                                                     $"VALUES ('{empleado.FechaAlta.ToString("yyyy-MM-dd HH:mm:ss")}', " +
+                                                     $"{(empleado.FechaBaja != DateTime.MinValue ? $"'{empleado.FechaBaja.ToString("yyyy-MM-dd HH:mm:ss")}'" : "NULL")})";
+
+                        using (SqlCommand comandoInsertEmpleado = new SqlCommand(queryInsertEmpleados, base._conexion))
+                        {
+                            int idEmpleado = Convert.ToInt32(comandoInsertEmpleado.ExecuteScalar());//-->Obtengo el ID del Empleado
+
+                            //-->Tercero hago el INSERT en la tabla Usuarios
+                            string queryInsertUsuario = $"INSERT INTO Usuarios (Email, Clave) " +
+                                                        $"OUTPUT INSERTED.IDUsuario " +
+                                                        $"VALUES ('{empleado.Usuario.Email}', '{empleado.Usuario.Contrasenia}')";
+
+                            using (SqlCommand comandoInsertUsuario = new SqlCommand(queryInsertUsuario, base._conexion))
+                            {
+                                int idUsuario = Convert.ToInt32(comandoInsertUsuario.ExecuteScalar());//-->Obtengo el ID del Usuario
+
+                                //-->Cuarto hago el INSERT en la tabla INTERMEDIA:
+                                string queryEmpleadosClientes = "INSERT INTO EmpleadosClientes (IDPersona, IDEmpleado, IDUsuario, IDRol)" +
+                                                                $"VALUES({idPersona},{idEmpleado},{idUsuario},'{(int)empleado.Rol}')";
+
+                                using (SqlCommand comandoInsertEmpleadosClientes = new SqlCommand(queryEmpleadosClientes, base._conexion))
+                                {
+                                    comandoInsertEmpleadosClientes.ExecuteNonQuery();//-->Ejecuto
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            finally
+            {
+                if (base._conexion.State == ConnectionState.Open)
+                {
+                    base._conexion.Close();
+                }
+            }
+            return true;
+        }
+
+
+        /// <summary>
+        /// Me permitira actualizar datos sobre los
+        /// empleados.
+        /// </summary>
+        /// <param name="empleado"></param>
+        /// <returns></returns>
         public bool UpdateDato(Empleado empleado)
         {
             bool pudoActualizar = true;
@@ -178,41 +219,126 @@ namespace Entidades.DB
             {
                 using (base._conexion = new SqlConnection(AccesoDB.CadenaDeConexion))
                 {
-                    string query = $"UPDATE Empleados " +
-                                   $"SET " +
-                                   $"FechaAlta = '{empleado.FechaAlta.ToString("yyyy-MM-dd HH:mm:ss")}', " +
-                                   $"FechaBaja = {(empleado.FechaBaja != DateTime.MinValue ? $"'{empleado.FechaBaja.ToString("yyyy-MM-dd HH:mm:ss")}'" : "NULL")}, " +
-                                   $"Nombre = '{empleado.Nombre}', " +
-                                   $"Apellido = '{empleado.Apellido}', " +
-                                   $"Telefono = '{empleado.Telefono}', " +
-                                   $"Direccion = '{empleado.Direccion}', " +
-                                   $"DNI = '{empleado.DNI}', " +
-                                   $"Genero = '{empleado.Genero}', " +
-                                   $"FechaNacimiento = '{empleado.FechaNacimeinto.ToString("yyyy-MM-dd HH:mm:ss")}', " +
-                                   $"IDRol = (SELECT IDRol FROM Roles WHERE Rol = '{empleado.Rol}'), " +
-                                   $"IDUsuario = (SELECT IDUsuario FROM Usuarios WHERE Email = '{empleado.Usuario.Email}') " +
-                                   $"WHERE IDEmpleado = {empleado.IDEmpleado}";
+                    base._conexion.Open();//-->Abro la conexion
 
-                    using (SqlCommand comando = new SqlCommand(query, base._conexion))
+                    using (SqlTransaction transaction = base._conexion.BeginTransaction())
                     {
-                        comando.ExecuteNonQuery();
+                        try
+                        {
+                            //Actualizo la tabla EMPLEADOS
+                            string queryEmpleados = $"UPDATE Empleados " +
+                                                     $"SET FechaAlta = '{empleado.FechaAlta.ToString("yyyy-MM-dd HH:mm:ss")}', " +
+                                                     $"FechaBaja = {(empleado.FechaBaja != DateTime.MinValue ? $"'{empleado.FechaBaja.ToString("yyyy-MM-dd HH:mm:ss")}'" : "NULL")} " +
+                                                     $"WHERE IDEmpleado = {empleado.IDEmpleado}";
+
+                            using (SqlCommand comandoEmpleados = new SqlCommand(queryEmpleados, base._conexion, transaction))
+                            {
+                                comandoEmpleados.ExecuteNonQuery();
+                            }
+
+                            //-->Luego actualizo la tabla PERSONAS
+                            string queryPersonas = $"UPDATE Personas " +
+                                                   $"SET Nombre = '{empleado.Nombre}', " +
+                                                   $"Apellido = '{empleado.Apellido}', " +
+                                                   $"Telefono = '{empleado.Telefono}', " +
+                                                   $"Direccion = '{empleado.Direccion}', " +
+                                                   $"DNI = '{empleado.DNI}', " +
+                                                   $"Genero = '{empleado.Genero}', " +
+                                                   $"FechaNacimiento = '{empleado.FechaNacimeinto.ToString("yyyy-MM-dd HH:mm:ss")}' " +
+                                                   $"FROM Personas P " +
+                                                   $"INNER JOIN EmpleadosClientes EC ON P.IDPersona = EC.IDPersona " +
+                                                   $"INNER JOIN Empleados E ON EC.IDEmpleado = E.IDEmpleado " +
+                                                   $"WHERE E.IDEmpleado = {empleado.IDEmpleado}";
+
+                            using (SqlCommand comandoPersonas = new SqlCommand(queryPersonas, base._conexion, transaction))
+                            {
+                                comandoPersonas.ExecuteNonQuery();
+                            }
+
+                            //-->Commit si todo se realizó con éxito
+                            transaction.Commit();
+                            pudoActualizar = true;
+                        }
+                        catch (Exception)
+                        {
+                            //-->Rollback en caso de error
+                            transaction.Rollback();
+                            pudoActualizar = false;
+                        }
                     }
                 }
             }
             catch (Exception)
-            { 
-                return false;
+            {
+                pudoActualizar = false;
             }
             finally
             {
-                if (base._conexion.State == ConnectionState.Open)//-->Chequeo si la conexion esta abierta
+                if (base._conexion.State == ConnectionState.Open)
                 {
-                    base._conexion.Close();//-->La cierro
+                    base._conexion.Close();
                 }
             }
 
             return pudoActualizar;
+        }
 
+        /// <summary>
+        /// Me permitira realizar una baja logica
+        /// de la tabla de empleados.
+        /// Cambiando la fecha de baja
+        /// seteandole la actual.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public bool DeleteDato(int id)
+        {
+            bool pudoEliminar = false;
+
+            try
+            {
+                using (base._conexion = new SqlConnection(AccesoDB.CadenaDeConexion))
+                {
+                    base._conexion.Open();//-->Abro la conexion
+
+                    using (SqlTransaction transaction = base._conexion.BeginTransaction())
+                    {
+                        try
+                        {
+                            string queryDelete = "UPDATE Empleados " +
+                                                 $"SET FechaBaja = '{DateTime.Now.ToString("yyyy-MM-dd")}' " +
+                                                 $"WHERE IDEmpleado = {id}";
+
+                            using (base._comando = new SqlCommand(queryDelete, base._conexion, transaction))
+                            {
+                                base._comando.ExecuteNonQuery();
+                            }
+
+                            //-->Commit si todo se realizó con éxito
+                            transaction.Commit();
+                            pudoEliminar = true;
+                        }
+                        catch (Exception)
+                        {
+                            //-->Rollback en caso de error
+                            transaction.Rollback();
+                            pudoEliminar = false;
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                pudoEliminar = false;
+            }
+            finally
+            {
+                if (base._conexion.State == ConnectionState.Open)
+                {
+                    base._conexion.Close();
+                }
+            }
+            return pudoEliminar;
         }
         #endregion
     }

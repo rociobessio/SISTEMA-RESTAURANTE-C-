@@ -25,8 +25,8 @@ namespace Aplicacion.Socio
 
         public FrmPanelControlSocio(Usuario usuario)
             : this()
-        { 
-            this.lblUsuario.Text = usuario.Email; 
+        {
+            this.lblUsuario.Text = usuario.Email;
             this.lblHorarioIngreso.Text = DateTime.Now.ToString();
 
 

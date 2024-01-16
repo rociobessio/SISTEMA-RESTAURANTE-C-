@@ -74,5 +74,49 @@ namespace Entidades.DB
             //return false;
             return verificado;
         }
+
+        /// <summary>
+        /// Sobrecarga del metodo, me permite 
+        /// saber si el usuario ya existe, utilizo
+        /// el COUNT
+        /// </summary>
+        /// <param name="email"></param>
+        /// <param name="clave"></param>
+        /// <returns></returns>
+        public bool VerificarUsuario(string email, string clave)
+        {
+            bool existe = false;
+
+            try
+            {
+                using (base._conexion = new SqlConnection(AccesoDB.CadenaDeConexion))
+                {
+                    base._conexion.Open();
+
+                    string query = $"SELECT COUNT(*) FROM Usuarios WHERE Email = '{email}' AND Clave = '{clave}'";
+
+                    using (SqlCommand comando = new SqlCommand(query, base._conexion))
+                    {
+                        int cantidadUsuarios = Convert.ToInt32(comando.ExecuteScalar());
+
+                        existe = cantidadUsuarios > 0;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            finally
+            {
+                if (base._conexion.State == ConnectionState.Open)
+                {
+                    base._conexion.Close();
+                }
+            }
+
+            return existe;
+        }
+
     }
 }

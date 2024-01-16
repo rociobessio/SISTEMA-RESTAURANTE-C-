@@ -83,6 +83,16 @@ namespace Aplicacion.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap comida_icono {
+            get {
+                object obj = ResourceManager.GetObject("comida-icono", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap delete_icon {
             get {
                 object obj = ResourceManager.GetObject("delete-icon", resourceCulture);
@@ -96,6 +106,26 @@ namespace Aplicacion.Properties {
         internal static System.Drawing.Bitmap limpiar_icono {
             get {
                 object obj = ResourceManager.GetObject("limpiar-icono", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap manager_icono {
+            get {
+                object obj = ResourceManager.GetObject("manager-icono", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap mesa_icono {
+            get {
+                object obj = ResourceManager.GetObject("mesa-icono", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -123,9 +153,39 @@ namespace Aplicacion.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap servir_pedido_icono {
+            get {
+                object obj = ResourceManager.GetObject("servir-pedido-icono", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap servir_pedido_icono1 {
+            get {
+                object obj = ResourceManager.GetObject("servir-pedido-icono1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap socio_icon {
             get {
                 object obj = ResourceManager.GetObject("socio-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap worker_icono {
+            get {
+                object obj = ResourceManager.GetObject("worker-icono", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

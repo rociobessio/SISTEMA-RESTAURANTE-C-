@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Entidades;
 using Entidades.DB;
+using Excepciones;
 using Excepciones.DB;
 using Login;
 
@@ -20,6 +21,7 @@ namespace Aplicacion.Socio
         private EmpleadoDAO empleadoDAO;
         private List<Empleado> listaEmpleados;
         private Empleado empleadoSeleccionado;
+        private UsuarioDAO usuarioDAO;
 
         #region DATAGRIDVIEW
         DataTable tablaEmpleados;
@@ -39,6 +41,7 @@ namespace Aplicacion.Socio
             InitializeComponent();
             this.tablaEmpleados = new DataTable();//-->Instancio la dataTable.
             this.empleadoDAO = new EmpleadoDAO();//-->Inicializo la conexion
+            this.usuarioDAO = new UsuarioDAO();
         }
 
         /// <summary>
@@ -96,6 +99,8 @@ namespace Aplicacion.Socio
             //-->Modifico el formato de los DateTimePicker.
             this.dtpIngresoEmpleado.CustomFormat = "dd/MM/yyyy";
             this.dtpIngresoEmpleado.Format = DateTimePickerFormat.Custom;
+            this.dtpIngresoEmpleado.Enabled = false;
+
             this.dtpNacimiento.CustomFormat = "dd/MM/yyyy";
             this.dtpNacimiento.Format = DateTimePickerFormat.Custom;
 
@@ -112,7 +117,7 @@ namespace Aplicacion.Socio
             this.tablaEmpleados.Rows.Clear();//-->Limpio las filas.
 
             foreach (Empleado empleado in this.listaEmpleados)
-            {
+            { 
                 this.auxFilaEmpleado = this.tablaEmpleados.NewRow();
                 this.auxFilaEmpleado[0] = $"{empleado.IDEmpleado}";
                 this.auxFilaEmpleado[1] = $"{empleado.Nombre}";
@@ -126,7 +131,7 @@ namespace Aplicacion.Socio
                 this.auxFilaEmpleado[9] = $"{empleado.Usuario.Email}";
                 this.auxFilaEmpleado[10] = $"{empleado.Rol}";
 
-                this.tablaEmpleados.Rows.Add(this.auxFilaEmpleado);//-->Añado las Filas
+                this.tablaEmpleados.Rows.Add(this.auxFilaEmpleado);//-->Añado las Filas 
             }
             this.dtgvEmpleados.DataSource = this.tablaEmpleados;//-->Al dataGrid le paso la lista  
         }
@@ -164,6 +169,7 @@ namespace Aplicacion.Socio
                     this.dtpNacimiento.Value = empleado.FechaNacimeinto;
                     this.cbRol.Text = empleado.Rol.ToString();
                     this.cbGenero.Text = empleado.Genero.ToString();
+                    this.txtClave.Text = empleado.Usuario.Contrasenia;
 
                     this.empleadoSeleccionado = empleado;
                     break;
@@ -180,6 +186,7 @@ namespace Aplicacion.Socio
         /// <param name="e"></param>
         private void dtgvEmpleados_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            this.dtpIngresoEmpleado.Enabled = false;
             this.btnRegistrar.Enabled = true;
         }
 
@@ -198,7 +205,7 @@ namespace Aplicacion.Socio
         private bool ValidarDatos()
         {
             bool ingresoValido = true;
-            DateTime fechaValida = new DateTime(1970,01,01);
+            DateTime fechaValida = new DateTime(1970, 01, 01);
 
             if (string.IsNullOrEmpty(this.txtApellido.Text) || string.IsNullOrEmpty(this.txtDireccion.Text) ||
                 string.IsNullOrEmpty(this.txtDNI.Text) || string.IsNullOrEmpty(this.txtEmail.Text) || string.IsNullOrEmpty(this.txtNombre.Text) ||
@@ -267,6 +274,7 @@ namespace Aplicacion.Socio
             this.txtDireccion.Clear();
             this.txtDNI.Clear();
             this.txtEmail.Clear();
+            this.txtClave.Clear();
             this.txtNombre.Clear();
             this.txtTelefono.Clear();
             this.dtpNacimiento.ResetText();
@@ -284,8 +292,9 @@ namespace Aplicacion.Socio
         private void btnModificar_Click(object sender, EventArgs e)
         {
             try
-            {   // && this.indexTablaEmpleado >= 0
-                if (this.ValidarDatos()){
+            {
+                if (this.ValidarDatos() && this.indexTablaEmpleado >= 0)
+                {
                     //-->Updateo los valores ingresados
                     this.empleadoSeleccionado.Rol = Enum.Parse<Rol>(this.cbRol.SelectedItem.ToString());
                     this.empleadoSeleccionado.Telefono = this.txtTelefono.Text;
@@ -297,6 +306,7 @@ namespace Aplicacion.Socio
                     this.empleadoSeleccionado.Genero = Enum.Parse<Genero>(this.cbGenero.SelectedItem.ToString()); ;
                     this.empleadoSeleccionado.Nombre = this.txtNombre.Text;
                     this.empleadoSeleccionado.Usuario.Email = this.txtEmail.Text;
+                    this.empleadoSeleccionado.Usuario.Contrasenia = this.txtClave.Text;
 
                     if (!empleadoDAO.UpdateDato(this.empleadoSeleccionado))
                     {
@@ -308,7 +318,7 @@ namespace Aplicacion.Socio
                 else
                     MessageBox.Show("Alguno de los datos ingresado es incorrecto.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            catch(SQLUpdateException ex)
+            catch (SQLUpdateException ex)
             {
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -317,6 +327,85 @@ namespace Aplicacion.Socio
                 MessageBox.Show("Algo inesperado sucedio al intentar modificar al empleado, reintente.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+            this.btnRegistrar.Enabled = true;
+            this.CargarEmpleadosDataGrid();
+        }
+
+        /// <summary>
+        /// Me permitira dar de alta un nuevo Empleado
+        /// en la tabla.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnRegistrar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (this.ValidarDatos())
+                {
+                    //-->Valido si ya existe el usuario ingresado.
+                    if (this.usuarioDAO.VerificarUsuario(this.txtEmail.Text, this.txtClave.Text))
+                    {
+                        throw new UsuarioExistenteException("El usuario ingresado ya existe, reintente.");
+                    }
+
+                    if (!this.empleadoDAO.AgregarDato(new Empleado(Enum.Parse<Rol>(this.cbRol.SelectedItem.ToString()), DateTime.Now,
+                        new DateTime(), this.txtNombre.Text, this.txtApellido.Text, this.txtDireccion.Text, this.txtDNI.Text, this.txtTelefono.Text,
+                        this.dtpNacimiento.Value, Enum.Parse<Genero>(this.cbGenero.SelectedItem.ToString()),
+                        new Usuario(this.txtEmail.Text, this.txtClave.Text))))
+                    {
+                        throw new SQLAgregarException("No se ha podido añadir al sistema al nuevo empleado.");
+                    }
+
+                    MessageBox.Show("El empleado ha sido añadido correctamente.", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                    MessageBox.Show("Alguno de los datos ingresado es incorrecto.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (UsuarioExistenteException ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (SQLAgregarException ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Algo inesperado sucedio al intentar añadir al empleado, reintente.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            this.btnRegistrar.Enabled = true;
+            this.CargarEmpleadosDataGrid();
+        }
+
+        /// <summary>
+        /// Me permitira Dar de baja un Empleado.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if(this.indexTablaEmpleado >= 0)
+                {
+                    if (!this.empleadoDAO.DeleteDato(empleadoSeleccionado.IDEmpleado))
+                        throw new SQLDeleteException("No se ha podido dar de baja al empleado.");
+
+                    MessageBox.Show("El empleado ha dado de baja al empleado correctamente.", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }else
+                    MessageBox.Show("Debe de seleccionar un empleado.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch(SQLDeleteException ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Algo inesperado sucedio al intentar añadir al empleado, reintente.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             this.btnRegistrar.Enabled = true;
             this.CargarEmpleadosDataGrid();
         }
@@ -341,7 +430,13 @@ namespace Aplicacion.Socio
         {
 
         }
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
         #endregion
+
+
 
     }
 }

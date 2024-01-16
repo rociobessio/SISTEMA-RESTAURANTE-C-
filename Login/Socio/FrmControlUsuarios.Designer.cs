@@ -36,6 +36,8 @@
             btnRegistrar = new Button();
             btnRefrescar = new Button();
             groupBox1 = new GroupBox();
+            label14 = new Label();
+            txtClave = new TextBox();
             btnLimpiar = new Button();
             label11 = new Label();
             cbRol = new ComboBox();
@@ -77,12 +79,12 @@
             dtgvEmpleados.BackgroundColor = Color.Bisque;
             dtgvEmpleados.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dtgvEmpleados.GridColor = Color.Tan;
-            dtgvEmpleados.Location = new Point(10, 292);
+            dtgvEmpleados.Location = new Point(12, 292);
             dtgvEmpleados.Name = "dtgvEmpleados";
             dtgvEmpleados.ReadOnly = true;
             dtgvEmpleados.RowHeadersWidth = 62;
             dtgvEmpleados.RowTemplate.Height = 33;
-            dtgvEmpleados.Size = new Size(1120, 223);
+            dtgvEmpleados.Size = new Size(1200, 223);
             dtgvEmpleados.TabIndex = 13;
             dtgvEmpleados.CellClick += dtgvEmpleados_CellClick;
             dtgvEmpleados.CellContentClick += dtgvEmpleados_CellContentClick;
@@ -98,6 +100,7 @@
             label1.Size = new Size(324, 35);
             label1.TabIndex = 14;
             label1.Text = "Empleados Registrados";
+            label1.Click += label1_Click;
             // 
             // btnEliminar
             // 
@@ -109,13 +112,14 @@
             btnEliminar.ForeColor = SystemColors.ButtonHighlight;
             btnEliminar.Image = Properties.Resources.delete_icon;
             btnEliminar.ImageAlign = ContentAlignment.MiddleRight;
-            btnEliminar.Location = new Point(551, 521);
+            btnEliminar.Location = new Point(633, 522);
             btnEliminar.Name = "btnEliminar";
             btnEliminar.Size = new Size(169, 62);
             btnEliminar.TabIndex = 46;
             btnEliminar.Text = "   Eliminar";
             btnEliminar.TextAlign = ContentAlignment.MiddleLeft;
             btnEliminar.UseVisualStyleBackColor = false;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // btnModificar
             // 
@@ -127,7 +131,7 @@
             btnModificar.ForeColor = SystemColors.ButtonHighlight;
             btnModificar.Image = Properties.Resources.modificar_icono;
             btnModificar.ImageAlign = ContentAlignment.MiddleRight;
-            btnModificar.Location = new Point(756, 521);
+            btnModificar.Location = new Point(838, 522);
             btnModificar.Name = "btnModificar";
             btnModificar.Size = new Size(169, 62);
             btnModificar.TabIndex = 47;
@@ -146,13 +150,14 @@
             btnRegistrar.ForeColor = SystemColors.ButtonHighlight;
             btnRegistrar.Image = Properties.Resources.agregar_icon1;
             btnRegistrar.ImageAlign = ContentAlignment.MiddleRight;
-            btnRegistrar.Location = new Point(961, 521);
+            btnRegistrar.Location = new Point(1043, 522);
             btnRegistrar.Name = "btnRegistrar";
             btnRegistrar.Size = new Size(169, 62);
             btnRegistrar.TabIndex = 48;
             btnRegistrar.Text = "   Registrar";
             btnRegistrar.TextAlign = ContentAlignment.MiddleLeft;
             btnRegistrar.UseVisualStyleBackColor = false;
+            btnRegistrar.Click += btnRegistrar_Click;
             // 
             // btnRefrescar
             // 
@@ -164,7 +169,7 @@
             btnRefrescar.ForeColor = SystemColors.ButtonHighlight;
             btnRefrescar.Image = Properties.Resources.refrescar_icono;
             btnRefrescar.ImageAlign = ContentAlignment.MiddleRight;
-            btnRefrescar.Location = new Point(361, 521);
+            btnRefrescar.Location = new Point(443, 522);
             btnRefrescar.Name = "btnRefrescar";
             btnRefrescar.Size = new Size(169, 62);
             btnRefrescar.TabIndex = 49;
@@ -175,6 +180,8 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(label14);
+            groupBox1.Controls.Add(txtClave);
             groupBox1.Controls.Add(btnLimpiar);
             groupBox1.Controls.Add(label11);
             groupBox1.Controls.Add(cbRol);
@@ -198,11 +205,28 @@
             groupBox1.Controls.Add(label2);
             groupBox1.Location = new Point(0, 0);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(1130, 251);
+            groupBox1.Size = new Size(1218, 251);
             groupBox1.TabIndex = 50;
             groupBox1.TabStop = false;
             groupBox1.Text = "Datos Personales";
             groupBox1.Enter += groupBox1_Enter;
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Location = new Point(936, 111);
+            label14.Name = "label14";
+            label14.Size = new Size(58, 25);
+            label14.TabIndex = 73;
+            label14.Text = "Clave:";
+            // 
+            // txtClave
+            // 
+            txtClave.Location = new Point(1024, 111);
+            txtClave.Name = "txtClave";
+            txtClave.PasswordChar = '*';
+            txtClave.Size = new Size(188, 31);
+            txtClave.TabIndex = 72;
             // 
             // btnLimpiar
             // 
@@ -214,7 +238,7 @@
             btnLimpiar.ForeColor = SystemColors.ButtonHighlight;
             btnLimpiar.Image = Properties.Resources.limpiar_icono;
             btnLimpiar.ImageAlign = ContentAlignment.MiddleRight;
-            btnLimpiar.Location = new Point(955, 142);
+            btnLimpiar.Location = new Point(1043, 174);
             btnLimpiar.Name = "btnLimpiar";
             btnLimpiar.Size = new Size(169, 62);
             btnLimpiar.TabIndex = 71;
@@ -226,7 +250,7 @@
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(921, 33);
+            label11.Location = new Point(575, 161);
             label11.Name = "label11";
             label11.Size = new Size(41, 25);
             label11.TabIndex = 70;
@@ -235,14 +259,14 @@
             // cbRol
             // 
             cbRol.FormattingEnabled = true;
-            cbRol.Location = new Point(974, 30);
+            cbRol.Location = new Point(693, 158);
             cbRol.Name = "cbRol";
-            cbRol.Size = new Size(150, 33);
+            cbRol.Size = new Size(188, 33);
             cbRol.TabIndex = 69;
             // 
             // txtEmail
             // 
-            txtEmail.Location = new Point(693, 173);
+            txtEmail.Location = new Point(1024, 30);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(188, 31);
             txtEmail.TabIndex = 68;
@@ -250,7 +274,7 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(575, 177);
+            label10.Location = new Point(936, 30);
             label10.Name = "label10";
             label10.Size = new Size(58, 25);
             label10.TabIndex = 67;
@@ -436,7 +460,7 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Linen;
-            ClientSize = new Size(1142, 595);
+            ClientSize = new Size(1230, 595);
             Controls.Add(lblHorarioIngreso);
             Controls.Add(label13);
             Controls.Add(lblUsuario);
@@ -495,5 +519,7 @@
         private Label lblHorarioIngreso;
         private Label label13;
         private Button btnLimpiar;
+        private Label label14;
+        private TextBox txtClave;
     }
 }
