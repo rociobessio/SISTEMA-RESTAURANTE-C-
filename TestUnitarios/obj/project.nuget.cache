@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "XlfoMIfRhfu6dT+AdRnV3R5mdpWyZzODsSElvpRRgPFKsqcTNCXQcuY/jkT54LOnB76GUNcPULmrHreNW76tlA==",
+  "dgSpecHash": "FS6s6t81pihPy3c4qk5466NJ4S7bpYJTSHhnqggrU4i2NssBHt17zj8WeLKvHgGhKWWtPnNpQ8c2EPyavrhTpA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\MANEJO-RESTAURANTE\\TestUnitarios\\TestUnitarios.csproj",
+  "projectFilePath": "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\SISTEMA-RESTAURANTE-CSHARP\\TestUnitarios\\TestUnitarios.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Rocio\\.nuget\\packages\\coverlet.collector\\3.2.0\\coverlet.collector.3.2.0.nupkg.sha512",
     "C:\\Users\\Rocio\\.nuget\\packages\\microsoft.codecoverage\\17.5.0\\microsoft.codecoverage.17.5.0.nupkg.sha512",

@@ -1,4 +1,5 @@
-﻿using Entidades;
+﻿using Aplicacion.View;
+using Entidades;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,7 +15,6 @@ namespace Aplicacion.Socio
     public partial class FrmMenuSocio : Form
     {
         #region ATRIBUTOS
-
         #endregion
 
         #region CONSTRUCTOR
@@ -38,7 +38,6 @@ namespace Aplicacion.Socio
         }
 
         #region BOTONES
-
         /// <summary>
         /// BOTON HOME!
         /// </summary>
@@ -48,6 +47,17 @@ namespace Aplicacion.Socio
         {
             //-->BOTON HOME
             this.AgregarControles(new FrmHome());
+        }
+
+        /// <summary>
+        /// Boton CATEGORIAS!
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void guna2Button1_Click_1(object sender, EventArgs e)
+        {
+            this.AgregarControles(new FrmCategoriasView());
+
         }
 
         /// <summary>
@@ -90,10 +100,7 @@ namespace Aplicacion.Socio
 
 
 
-        private void guna2Button1_Click_1(object sender, EventArgs e)
-        {
 
-        }
 
         private void guna2Button2_Click(object sender, EventArgs e)
         {

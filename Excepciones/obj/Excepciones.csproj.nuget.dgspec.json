@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\MANEJO-RESTAURANTE\\Excepciones\\Excepciones.csproj": {}
+    "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\SISTEMA-RESTAURANTE-CSHARP\\Excepciones\\Excepciones.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\MANEJO-RESTAURANTE\\Excepciones\\Excepciones.csproj": {
+    "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\SISTEMA-RESTAURANTE-CSHARP\\Excepciones\\Excepciones.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\MANEJO-RESTAURANTE\\Excepciones\\Excepciones.csproj",
+        "projectUniqueName": "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\SISTEMA-RESTAURANTE-CSHARP\\Excepciones\\Excepciones.csproj",
         "projectName": "Excepciones",
-        "projectPath": "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\MANEJO-RESTAURANTE\\Excepciones\\Excepciones.csproj",
+        "projectPath": "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\SISTEMA-RESTAURANTE-CSHARP\\Excepciones\\Excepciones.csproj",
         "packagesPath": "C:\\Users\\Rocio\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\MANEJO-RESTAURANTE\\Excepciones\\obj\\",
+        "outputPath": "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\SISTEMA-RESTAURANTE-CSHARP\\Excepciones\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Rocio\\AppData\\Roaming\\NuGet\\NuGet.Config",

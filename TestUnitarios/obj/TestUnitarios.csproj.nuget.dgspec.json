@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\MANEJO-RESTAURANTE\\TestUnitarios\\TestUnitarios.csproj": {}
+    "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\SISTEMA-RESTAURANTE-CSHARP\\TestUnitarios\\TestUnitarios.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\MANEJO-RESTAURANTE\\Entidades\\Entidades.csproj": {
+    "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\SISTEMA-RESTAURANTE-CSHARP\\Entidades\\Entidades.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\MANEJO-RESTAURANTE\\Entidades\\Entidades.csproj",
+        "projectUniqueName": "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\SISTEMA-RESTAURANTE-CSHARP\\Entidades\\Entidades.csproj",
         "projectName": "Entidades",
-        "projectPath": "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\MANEJO-RESTAURANTE\\Entidades\\Entidades.csproj",
+        "projectPath": "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\SISTEMA-RESTAURANTE-CSHARP\\Entidades\\Entidades.csproj",
         "packagesPath": "C:\\Users\\Rocio\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\MANEJO-RESTAURANTE\\Entidades\\obj\\",
+        "outputPath": "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\SISTEMA-RESTAURANTE-CSHARP\\Entidades\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Rocio\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -65,14 +65,14 @@
         }
       }
     },
-    "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\MANEJO-RESTAURANTE\\Excepciones\\Excepciones.csproj": {
+    "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\SISTEMA-RESTAURANTE-CSHARP\\Excepciones\\Excepciones.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\MANEJO-RESTAURANTE\\Excepciones\\Excepciones.csproj",
+        "projectUniqueName": "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\SISTEMA-RESTAURANTE-CSHARP\\Excepciones\\Excepciones.csproj",
         "projectName": "Excepciones",
-        "projectPath": "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\MANEJO-RESTAURANTE\\Excepciones\\Excepciones.csproj",
+        "projectPath": "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\SISTEMA-RESTAURANTE-CSHARP\\Excepciones\\Excepciones.csproj",
         "packagesPath": "C:\\Users\\Rocio\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\MANEJO-RESTAURANTE\\Excepciones\\obj\\",
+        "outputPath": "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\SISTEMA-RESTAURANTE-CSHARP\\Excepciones\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Rocio\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -120,14 +120,14 @@
         }
       }
     },
-    "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\MANEJO-RESTAURANTE\\TestUnitarios\\TestUnitarios.csproj": {
+    "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\SISTEMA-RESTAURANTE-CSHARP\\TestUnitarios\\TestUnitarios.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\MANEJO-RESTAURANTE\\TestUnitarios\\TestUnitarios.csproj",
+        "projectUniqueName": "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\SISTEMA-RESTAURANTE-CSHARP\\TestUnitarios\\TestUnitarios.csproj",
         "projectName": "TestUnitarios",
-        "projectPath": "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\MANEJO-RESTAURANTE\\TestUnitarios\\TestUnitarios.csproj",
+        "projectPath": "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\SISTEMA-RESTAURANTE-CSHARP\\TestUnitarios\\TestUnitarios.csproj",
         "packagesPath": "C:\\Users\\Rocio\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\MANEJO-RESTAURANTE\\TestUnitarios\\obj\\",
+        "outputPath": "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\SISTEMA-RESTAURANTE-CSHARP\\TestUnitarios\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Rocio\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -144,11 +144,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\MANEJO-RESTAURANTE\\Entidades\\Entidades.csproj": {
-                "projectPath": "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\MANEJO-RESTAURANTE\\Entidades\\Entidades.csproj"
+              "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\SISTEMA-RESTAURANTE-CSHARP\\Entidades\\Entidades.csproj": {
+                "projectPath": "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\SISTEMA-RESTAURANTE-CSHARP\\Entidades\\Entidades.csproj"
               },
-              "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\MANEJO-RESTAURANTE\\Excepciones\\Excepciones.csproj": {
-                "projectPath": "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\MANEJO-RESTAURANTE\\Excepciones\\Excepciones.csproj"
+              "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\SISTEMA-RESTAURANTE-CSHARP\\Excepciones\\Excepciones.csproj": {
+                "projectPath": "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\SISTEMA-RESTAURANTE-CSHARP\\Excepciones\\Excepciones.csproj"
               }
             }
           }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Cx48T/WWYXSLVmsBoVgygtgTYbnDrB3aK3VNFX7vC3UoBo3+mISb4PqING4eL3nXnqMoRmsjr8ScrzUqpWKLdg==",
+  "dgSpecHash": "J7p9Kk51Fv035UiPL4PbBambu1zyrwXZ7glJId2LFSml2ErJv5EwzdpHPGOUzpqBwIaYxtjRb8CGLMGpB34wAQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\MANEJO-RESTAURANTE\\Entidades\\Entidades.csproj",
+  "projectFilePath": "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\SISTEMA-RESTAURANTE-CSHARP\\Entidades\\Entidades.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Rocio\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\Rocio\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
