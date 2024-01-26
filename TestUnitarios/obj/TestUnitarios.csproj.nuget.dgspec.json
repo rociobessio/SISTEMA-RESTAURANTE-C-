@@ -1,0 +1,204 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\MANEJO-RESTAURANTE\\TestUnitarios\\TestUnitarios.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\MANEJO-RESTAURANTE\\Entidades\\Entidades.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\MANEJO-RESTAURANTE\\Entidades\\Entidades.csproj",
+        "projectName": "Entidades",
+        "projectPath": "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\MANEJO-RESTAURANTE\\Entidades\\Entidades.csproj",
+        "packagesPath": "C:\\Users\\Rocio\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\MANEJO-RESTAURANTE\\Entidades\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Rocio\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.6, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\MANEJO-RESTAURANTE\\Excepciones\\Excepciones.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\MANEJO-RESTAURANTE\\Excepciones\\Excepciones.csproj",
+        "projectName": "Excepciones",
+        "projectPath": "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\MANEJO-RESTAURANTE\\Excepciones\\Excepciones.csproj",
+        "packagesPath": "C:\\Users\\Rocio\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\MANEJO-RESTAURANTE\\Excepciones\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Rocio\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\MANEJO-RESTAURANTE\\TestUnitarios\\TestUnitarios.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\MANEJO-RESTAURANTE\\TestUnitarios\\TestUnitarios.csproj",
+        "projectName": "TestUnitarios",
+        "projectPath": "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\MANEJO-RESTAURANTE\\TestUnitarios\\TestUnitarios.csproj",
+        "packagesPath": "C:\\Users\\Rocio\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\MANEJO-RESTAURANTE\\TestUnitarios\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Rocio\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\MANEJO-RESTAURANTE\\Entidades\\Entidades.csproj": {
+                "projectPath": "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\MANEJO-RESTAURANTE\\Entidades\\Entidades.csproj"
+              },
+              "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\MANEJO-RESTAURANTE\\Excepciones\\Excepciones.csproj": {
+                "projectPath": "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\MANEJO-RESTAURANTE\\Excepciones\\Excepciones.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "MSTest.TestAdapter": {
+              "target": "Package",
+              "version": "[2.2.10, )"
+            },
+            "MSTest.TestFramework": {
+              "target": "Package",
+              "version": "[2.2.10, )"
+            },
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.5.0, )"
+            },
+            "coverlet.collector": {
+              "target": "Package",
+              "version": "[3.2.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

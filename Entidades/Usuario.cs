@@ -13,7 +13,7 @@ namespace Entidades
         private string _email;
         private string _contrasenia;
         private DateTime _horaIngresoApp;
-        private bool _esCliente; 
+        private bool _esCliente;
         #endregion
 
         #region PROPIEDADES
@@ -56,7 +56,7 @@ namespace Entidades
         public Usuario(string email, string contrasenia, bool esCliente)
             : this(email, contrasenia)
         {
-            this._esCliente = esCliente; 
+            this._esCliente = esCliente;
         }
         #endregion
 

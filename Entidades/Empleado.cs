@@ -23,8 +23,8 @@ namespace Entidades
         public int IDEmpleado { get { return this._idEmpleado; } set { this._idEmpleado = value; } }
         public Rol Rol { get { return this._rol; } set { this._rol = value; } }
         public DateTime FechaAlta { get { return this._fechaAlta; } set { this._fechaBaja = value; } }
-        public DateTime FechaBaja { get {  return this._fechaBaja; } set { this._fechaBaja = value; } }
-        public Usuario Usuario { get {  return this._usuario; } set { this._usuario = value; } }
+        public DateTime FechaBaja { get { return this._fechaBaja; } set { this._fechaBaja = value; } }
+        public Usuario Usuario { get { return this._usuario; } set { this._usuario = value; } }
         /// <summary>
         /// Hago override de la propiedad EsCliente retornando false, servirá para
         /// el Login.
@@ -33,23 +33,23 @@ namespace Entidades
         #endregion
 
         #region CONSTRUCTORES
-        public Empleado( Rol rol, DateTime fAlta, DateTime fBaja,
-             string nombre,string apellido,string direccion,string dni, string telefono,DateTime fNacimiento,
-             Genero genero,Usuario usuario)
-            : base(nombre,apellido,genero,fNacimiento,dni,direccion,telefono)
+        public Empleado(Rol rol, DateTime fAlta, DateTime fBaja,
+             string nombre, string apellido, string direccion, string dni, string telefono, DateTime fNacimiento,
+             Genero genero, Usuario usuario)
+            : base(nombre, apellido, genero, fNacimiento, dni, direccion, telefono)
         {
             this._usuario = usuario;
             this._fechaAlta = fAlta;
-            this._fechaBaja=fBaja;
-            this._usuario=usuario;
-            this._rol=rol;
+            this._fechaBaja = fBaja;
+            this._usuario = usuario;
+            this._rol = rol;
         }
 
 
         public Empleado(int id, Rol rol, DateTime fAlta, DateTime fBaja,
              string nombre, string apellido, string direccion, string dni, string telefono, DateTime fNacimiento,
              Genero genero, Usuario usuario)
-            :this(rol,fAlta,fBaja,nombre,apellido,direccion,dni,telefono,fNacimiento,genero,usuario)
+            : this(rol, fAlta, fBaja, nombre, apellido, direccion, dni, telefono, fNacimiento, genero, usuario)
         {
             this._idEmpleado = id;
         }

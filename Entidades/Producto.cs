@@ -23,7 +23,7 @@ namespace Entidades
         public int IDProducto { get { return this._idProducto; } set { if (value >= 0) this._idProducto = value; } }
         public string Nombre { get { return this._nombre; } set { this._nombre = value; } }
         public Sectores Sector { get { return this._sector; } set { this._sector = value; } }
-        public Tipo Tipo { get {  return this._tipo; } set { this._tipo = value; } }
+        public Tipo Tipo { get { return this._tipo; } set { this._tipo = value; } }
         #endregion
 
         #region CONSTRUCTOR
@@ -33,7 +33,7 @@ namespace Entidades
         /// <param name="nombre">El nombre del Producto</param>
         /// <param name="sector">El sector del Producto</param>
         /// <param name="tipo">El Tipo del Producto.</param>
-        public Producto(string nombre,Sectores sector, Tipo tipo)
+        public Producto(string nombre, Sectores sector, Tipo tipo)
         {
             this._nombre = nombre;
             this._sector = sector;
@@ -48,7 +48,7 @@ namespace Entidades
         /// <param name="sector"></param>
         /// <param name="tipo"></param>
         public Producto(int id, string nombre, Sectores sector, Tipo tipo)
-            :this(nombre,sector,tipo)
+            : this(nombre, sector, tipo)
         {
             this._idProducto = id;
         }

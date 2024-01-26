@@ -4,7 +4,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml; 
+using System.Xml;
 
 namespace Entidades
 {
@@ -46,7 +46,7 @@ namespace Entidades
         /// el Login.
         /// </summary>
         public override bool EsCliente { get { return true; } }
-        public Usuario Usuario { get { return this.usuario; }  set { this.usuario = value; } }
+        public Usuario Usuario { get { return this.usuario; } set { this.usuario = value; } }
         #endregion
 
         #region CONSTRUCTORES
@@ -66,7 +66,7 @@ namespace Entidades
         /// <param name="user"></param>
         /// <param name="carrito"></param>
         public Cliente(string nombre, string apellido, Genero sexo, DateTime fechaNacimiento,
-                       string dni, string domicilio, string telefono, Carrito carrito,Usuario usuario)
+                       string dni, string domicilio, string telefono, Carrito carrito, Usuario usuario)
             : base(nombre, apellido, sexo, fechaNacimiento, dni, domicilio, telefono)
         {
             this._carritoCompra = carrito;
@@ -91,7 +91,7 @@ namespace Entidades
         /// <param name="usaTarjeta"></param>
         public Cliente(string nombre, string apellido, Genero sexo, DateTime fechaNacimiento,
                        string dni, string domicilio, string telefono, Usuario user, Carrito carrito, Tarjeta tarjeta, bool usaTarjeta)
-            : this(nombre, apellido, sexo, fechaNacimiento, dni, domicilio, telefono, carrito,user)
+            : this(nombre, apellido, sexo, fechaNacimiento, dni, domicilio, telefono, carrito, user)
         {
             this._tarjeta = tarjeta;
             this._esConTarjeta = usaTarjeta;

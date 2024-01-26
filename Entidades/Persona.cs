@@ -21,10 +21,10 @@ namespace Entidades
 
         #region PROPIEDADES
         public int IDPersona { get { return this._idPersona; } set { _idPersona = value; } }
-        public string Nombre { get {  return this._nombre; } set {  this._nombre = value; } }
-        public string Apellido { get { return this._apellido;} set { this._apellido = value;} }
-        public string Direccion { get {  return this._direccion; } set { this._direccion = value;} }
-        public string DNI { get { return this._dni;} set { this._dni = value;} }
+        public string Nombre { get { return this._nombre; } set { this._nombre = value; } }
+        public string Apellido { get { return this._apellido; } set { this._apellido = value; } }
+        public string Direccion { get { return this._direccion; } set { this._direccion = value; } }
+        public string DNI { get { return this._dni; } set { this._dni = value; } }
         public DateTime FechaNacimeinto { get { return _fechaNacimiento; } set { this._fechaNacimiento = value; } }
         public Genero Genero { get { return _genero; } set { _genero = value; } }
         public string Telefono { get { return this._numeroTelefono; } set { _numeroTelefono = value; } }
@@ -47,14 +47,14 @@ namespace Entidades
             this._direccion = "Calle Falsa";
             this._dni = "00.000.000";
             this._genero = Genero.Femenino;
-            this._fechaNacimiento = new DateTime(); 
+            this._fechaNacimiento = new DateTime();
             this._numeroTelefono = "000";
         }
 
         protected Persona(string nombre, string apellido, Genero sexo, DateTime fechaNacimiento,
             string dni, string domicilio, string telefono)
         {
-            this._genero = sexo; 
+            this._genero = sexo;
             this._fechaNacimiento = fechaNacimiento;
             this._dni = dni;
             this._direccion = domicilio;

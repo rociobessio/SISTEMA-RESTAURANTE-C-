@@ -32,7 +32,7 @@ namespace Entidades
         /// </summary>
         static AccesoDB()
         {
-            AccesoDB._cadenaDeConexion = @"Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=Comanda;Data Source=DESKTOP-S8KBDM2;Trusted_Connection=True;";
+            AccesoDB._cadenaDeConexion = @"Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=Restaurante;Data Source=DESKTOP-S8KBDM2;Trusted_Connection=True;";
         }
 
         /// <summary>
