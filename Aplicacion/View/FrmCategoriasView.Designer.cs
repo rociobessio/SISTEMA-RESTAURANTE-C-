@@ -164,7 +164,7 @@
             guna2MessageDialog1.Buttons = Guna.UI2.WinForms.MessageDialogButtons.OK;
             guna2MessageDialog1.Caption = null;
             guna2MessageDialog1.Icon = Guna.UI2.WinForms.MessageDialogIcon.Error;
-            guna2MessageDialog1.Parent = this;
+            guna2MessageDialog1.Parent = null;
             guna2MessageDialog1.Style = Guna.UI2.WinForms.MessageDialogStyle.Dark;
             guna2MessageDialog1.Text = null;
             // 

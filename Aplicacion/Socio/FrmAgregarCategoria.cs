@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Entidades;
 using Entidades.DB;
+using Excepciones;
 
 namespace Aplicacion.Socio
 {
@@ -45,33 +46,50 @@ namespace Aplicacion.Socio
         {
             if (this.id > 0)//-->Si ID mayor a 0, es para modificar
             {
-                if (this.categoriasDAO.UpdateDato(id, this.txtCategoria.Text))
+                try
                 {
-                    MessageBox.Show("Categoría actualizada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (!this.categoriasDAO.UpdateDato(id, this.txtCategoria.Text))
+                        throw new UpdateSQLException("No se ha podido realizar la modificación de la categoria, reintente!");
+
+
+                    this.guna2MessageDialog1.Icon = Guna.UI2.WinForms.MessageDialogIcon.Information;
+                    this.guna2MessageDialog1.Show("Se ha modificado la categoria correctamente!", "Información");
+
                     this.DialogResult = DialogResult.OK;//-->Todo OK
                     this.Close();//-->Cierro el form
                 }
-                else
+                catch (UpdateSQLException ex)
                 {
-                    MessageBox.Show("Error al actualizar la categoría.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.guna2MessageDialog1.Show(ex.Message,"Error");
+                }
+                catch(Exception)
+                {
+                    this.guna2MessageDialog1.Show("Ocurrio un error al querer modificar la categoria.", "Error");
                 }
             }
             else//-->Si es 0 entonces nueva categoria
             {
-                if (this.categoriasDAO.AgregarCategoria(this.txtCategoria.Text))
+                try
                 {
-                    MessageBox.Show("Categoría agregada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.DialogResult = DialogResult.OK; // Indicamos que la operación fue exitosa
-                    this.Close(); // Cerramos el formulario
+                    if (!this.categoriasDAO.AgregarCategoria(this.txtCategoria.Text))
+                        throw new AgregarDatoSQLException("No se ha podido guardar la nueva categoria, reintente1");
+
+                    this.guna2MessageDialog1.Icon = Guna.UI2.WinForms.MessageDialogIcon.Information;
+                    this.guna2MessageDialog1.Show("Se ha guardado la categoria correctamente!", "Información");
+
+                    this.DialogResult = DialogResult.OK;//-->Todo OK
+                    this.Close();//-->Cierro el form
                 }
-                else
+                catch(AgregarDatoSQLException ex)
                 {
-                    MessageBox.Show("Error al agregar la categoría.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.guna2MessageDialog1.Show(ex.Message, "Error");
+                }
+                catch (Exception)
+                {
+                    this.guna2MessageDialog1.Show("Ocurrio un error al querer agregar la nueva categoria.", "Error");
                 }
             }
         }
-
-
         #endregion
 
         #region OTROS EVENTOS
@@ -81,9 +99,6 @@ namespace Aplicacion.Socio
         }
         #endregion
 
-        #region METODOS
-
-        #endregion
 
     }
 }

@@ -26,8 +26,6 @@ namespace Aplicacion.View
         #region DATAGRIDVIEW
         DataTable tablaCategorias;
         DataRow auxFilaCategoria;
-        int indexTablaCategoria;
-        int idCategoria;
         #endregion
         #endregion
 
@@ -41,8 +39,10 @@ namespace Aplicacion.View
         #endregion
 
         #region METODOS
-
-
+        /// <summary>
+        /// Me permitira cargar las filas
+        /// de las categorias.
+        /// </summary>
         private void CargarCategoriasDataGrid()
         {
             this.listaCategorias = categoriasDAO.ObtenerTodos();
@@ -59,7 +59,6 @@ namespace Aplicacion.View
             }
             this.dtgvCategorias.DataSource = this.tablaCategorias;//-->Al dataGrid le paso la lista  
         }
-
         #endregion
 
         #region EVENTOS
@@ -89,19 +88,6 @@ namespace Aplicacion.View
 
         }
 
-        #endregion
-
-        #region OTROS EVENTOS
-        private void guna2DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void btnAgregar_Click(object sender, EventArgs e)
-        {
-
-        }
-        #endregion
 
         private void dtgvCategorias_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -128,18 +114,23 @@ namespace Aplicacion.View
             {
                 try
                 {
-                    int idCategoria = Convert.ToInt32(dtgvCategorias.CurrentRow.Cells["ID"].Value);//-->Obtengo ID
+                    //-->Pregunto si desea eliminar:
+                    this.guna2MessageDialog1.Icon = Guna.UI2.WinForms.MessageDialogIcon.Question;
+                    this.guna2MessageDialog1.Buttons = Guna.UI2.WinForms.MessageDialogButtons.YesNo;
 
-                    bool elimino = this.categoriasDAO.EliminarDato(idCategoria);//-->Intento elimniar
+                    if (this.guna2MessageDialog1.Show("Desea eliminar la categoria?", "Información") == DialogResult.Yes)
+                    {
+                        int idCategoria = Convert.ToInt32(dtgvCategorias.CurrentRow.Cells["ID"].Value);//-->Obtengo ID
 
-                    if (!elimino)//-->Lanzo una exception de que no pudo eliminar.
-                        throw new EliminarSQLException("No se ha podido eliminar la categoria, reintente!");
+                        if (!this.categoriasDAO.EliminarDato(idCategoria))//-->Lanzo una exception de que no pudo eliminar.
+                            throw new EliminarSQLException("No se ha podido eliminar la categoria, reintente!");
 
-                    //-->Modifico el mensaje de Texto
-                    this.guna2MessageDialog1.Icon = Guna.UI2.WinForms.MessageDialogIcon.Information;
-                    this.guna2MessageDialog1.Show("Se ha eliminado la categoria correctamente!", "Error");
+                        //-->Modifico el mensaje de Texto
+                        this.guna2MessageDialog1.Icon = Guna.UI2.WinForms.MessageDialogIcon.Information;
+                        this.guna2MessageDialog1.Show("Se ha eliminado la categoria correctamente!", "Información");
 
-                    this.CargarCategoriasDataGrid();//-->Actualizo el datagridView
+                        this.CargarCategoriasDataGrid();//-->Actualizo el datagridView
+                    }
                 }
                 catch (EliminarSQLException ex)
                 {
@@ -151,6 +142,18 @@ namespace Aplicacion.View
                 }
             }
         }
+        #endregion
 
+        #region OTROS EVENTOS
+        private void guna2DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+
+        }
+        #endregion
     }
 }

@@ -219,6 +219,7 @@
             btnMesas.Text = "Mesas";
             btnMesas.TextAlign = HorizontalAlignment.Left;
             btnMesas.TextOffset = new Point(25, 0);
+            btnMesas.Click += btnMesas_Click;
             // 
             // btnProductos
             // 

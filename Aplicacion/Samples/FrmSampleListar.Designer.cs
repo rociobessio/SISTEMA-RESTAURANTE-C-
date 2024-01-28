@@ -36,6 +36,7 @@
             btnAgregar = new Guna.UI2.WinForms.Guna2ImageButton();
             label2 = new Label();
             guna2Separator1 = new Guna.UI2.WinForms.Guna2Separator();
+            guna2MessageDialog1 = new Guna.UI2.WinForms.Guna2MessageDialog();
             SuspendLayout();
             // 
             // txtBuscar
@@ -103,6 +104,15 @@
             guna2Separator1.Size = new Size(1108, 15);
             guna2Separator1.TabIndex = 4;
             // 
+            // guna2MessageDialog1
+            // 
+            guna2MessageDialog1.Buttons = Guna.UI2.WinForms.MessageDialogButtons.OK;
+            guna2MessageDialog1.Caption = null;
+            guna2MessageDialog1.Icon = Guna.UI2.WinForms.MessageDialogIcon.None;
+            guna2MessageDialog1.Parent = null;
+            guna2MessageDialog1.Style = Guna.UI2.WinForms.MessageDialogStyle.Default;
+            guna2MessageDialog1.Text = null;
+            // 
             // FrmSampleListar
             // 
             AutoScaleMode = AutoScaleMode.None;
@@ -128,5 +138,6 @@
         public Guna.UI2.WinForms.Guna2ImageButton btnAgregar;
         public Label label2;
         public Guna.UI2.WinForms.Guna2Separator guna2Separator1;
+        private Guna.UI2.WinForms.Guna2MessageDialog guna2MessageDialog1;
     }
 }

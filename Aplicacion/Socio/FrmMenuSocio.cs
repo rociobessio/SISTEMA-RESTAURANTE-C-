@@ -61,6 +61,16 @@ namespace Aplicacion.Socio
         }
 
         /// <summary>
+        /// Me permitira listar las mesas.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnMesas_Click(object sender, EventArgs e)
+        {
+            this.AgregarControles(new FrmMesasView());
+        }
+
+        /// <summary>
         /// Me permitira cerrar la aplicacion.
         /// </summary>
         /// <param name="sender"></param>
@@ -117,5 +127,7 @@ namespace Aplicacion.Socio
 
         }
         #endregion
+
+        
     }
 }
