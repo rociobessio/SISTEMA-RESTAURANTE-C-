@@ -33,14 +33,13 @@ namespace Entidades
         #endregion
 
         #region CONSTRUCTORES
-        public Empleado(Rol rol, DateTime fAlta, DateTime fBaja,
+        public Empleado(Rol rol, DateTime fAlta,
              string nombre, string apellido, string direccion, string dni, string telefono, DateTime fNacimiento,
              Genero genero, Usuario usuario)
             : base(nombre, apellido, genero, fNacimiento, dni, direccion, telefono)
         {
             this._usuario = usuario;
             this._fechaAlta = fAlta;
-            this._fechaBaja = fBaja;
             this._usuario = usuario;
             this._rol = rol;
         }
@@ -49,7 +48,15 @@ namespace Entidades
         public Empleado(int id, Rol rol, DateTime fAlta, DateTime fBaja,
              string nombre, string apellido, string direccion, string dni, string telefono, DateTime fNacimiento,
              Genero genero, Usuario usuario)
-            : this(rol, fAlta, fBaja, nombre, apellido, direccion, dni, telefono, fNacimiento, genero, usuario)
+            : this(rol, fAlta, nombre, apellido, direccion, dni, telefono, fNacimiento, genero, usuario)
+        {
+            this._idEmpleado = id;
+            this._fechaBaja = fBaja;
+        }
+        public Empleado(int id, Rol rol, DateTime fAlta,
+             string nombre, string apellido, string direccion, string dni, string telefono, DateTime fNacimiento,
+             Genero genero, Usuario usuario)
+            : this(rol, fAlta, nombre, apellido, direccion, dni, telefono, fNacimiento, genero, usuario)
         {
             this._idEmpleado = id;
         }

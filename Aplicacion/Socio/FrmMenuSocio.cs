@@ -71,6 +71,16 @@ namespace Aplicacion.Socio
         }
 
         /// <summary>
+        /// Me permitira ver el control de empleados
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnEmpleados_Click(object sender, EventArgs e)
+        {
+            this.AgregarControles(new FrmEmpleadosView());
+        }
+
+        /// <summary>
         /// Me permitira cerrar la aplicacion.
         /// </summary>
         /// <param name="sender"></param>
@@ -128,6 +138,7 @@ namespace Aplicacion.Socio
         }
         #endregion
 
-        
+
+
     }
 }

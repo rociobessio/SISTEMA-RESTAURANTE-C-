@@ -38,10 +38,7 @@ namespace Aplicacion.View
         }
         #endregion
 
-        #region EVENTOS
-
-        #endregion
-
+        
         #region METODOS
         private void CargarMesasDataGrid()
         {

@@ -1,10 +1,10 @@
 ﻿public enum Rol
 {
-    Socio = 1,
-    Mozo = 2,
-    Cocinero = 3,
-    Bartender = 4,
-    CandyBar = 5,
-    Cervezero = 6,
-    Cliente = 7
+    Socio = 5,
+    Mozo = 4,
+    Cocinero = 2,
+    Bartender = 7,
+    CandyBar = 3,
+    Cervecero = 1,
+    Cliente = 6
 }

@@ -72,3 +72,5 @@ C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\Aplicacion\obj\De
 C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\Aplicacion\obj\Debug\net6.0-windows\Aplicacion.Socio.FrmAgregarCategoria.resources
 C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\Aplicacion\obj\Debug\net6.0-windows\Aplicacion.View.FrmMesasView.resources
 C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\Aplicacion\obj\Debug\net6.0-windows\Aplicacion.Socio.FrmAgregarMesa.resources
+C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\Aplicacion\obj\Debug\net6.0-windows\Aplicacion.View.FrmEmpleadosView.resources
+C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\Aplicacion\obj\Debug\net6.0-windows\Aplicacion.Socio.FrmAgregarEmpleado.resources

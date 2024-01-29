@@ -40,13 +40,15 @@ namespace Entidades.DB
 
                 base._lector = base._comando.ExecuteReader();
 
-                while (base._lector.Read())//-->Mientras pueda leer agrego el empleado a la lista
+                while (base._lector.Read())
                 {
+                    DateTime fechaBaja = base._lector["FechaBaja"] != DBNull.Value ? (DateTime)base._lector["FechaBaja"] : DateTime.MinValue;
+
                     listaEmpleados.Add(new Empleado(
                         (int)base._lector["IDEmpleado"],
                         (Rol)Enum.Parse(typeof(Rol), (string)base._lector["Rol"]),
                         (DateTime)base._lector["FechaAlta"],
-                        base._lector["FechaBaja"] is DBNull ? DateTime.Now : (DateTime)base._lector["FechaBaja"],
+                        fechaBaja, // Utiliza la fechaBaja que se asignó arriba
                         (string)base._lector["Nombre"],
                         (string)base._lector["Apellido"],
                         (string)base._lector["Direccion"],
@@ -114,6 +116,8 @@ namespace Entidades.DB
                         (DateTime)base._lector["FechaNacimiento"],
                         (Genero)Enum.Parse(typeof(Genero), (string)base._lector["Genero"]),
                         new Usuario((string)base._lector["Email"], (string)base._lector["Clave"]));
+
+                empleado.IDPersona = (int)base._lector["IDPersona"];
 
                 base._lector.Close();
             }
@@ -253,6 +257,18 @@ namespace Entidades.DB
                             using (SqlCommand comandoPersonas = new SqlCommand(queryPersonas, base._conexion, transaction))
                             {
                                 comandoPersonas.ExecuteNonQuery();
+                            }
+
+                            //-->Actualizo el ROL
+                            string queryRol = $"UPDATE EC " +
+                                              $"SET EC.IDRol = '{(int)empleado.Rol}' " +
+                                              $"FROM EmpleadosClientes EC " +
+                                              $"INNER JOIN Empleados E ON EC.IDEmpleado = E.IDEmpleado " +
+                                              $"WHERE E.IDEmpleado = {empleado.IDEmpleado}";
+
+                            using (SqlCommand cmdRol = new SqlCommand(queryRol, base._conexion, transaction))
+                            {
+                                cmdRol.ExecuteNonQuery();
                             }
 
                             //-->Commit si todo se realizó con éxito

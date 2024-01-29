@@ -188,6 +188,7 @@
             btnEmpleados.Text = "Empleados";
             btnEmpleados.TextAlign = HorizontalAlignment.Left;
             btnEmpleados.TextOffset = new Point(25, 0);
+            btnEmpleados.Click += btnEmpleados_Click;
             // 
             // btnMesas
             // 
