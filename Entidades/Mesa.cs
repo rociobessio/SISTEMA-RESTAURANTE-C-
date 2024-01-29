@@ -24,8 +24,8 @@ namespace Entidades
         public Mesa()
         {
             this._idMesa = 0;
-            this._codigoMesa = "";
-            this._estado = "cerrada";
+            this._codigoMesa = Herramientas.CrearCodigo(5);
+            this._estado = "Cerrada";
         }
 
         public Mesa(string codigo,string estado)
