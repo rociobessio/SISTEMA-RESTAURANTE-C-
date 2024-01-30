@@ -38,6 +38,7 @@ namespace Aplicacion.Socio
             this.id = empleado.IDEmpleado;
 
             this.txtClave.Enabled = false;//-->La clave no se modificara, por ahora.
+            this.label1.Text = "Modificar Empleado";//-->Cambio el titulo
 
             //-->Cargo los datos en los controles
             this.CargarDatosControles(empleado);
@@ -145,7 +146,7 @@ namespace Aplicacion.Socio
                 {
                     if (this.ValidarIngresoDatos())//-->Valido el ingreso de datos.
                     {
-                        if (!this.empleadoDAO.UpdateDato(new Empleado(this.id,Enum.Parse<Rol>(this.cbRol.SelectedItem.ToString()), DateTime.Now,
+                        if (!this.empleadoDAO.UpdateDato(new Empleado(this.id, Enum.Parse<Rol>(this.cbRol.SelectedItem.ToString()), DateTime.Now,
                              this.txtNombre.Text, this.txtApellido.Text, this.txtDireccion.Text, this.txtDNI.Text, this.txtTelefono.Text,
                             this.dtpFechaNacimiento.Value, Enum.Parse<Genero>(this.cbGenero.SelectedItem.ToString()), new Usuario(this.txtEmail.Text, this.txtClave.Text))))
                             throw new UpdateSQLException("No se ha podido modificar al empleado, reintente!");

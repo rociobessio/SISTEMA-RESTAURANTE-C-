@@ -508,6 +508,7 @@
       },
       "Entidades/1.0.0": {
         "dependencies": {
+          "Interfaces": "1.0.0",
           "System.Data.SqlClient": "4.8.6"
         },
         "runtime": {
@@ -517,6 +518,11 @@
       "Excepciones/1.0.0": {
         "runtime": {
           "Excepciones.dll": {}
+        }
+      },
+      "Interfaces/1.0.0": {
+        "runtime": {
+          "Interfaces.dll": {}
         }
       },
       "Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions/14.0.0.0": {
@@ -786,6 +792,11 @@
       "sha512": ""
     },
     "Excepciones/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Interfaces/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -5,10 +5,11 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Interfaces;
 
 namespace Entidades.DB
 {
-    public class MesaDAO : AccesoDB
+    public class MesaDAO : AccesoDB, ICrud<Mesa>
     {
         public bool AgregarDato(Mesa mesa)
         {
@@ -41,7 +42,7 @@ namespace Entidades.DB
             return true;
         }
 
-        public bool EliminarDato(int id)
+        public bool DeleteDato(int id)
         {
             try
             {
@@ -79,7 +80,7 @@ namespace Entidades.DB
         /// <param name="id"></param>
         /// <param name="categoria"></param>
         /// <returns></returns>
-        public bool UpdateDato(int id,string estado,string codigo)
+        public bool UpdateDato(Mesa mesa)
         {
             try
             {
@@ -87,8 +88,8 @@ namespace Entidades.DB
                 {
                     base._conexion.Open();//-->Abro la conexion.
 
-                    string queryUpdateMesa = $"UPDATE Mesas SET Estado = '{estado}', CodigoMesa = '{codigo}' " +
-                        $"WHERE IDMesa = {id}";
+                    string queryUpdateMesa = $"UPDATE Mesas SET Estado = '{mesa.Estado}', CodigoMesa = '{mesa.CodigoMesa}' " +
+                        $"WHERE IDMesa = {mesa.IDMesa}";
 
                     using (SqlCommand cmdUpdateMesa = new SqlCommand(queryUpdateMesa, base._conexion))
                     {
@@ -145,6 +146,14 @@ namespace Entidades.DB
                 }
             }
             return listaMesas;
+        }
+    
+        public Mesa ObtenerEspecifico(int id)
+        {
+            Mesa mesa = new Mesa();
+
+
+            return mesa;
         }
     }
 }

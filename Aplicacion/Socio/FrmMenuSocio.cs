@@ -81,6 +81,16 @@ namespace Aplicacion.Socio
         }
 
         /// <summary>
+        /// Me abrira el control de productos.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void guna2Button2_Click(object sender, EventArgs e)
+        {
+            this.AgregarControles(new FrmProductosView());
+        }
+
+        /// <summary>
         /// Me permitira cerrar la aplicacion.
         /// </summary>
         /// <param name="sender"></param>
@@ -122,10 +132,6 @@ namespace Aplicacion.Socio
 
 
 
-        private void guna2Button2_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void guna2Panel1_Paint(object sender, PaintEventArgs e)
         {

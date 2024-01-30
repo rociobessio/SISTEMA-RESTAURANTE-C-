@@ -25,7 +25,7 @@ namespace Aplicacion.Socio
         {
             InitializeComponent();
             this.id = 0;
-            this.categoriasDAO =  new CategoriasDAO();
+            this.categoriasDAO = new CategoriasDAO();
         }
 
         /// <summary>
@@ -33,11 +33,12 @@ namespace Aplicacion.Socio
         /// </summary>
         /// <param name="id"></param>
         /// <param name="categoria"></param>
-        public FrmAgregarCategoria(int id,string categoria)
+        public FrmAgregarCategoria(int id, string categoria)
             : this()
         {
             this.id = id;//-->Guardo el ID
             this.txtCategoria.Text = categoria;//-->Que me muestre el nombre
+            this.label1.Text = "Modificar Categoria";
         }
         #endregion
 
@@ -60,9 +61,9 @@ namespace Aplicacion.Socio
                 }
                 catch (UpdateSQLException ex)
                 {
-                    this.guna2MessageDialog1.Show(ex.Message,"Error");
+                    this.guna2MessageDialog1.Show(ex.Message, "Error");
                 }
-                catch(Exception)
+                catch (Exception)
                 {
                     this.guna2MessageDialog1.Show("Ocurrio un error al querer modificar la categoria.", "Error");
                 }
@@ -80,7 +81,7 @@ namespace Aplicacion.Socio
                     this.DialogResult = DialogResult.OK;//-->Todo OK
                     this.Close();//-->Cierro el form
                 }
-                catch(AgregarDatoSQLException ex)
+                catch (AgregarDatoSQLException ex)
                 {
                     this.guna2MessageDialog1.Show(ex.Message, "Error");
                 }

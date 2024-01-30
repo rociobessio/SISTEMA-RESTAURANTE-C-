@@ -146,6 +146,16 @@
             "rid": "win"
           }
         }
+      },
+      "Interfaces/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/Interfaces.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Interfaces.dll": {}
+        }
       }
     }
   },
@@ -462,10 +472,16 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "Interfaces/1.0.0": {
+      "type": "project",
+      "path": "../Interfaces/Interfaces.csproj",
+      "msbuildProject": "../Interfaces/Interfaces.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "Interfaces >= 1.0.0",
       "System.Data.SqlClient >= 4.8.6"
     ]
   },
@@ -495,7 +511,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\SISTEMA-RESTAURANTE-CSHARP\\Interfaces\\Interfaces.csproj": {
+              "projectPath": "C:\\Users\\Rocio\\Desktop\\COMANDA .NET\\SISTEMA-RESTAURANTE-CSHARP\\Interfaces\\Interfaces.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

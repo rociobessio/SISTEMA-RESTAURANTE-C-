@@ -218,3 +218,5 @@ C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\TestUnitarios\obj
 C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\TestUnitarios\obj\Debug\net6.0\TestUnitarios.pdb
 C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\TestUnitarios\obj\Debug\net6.0\TestUnitarios.genruntimeconfig.cache
 C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\TestUnitarios\obj\Debug\net6.0\ref\TestUnitarios.dll
+C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\TestUnitarios\bin\Debug\net6.0\Interfaces.dll
+C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\TestUnitarios\bin\Debug\net6.0\Interfaces.pdb

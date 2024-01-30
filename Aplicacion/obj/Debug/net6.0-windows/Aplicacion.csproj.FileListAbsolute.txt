@@ -74,3 +74,7 @@ C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\Aplicacion\obj\De
 C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\Aplicacion\obj\Debug\net6.0-windows\Aplicacion.Socio.FrmAgregarMesa.resources
 C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\Aplicacion\obj\Debug\net6.0-windows\Aplicacion.View.FrmEmpleadosView.resources
 C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\Aplicacion\obj\Debug\net6.0-windows\Aplicacion.Socio.FrmAgregarEmpleado.resources
+C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\Aplicacion\bin\Debug\net6.0-windows\Interfaces.dll
+C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\Aplicacion\bin\Debug\net6.0-windows\Interfaces.pdb
+C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\Aplicacion\obj\Debug\net6.0-windows\Aplicacion.View.FrmProductosView.resources
+C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\Aplicacion\obj\Debug\net6.0-windows\Aplicacion.Socio.FrmAgregarProducto.resources

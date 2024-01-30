@@ -73,6 +73,16 @@ namespace Aplicacion.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap browsing {
+            get {
+                object obj = ResourceManager.GetObject("browsing", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap casserole {
             get {
                 object obj = ResourceManager.GetObject("casserole", resourceCulture);

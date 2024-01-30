@@ -115,7 +115,7 @@ namespace Aplicacion.View
                         {
                             int idMesa = Convert.ToInt32(this.dtgvMesas.CurrentRow.Cells["ID"].Value);//-->Obtengo ID
 
-                            if (!this.mesaDAO.EliminarDato(idMesa))//-->Lanzo una exception de que no pudo eliminar.
+                            if (!this.mesaDAO.DeleteDato(idMesa))//-->Lanzo una exception de que no pudo eliminar.
                                 throw new EliminarSQLException("No se ha podido eliminar la mesa, reintente!");
 
                             //-->Modifico el mensaje de Texto

@@ -16,6 +16,9 @@
     <Compile Update="Socio\FrmAgregarMesa.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Socio\FrmAgregarProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Socio\FrmHome.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -32,6 +35,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="View\FrmMesasView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\FrmProductosView.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

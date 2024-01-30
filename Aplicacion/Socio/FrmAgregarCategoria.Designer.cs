@@ -43,8 +43,8 @@
             // 
             // label1
             // 
-            label1.Size = new Size(236, 38);
-            label1.Text = "Añadir Categorias";
+            label1.Size = new Size(224, 38);
+            label1.Text = "Añadir Categoria";
             // 
             // pictureBox1
             // 

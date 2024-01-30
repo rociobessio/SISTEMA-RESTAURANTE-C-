@@ -9,9 +9,15 @@
 2. Podrá pagar con debito o credito.
 3. Es otro perfil
 
+***************** BUSCAR *********************************
+1. Me quedan todos los buscar.
 
 
 
+
+***************** Hacer EL RECORRIDO DE LOS PEDIDOS *********************************
+1. Se debera de realizar todo el circuito de los productos.
+2. Intentar utilizar: Multihilos, hilos, concurrencia y delegados.
 
 
 

@@ -35,7 +35,7 @@ namespace Aplicacion.Socio
             this.cbEstadoMesa.DataSource = estados;
         }
 
-        public FrmAgregarMesa(int id,string codigo)
+        public FrmAgregarMesa(int id, string codigo)
             : this()
         {
             this.id = id;
@@ -43,9 +43,10 @@ namespace Aplicacion.Socio
             //-->Habilito el cb y txt, ya que en el const por defecto sera para dar de alta
             this.cbEstadoMesa.Enabled = true;
             this.txtCodigoMesa.Enabled = true;
+            this.label1.Text = "Modificar Mesa";
         }
         #endregion
-
+        
         #region OTROS EVENTOS
         private void label2_Click(object sender, EventArgs e)
         {
@@ -65,11 +66,11 @@ namespace Aplicacion.Socio
         #region BOTONES
         public override void btnGuardar_Click(object sender, EventArgs e)
         {
-            if(this.id > 0)//-->Se modifica
+            if (this.id > 0)//-->Se modifica
             {
                 try
                 {
-                    if (!this.mesaDAO.UpdateDato(this.id, this.cbEstadoMesa.SelectedItem.ToString(), this.txtCodigoMesa.Text))
+                    if (!this.mesaDAO.UpdateDato( new Mesa(this.id, this.cbEstadoMesa.SelectedItem.ToString(), this.txtCodigoMesa.Text)))
                         throw new UpdateSQLException("No se ha podido modificar la mesa, reintente!");
 
                     this.guna2MessageDialog1.Icon = Guna.UI2.WinForms.MessageDialogIcon.Information;
@@ -101,7 +102,7 @@ namespace Aplicacion.Socio
                     this.DialogResult = DialogResult.OK;//-->Todo OK
                     this.Close();//-->Cierro el form
                 }
-                catch(AgregarDatoSQLException ex)
+                catch (AgregarDatoSQLException ex)
                 {
                     this.guna2MessageDialog1.Show(ex.Message, "Error");
                 }

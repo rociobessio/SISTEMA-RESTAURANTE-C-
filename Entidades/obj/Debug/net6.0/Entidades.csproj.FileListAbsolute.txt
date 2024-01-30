@@ -22,3 +22,6 @@ C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\Entidades\obj\Deb
 C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\Entidades\obj\Debug\net6.0\refint\Entidades.dll
 C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\Entidades\obj\Debug\net6.0\Entidades.pdb
 C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\Entidades\obj\Debug\net6.0\ref\Entidades.dll
+C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\Entidades\bin\Debug\net6.0\Interfaces.dll
+C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\Entidades\bin\Debug\net6.0\Interfaces.pdb
+C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\Entidades\obj\Debug\net6.0\Entidades.csproj.CopyComplete

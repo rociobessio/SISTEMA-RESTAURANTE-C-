@@ -45,6 +45,16 @@
             guna2Panel2.SuspendLayout();
             SuspendLayout();
             // 
+            // label1
+            // 
+            label1.Size = new Size(259, 38);
+            label1.Text = "Añadir Nueva Mesa";
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources.lounge_table;
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            // 
             // btnCerrar
             // 
             btnCerrar.DialogResult = DialogResult.None;

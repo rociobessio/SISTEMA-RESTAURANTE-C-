@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
 using System.Diagnostics.SymbolStore;
+using Interfaces;
 
 namespace Entidades.DB
 {
-    public class EmpleadoDAO : AccesoDB//, ICrud<Empleado>
+    public class EmpleadoDAO : AccesoDB, ICrud<Empleado>
     {
         #region METODOS
 

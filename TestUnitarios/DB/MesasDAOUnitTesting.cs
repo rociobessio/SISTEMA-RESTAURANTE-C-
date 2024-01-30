@@ -65,7 +65,7 @@ namespace TestUnitarios.DB
             MesaDAO mesaDAO = new MesaDAO();
 
             //-->Act
-            bool resultado = mesaDAO.UpdateDato(10,"Pagando", "Puuu4");
+            bool resultado = mesaDAO.UpdateDato(new Mesa(10,"aaaa","Pagando"));
 
             //-->Assert
             Assert.IsTrue(resultado);
@@ -83,7 +83,7 @@ namespace TestUnitarios.DB
             MesaDAO mesaDAO = new MesaDAO();
 
             //-->Act
-            bool pudoEliminar = mesaDAO.EliminarDato(10);
+            bool pudoEliminar = mesaDAO.DeleteDato(10);
 
             //-->Assert 
             Assert.IsTrue(pudoEliminar);

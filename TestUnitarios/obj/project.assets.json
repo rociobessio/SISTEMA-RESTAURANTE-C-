@@ -739,6 +739,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
+          "Interfaces": "1.0.0",
           "System.Data.SqlClient": "4.8.6"
         },
         "compile": {
@@ -756,6 +757,16 @@
         },
         "runtime": {
           "bin/placeholder/Excepciones.dll": {}
+        }
+      },
+      "Interfaces/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/Interfaces.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Interfaces.dll": {}
         }
       }
     }
@@ -2759,6 +2770,11 @@
       "type": "project",
       "path": "../Excepciones/Excepciones.csproj",
       "msbuildProject": "../Excepciones/Excepciones.csproj"
+    },
+    "Interfaces/1.0.0": {
+      "type": "project",
+      "path": "../Interfaces/Interfaces.csproj",
+      "msbuildProject": "../Interfaces/Interfaces.csproj"
     }
   },
   "projectFileDependencyGroups": {
