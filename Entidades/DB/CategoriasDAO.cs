@@ -175,5 +175,24 @@ namespace Entidades.DB
             }
             return true;
         }
+
+        /// <summary>
+        /// Me permitira retornar el string de 
+        /// la categoria
+        /// mediante su ID.
+        /// </summary>
+        /// <param name="idCategoria"></param>
+        /// <returns></returns>
+        public static string ObtenerNombreCategoriaPorID(int idCategoria)
+        {
+            List<Tuple<int, string>> categorias = new CategoriasDAO().ObtenerTodos();
+
+            //-->Intentamos encontrar la tupla que corresponda al ID de la categoría.
+            var categoria = categorias.Find(c => c.Item1 == idCategoria);
+
+            //-->Encuentra la categoria la devuelve. Sino desconocida
+            return categoria != null ? categoria.Item2 : "Categoría Desconocida";
+        }
+
     }
 }

@@ -30,7 +30,6 @@ namespace Aplicacion.Socio
         }
         #endregion
 
-
         #region EVENTOS
         private void FrmMenuSocio_Load(object sender, EventArgs e)
         {
@@ -91,6 +90,17 @@ namespace Aplicacion.Socio
         }
 
         /// <summary>
+        /// Me abrira el formulario POS
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnPOS_Click(object sender, EventArgs e)
+        {
+            FrmPOS frmPOS = new FrmPOS();
+            frmPOS.ShowDialog();
+        }
+
+        /// <summary>
         /// Me permitira cerrar la aplicacion.
         /// </summary>
         /// <param name="sender"></param>
@@ -143,6 +153,7 @@ namespace Aplicacion.Socio
 
         }
         #endregion
+
 
 
 

@@ -157,6 +157,7 @@
             btnPOS.Text = "POS";
             btnPOS.TextAlign = HorizontalAlignment.Left;
             btnPOS.TextOffset = new Point(25, 0);
+            btnPOS.Click += btnPOS_Click;
             // 
             // btnEmpleados
             // 

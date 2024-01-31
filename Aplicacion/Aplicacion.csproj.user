@@ -28,6 +28,12 @@
     <Compile Update="Samples\FrmSampleAdd.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Socio\FrmPOS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Socio\ucProducto.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="View\FrmCategoriasView.cs">
       <SubType>Form</SubType>
     </Compile>
