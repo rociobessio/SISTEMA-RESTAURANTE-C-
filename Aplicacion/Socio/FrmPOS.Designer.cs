@@ -52,6 +52,7 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
+            lblTipoPedido = new Label();
             lblTotal = new Label();
             label2 = new Label();
             guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
@@ -70,12 +71,13 @@
             panelCategorias = new FlowLayoutPanel();
             panelProductos = new FlowLayoutPanel();
             dtgv = new Guna.UI2.WinForms.Guna2DataGridView();
+            txtBuscar = new Guna.UI2.WinForms.Guna2TextBox();
+            guna2MessageDialog1 = new Guna.UI2.WinForms.Guna2MessageDialog();
             ID = new DataGridViewTextBoxColumn();
             Nombre = new DataGridViewTextBoxColumn();
             Cantidad = new DataGridViewTextBoxColumn();
             Precio = new DataGridViewTextBoxColumn();
             Total = new DataGridViewTextBoxColumn();
-            txtBuscar = new Guna.UI2.WinForms.Guna2TextBox();
             guna2Panel1.SuspendLayout();
             guna2Panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)btnExit).BeginInit();
@@ -85,6 +87,7 @@
             // 
             // guna2Panel1
             // 
+            guna2Panel1.Controls.Add(lblTipoPedido);
             guna2Panel1.Controls.Add(lblTotal);
             guna2Panel1.Controls.Add(label2);
             guna2Panel1.CustomizableEdges = customizableEdges1;
@@ -96,6 +99,19 @@
             guna2Panel1.Size = new Size(1703, 106);
             guna2Panel1.TabIndex = 0;
             guna2Panel1.Paint += guna2Panel1_Paint;
+            // 
+            // lblTipoPedido
+            // 
+            lblTipoPedido.AutoSize = true;
+            lblTipoPedido.BackColor = Color.Transparent;
+            lblTipoPedido.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            lblTipoPedido.ForeColor = Color.White;
+            lblTipoPedido.Location = new Point(3, 52);
+            lblTipoPedido.Name = "lblTipoPedido";
+            lblTipoPedido.Size = new Size(99, 25);
+            lblTipoPedido.TabIndex = 4;
+            lblTipoPedido.Text = "tipoPedido";
+            lblTipoPedido.Click += label3_Click_1;
             // 
             // lblTotal
             // 
@@ -192,7 +208,8 @@
             btnPedido.BorderColor = Color.IndianRed;
             btnPedido.BorderRadius = 10;
             btnPedido.BorderThickness = 2;
-            btnPedido.CheckedState.FillColor = Color.RosyBrown;
+            btnPedido.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            btnPedido.CheckedState.FillColor = Color.LightCoral;
             btnPedido.CustomizableEdges = customizableEdges3;
             btnPedido.DisabledState.BorderColor = Color.DarkGray;
             btnPedido.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -209,6 +226,7 @@
             btnPedido.Size = new Size(108, 93);
             btnPedido.TabIndex = 8;
             btnPedido.Text = "Pedido";
+            btnPedido.Click += btnPedido_Click;
             // 
             // btnParaLlevar
             // 
@@ -217,7 +235,8 @@
             btnParaLlevar.BorderColor = Color.IndianRed;
             btnParaLlevar.BorderRadius = 10;
             btnParaLlevar.BorderThickness = 2;
-            btnParaLlevar.CheckedState.FillColor = Color.RosyBrown;
+            btnParaLlevar.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            btnParaLlevar.CheckedState.FillColor = Color.LightCoral;
             btnParaLlevar.CustomizableEdges = customizableEdges5;
             btnParaLlevar.DisabledState.BorderColor = Color.DarkGray;
             btnParaLlevar.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -234,6 +253,7 @@
             btnParaLlevar.Size = new Size(108, 93);
             btnParaLlevar.TabIndex = 7;
             btnParaLlevar.Text = "Para Llevar";
+            btnParaLlevar.Click += btnParaLlevar_Click;
             // 
             // btnDelivery
             // 
@@ -242,7 +262,8 @@
             btnDelivery.BorderColor = Color.IndianRed;
             btnDelivery.BorderRadius = 10;
             btnDelivery.BorderThickness = 2;
-            btnDelivery.CheckedState.FillColor = Color.RosyBrown;
+            btnDelivery.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            btnDelivery.CheckedState.FillColor = Color.LightCoral;
             btnDelivery.CustomizableEdges = customizableEdges7;
             btnDelivery.DisabledState.BorderColor = Color.DarkGray;
             btnDelivery.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -259,6 +280,7 @@
             btnDelivery.Size = new Size(108, 93);
             btnDelivery.TabIndex = 6;
             btnDelivery.Text = "Delivery";
+            btnDelivery.Click += btnDelivery_Click;
             // 
             // btnKOT
             // 
@@ -267,7 +289,8 @@
             btnKOT.BorderColor = Color.IndianRed;
             btnKOT.BorderRadius = 10;
             btnKOT.BorderThickness = 2;
-            btnKOT.CheckedState.FillColor = Color.RosyBrown;
+            btnKOT.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            btnKOT.CheckedState.FillColor = Color.LightCoral;
             btnKOT.CustomizableEdges = customizableEdges9;
             btnKOT.DisabledState.BorderColor = Color.DarkGray;
             btnKOT.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -284,6 +307,7 @@
             btnKOT.Size = new Size(108, 93);
             btnKOT.TabIndex = 5;
             btnKOT.Text = "KOT";
+            btnKOT.Click += btnKOT_Click;
             // 
             // btnBillList
             // 
@@ -292,7 +316,8 @@
             btnBillList.BorderColor = Color.IndianRed;
             btnBillList.BorderRadius = 10;
             btnBillList.BorderThickness = 2;
-            btnBillList.CheckedState.FillColor = Color.RosyBrown;
+            btnBillList.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            btnBillList.CheckedState.FillColor = Color.LightCoral;
             btnBillList.CustomizableEdges = customizableEdges11;
             btnBillList.DisabledState.BorderColor = Color.DarkGray;
             btnBillList.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -316,7 +341,8 @@
             btnParar.BorderColor = Color.IndianRed;
             btnParar.BorderRadius = 10;
             btnParar.BorderThickness = 2;
-            btnParar.CheckedState.FillColor = Color.RosyBrown;
+            btnParar.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            btnParar.CheckedState.FillColor = Color.LightCoral;
             btnParar.CustomizableEdges = customizableEdges13;
             btnParar.DisabledState.BorderColor = Color.DarkGray;
             btnParar.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -341,7 +367,8 @@
             btnNuevo.BorderColor = Color.IndianRed;
             btnNuevo.BorderRadius = 10;
             btnNuevo.BorderThickness = 2;
-            btnNuevo.CheckedState.FillColor = Color.RosyBrown;
+            btnNuevo.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            btnNuevo.CheckedState.FillColor = Color.LightCoral;
             btnNuevo.CustomizableEdges = customizableEdges15;
             btnNuevo.DisabledState.BorderColor = Color.DarkGray;
             btnNuevo.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -358,6 +385,7 @@
             btnNuevo.Size = new Size(108, 93);
             btnNuevo.TabIndex = 2;
             btnNuevo.Text = "Nuevo";
+            btnNuevo.Click += btnNuevo_Click;
             // 
             // label1
             // 
@@ -458,6 +486,37 @@
             dtgv.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             dtgv.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
             // 
+            // txtBuscar
+            // 
+            txtBuscar.CustomizableEdges = customizableEdges19;
+            txtBuscar.DefaultText = "";
+            txtBuscar.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtBuscar.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtBuscar.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtBuscar.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtBuscar.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtBuscar.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            txtBuscar.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtBuscar.IconLeft = Properties.Resources.find;
+            txtBuscar.Location = new Point(209, 176);
+            txtBuscar.Name = "txtBuscar";
+            txtBuscar.PasswordChar = '\0';
+            txtBuscar.PlaceholderText = "Buscar aquí...";
+            txtBuscar.SelectedText = "";
+            txtBuscar.ShadowDecoration.CustomizableEdges = customizableEdges20;
+            txtBuscar.Size = new Size(493, 54);
+            txtBuscar.TabIndex = 15;
+            txtBuscar.TextChanged += txtBuscar_TextChanged;
+            // 
+            // guna2MessageDialog1
+            // 
+            guna2MessageDialog1.Buttons = Guna.UI2.WinForms.MessageDialogButtons.OK;
+            guna2MessageDialog1.Caption = null;
+            guna2MessageDialog1.Icon = Guna.UI2.WinForms.MessageDialogIcon.Error;
+            guna2MessageDialog1.Parent = this;
+            guna2MessageDialog1.Style = Guna.UI2.WinForms.MessageDialogStyle.Dark;
+            guna2MessageDialog1.Text = null;
+            // 
             // ID
             // 
             ID.HeaderText = "ID";
@@ -496,28 +555,6 @@
             Total.Name = "Total";
             Total.ReadOnly = true;
             Total.Resizable = DataGridViewTriState.False;
-            // 
-            // txtBuscar
-            // 
-            txtBuscar.CustomizableEdges = customizableEdges19;
-            txtBuscar.DefaultText = "";
-            txtBuscar.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            txtBuscar.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            txtBuscar.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            txtBuscar.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            txtBuscar.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtBuscar.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            txtBuscar.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtBuscar.IconLeft = Properties.Resources.find;
-            txtBuscar.Location = new Point(209, 176);
-            txtBuscar.Name = "txtBuscar";
-            txtBuscar.PasswordChar = '\0';
-            txtBuscar.PlaceholderText = "Buscar aquí...";
-            txtBuscar.SelectedText = "";
-            txtBuscar.ShadowDecoration.CustomizableEdges = customizableEdges20;
-            txtBuscar.Size = new Size(493, 54);
-            txtBuscar.TabIndex = 15;
-            txtBuscar.TextChanged += txtBuscar_TextChanged;
             // 
             // FrmPOS
             // 
@@ -565,12 +602,14 @@
         private FlowLayoutPanel panelProductos;
         private Guna.UI2.WinForms.Guna2DataGridView dtgv;
         public Guna.UI2.WinForms.Guna2TextBox txtBuscar;
+        private Label lblTotal;
+        private Label label2;
+        private Guna.UI2.WinForms.Guna2MessageDialog guna2MessageDialog1;
+        private Label lblTipoPedido;
         private DataGridViewTextBoxColumn ID;
         private DataGridViewTextBoxColumn Nombre;
         private DataGridViewTextBoxColumn Cantidad;
         private DataGridViewTextBoxColumn Precio;
         private DataGridViewTextBoxColumn Total;
-        private Label lblTotal;
-        private Label label2;
     }
 }

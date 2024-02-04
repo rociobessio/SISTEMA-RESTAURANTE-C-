@@ -159,6 +159,7 @@
             Name = "FrmSampleAdd";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "FrmSampleAdd";
+            Load += FrmSampleAdd_Load;
             guna2Panel1.ResumeLayout(false);
             guna2Panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

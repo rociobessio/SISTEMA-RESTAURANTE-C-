@@ -101,6 +101,17 @@ namespace Aplicacion.Socio
         }
 
         /// <summary>
+        /// Me permitira abrir la cocina con
+        /// los pedidos
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnCocina_Click(object sender, EventArgs e)
+        {
+            this.AgregarControles(new FrmCocina());
+        }
+
+        /// <summary>
         /// Me permitira cerrar la aplicacion.
         /// </summary>
         /// <param name="sender"></param>
@@ -110,6 +121,7 @@ namespace Aplicacion.Socio
             Application.Exit();
         }
         #endregion
+
         #endregion
 
         #region METODOS
@@ -153,9 +165,6 @@ namespace Aplicacion.Socio
 
         }
         #endregion
-
-
-
 
     }
 }

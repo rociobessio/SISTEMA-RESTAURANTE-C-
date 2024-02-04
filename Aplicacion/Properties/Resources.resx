@@ -130,14 +130,14 @@
   <data name="shutdown" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\shutdown.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Restaurant-logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Restaurant-logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="take-away (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\take-away (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="edit-tool" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\edit-tool.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="kitchen-utensils" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\kitchen-utensils.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="find" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\find.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -153,6 +153,9 @@
   </data>
   <data name="fast-delivery" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\fast-delivery.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="hamburguesa-parrilla-tomate-cebolla-papas-fritas-generada-ia_188544-43039" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\hamburguesa-parrilla-tomate-cebolla-papas-fritas-generada-ia_188544-43039.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="take-away" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\take-away.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -172,8 +175,8 @@
   <data name="plus" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\plus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Restaurant-logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Restaurant-logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="turn-off (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\turn-off (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="turn-off" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\turn-off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -187,17 +190,14 @@
   <data name="lunch" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\lunch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="turn-off (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\turn-off (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="lounge-table" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\lounge-table.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="kitchen-utensils" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\kitchen-utensils.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="bill" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bill.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="transaction-history" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\transaction-history.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="add-button" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\add-button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -217,13 +217,19 @@
   <data name="casserole" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\casserole.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="waiters" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\waiters.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="table-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\table-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="category" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\category.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="hamburguesa-parrilla-tomate-cebolla-papas-fritas-generada-ia_188544-43039" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\hamburguesa-parrilla-tomate-cebolla-papas-fritas-generada-ia_188544-43039.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="transaction-history" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\transaction-history.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="waiter" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\waiter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

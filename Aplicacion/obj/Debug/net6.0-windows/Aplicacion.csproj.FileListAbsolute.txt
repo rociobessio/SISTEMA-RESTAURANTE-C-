@@ -80,3 +80,6 @@ C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\Aplicacion\obj\De
 C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\Aplicacion\obj\Debug\net6.0-windows\Aplicacion.Socio.FrmAgregarProducto.resources
 C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\Aplicacion\obj\Debug\net6.0-windows\Aplicacion.Socio.FrmPOS.resources
 C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\Aplicacion\obj\Debug\net6.0-windows\Aplicacion.Socio.ucProducto.resources
+C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\Aplicacion\obj\Debug\net6.0-windows\Aplicacion.Socio.FrmElegirMesa.resources
+C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\Aplicacion\obj\Debug\net6.0-windows\Aplicacion.Selection.FrmElegirMozo.resources
+C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\Aplicacion\obj\Debug\net6.0-windows\Aplicacion.View.FrmCocina.resources

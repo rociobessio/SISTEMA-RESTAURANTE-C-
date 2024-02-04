@@ -24,3 +24,8 @@
 **************************** OTRO ****************************
 1. Ver JWT.
 2. Mejorar Formularios. 
+
+
+TENDRIA QUE MEJORAR LA PARTE VISUAL DE LA COCINA.
+Fijarse si hay alguna query para que los pedidos con estado Entregado
+no los traiga, que solo traiga los demas estados.

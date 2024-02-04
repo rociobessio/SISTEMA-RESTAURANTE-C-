@@ -78,7 +78,7 @@ namespace Entidades.DB
                         $"Precio = @Precio, " +
                         $"Tipo = @Tipo, " +
                         $"TiempoEstimado = @TiempoEstimado, " +
-                        $"IDCategoria = @IDCategoria" +
+                        $"IDCategoria = @IDCategoria, " +
                         $"Imagen = @Imagen " +
                         $"WHERE IDProducto = {prod.IDProducto}";
 

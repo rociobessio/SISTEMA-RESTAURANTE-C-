@@ -126,6 +126,7 @@
             btnCocina.Text = "Cocina";
             btnCocina.TextAlign = HorizontalAlignment.Left;
             btnCocina.TextOffset = new Point(25, 0);
+            btnCocina.Click += btnCocina_Click;
             // 
             // btnPOS
             // 

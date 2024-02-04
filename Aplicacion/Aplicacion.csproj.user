@@ -7,6 +7,9 @@
     <Compile Update="Samples\FrmSampleListar.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Selection\FrmElegirMozo.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Socio\FrmAgregarCategoria.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -17,6 +20,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Socio\FrmAgregarProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Selection\FrmElegirMesa.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Socio\FrmHome.cs">
@@ -35,6 +41,9 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="View\FrmCategoriasView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\FrmCocina.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="View\FrmEmpleadosView.cs">

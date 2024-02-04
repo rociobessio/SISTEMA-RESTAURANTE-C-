@@ -33,5 +33,10 @@ namespace Aplicacion.Socio
             this.Close();
         }
         #endregion
+
+        private void FrmSampleAdd_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

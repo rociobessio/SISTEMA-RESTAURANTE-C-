@@ -357,6 +357,64 @@ namespace Entidades.DB
             }
             return pudoEliminar;
         }
+
+            public List<Empleado> ObtenerEmpleadoPorRol(string rol)
+            {
+                List<Empleado> listaEmpleados = new List<Empleado>();
+
+                try
+                {
+                    base._comando = new SqlCommand();
+
+                    base._comando.CommandType = System.Data.CommandType.Text;
+                    base._comando.CommandText = "SELECT e.IDEmpleado, p.Nombre, p.Apellido, p.Telefono, p.DNI, p.Direccion, p.Genero, p.FechaNacimiento," +
+                                                        "e.FechaAlta, e.FechaBaja, r.Rol, u.Email, u.Clave " +
+                                                        "FROM EmpleadosClientes ec " +
+                                                        "INNER JOIN Personas p ON ec.IDPersona = p.IDPersona " +
+                                                        "INNER JOIN Empleados e ON ec.IDEmpleado = e.IDEmpleado " +
+                                                        "INNER JOIN Roles r ON ec.IDRol = r.IDRol " +
+                                                        "INNER JOIN Usuarios u ON ec.IDUsuario = u.IDUsuario " +
+                                                        $"WHERE r.Rol = '{rol}'";//-->La query
+
+                base._comando.Connection = base._conexion;
+
+                base._conexion.Open();//-->Abro la conexion
+
+                base._lector = base._comando.ExecuteReader();
+
+                while (base._lector.Read())
+                {
+                    DateTime fechaBaja = base._lector["FechaBaja"] != DBNull.Value ? (DateTime)base._lector["FechaBaja"] : DateTime.MinValue;
+
+                    listaEmpleados.Add(new Empleado(
+                        (int)base._lector["IDEmpleado"],
+                        (Rol)Enum.Parse(typeof(Rol), (string)base._lector["Rol"]),
+                        (DateTime)base._lector["FechaAlta"],
+                        fechaBaja, // Utiliza la fechaBaja que se asignó arriba
+                        (string)base._lector["Nombre"],
+                        (string)base._lector["Apellido"],
+                        (string)base._lector["Direccion"],
+                        (string)base._lector["DNI"],
+                        (string)base._lector["Telefono"],
+                        (DateTime)base._lector["FechaNacimiento"],
+                        (Genero)Enum.Parse(typeof(Genero), (string)base._lector["Genero"]),
+                        new Usuario((string)base._lector["Email"], (string)base._lector["Clave"])
+                    ));
+                }
+            }
+            catch (Exception)
+            {
+                return listaEmpleados;
+            }
+            finally
+            {
+                if (base._conexion.State == System.Data.ConnectionState.Open)
+                {
+                    base._conexion.Close();//-->Cierro la conexión
+                }
+            }
+            return listaEmpleados;
+        }
         #endregion
     }
 }
