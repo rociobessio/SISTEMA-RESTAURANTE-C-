@@ -38,7 +38,7 @@ namespace Entidades
         public PedidoProducto(int id,string codPedido, int IDProd, string estado,int cantidad)
             : this(codPedido,IDProd,estado,cantidad)
         {
-            this._idProducto = id;
+            this._idProducto = IDProd;
         }
 
         public PedidoProducto(int id, string codPedido, int IDProd, string estado,int idEmpleado,int cantidad)

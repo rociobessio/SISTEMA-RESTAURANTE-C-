@@ -25,6 +25,12 @@
     <Compile Update="Selection\FrmElegirMesa.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Socio\FrmBillList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Socio\FrmCheckOut.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Socio\FrmHome.cs">
       <SubType>Form</SubType>
     </Compile>

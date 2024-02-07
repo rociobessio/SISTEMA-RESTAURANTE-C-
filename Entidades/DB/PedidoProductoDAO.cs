@@ -62,7 +62,7 @@ namespace Entidades.DB
                 base._comando = new SqlCommand();
 
                 base._comando.CommandType = System.Data.CommandType.Text;
-                base._comando.CommandText = "SELECT * FROM Pedidos";
+                base._comando.CommandText = "SELECT * FROM PedidosProducto";
                 base._comando.Connection = base._conexion;
 
                 base._conexion.Open();//-->Abro la conexion

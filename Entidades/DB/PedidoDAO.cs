@@ -80,7 +80,9 @@ namespace Entidades.DB
                         (TimeSpan)base._lector["TiempoEstimadoPreparacion"],
                         (string)base._lector["TipoOrden"],
                         (int)base._lector["IDMesa"], (TimeSpan)base._lector["TiempoInicio"],
-                        (TimeSpan)base._lector["TiempoFin"]));
+                        (TimeSpan)base._lector["TiempoFin"],
+                        (double)base._lector["CostoTotal"],
+                        (bool)base._lector["PedidoFacturado"]));
                 }
             }
             catch (Exception)
@@ -121,7 +123,8 @@ namespace Entidades.DB
                         (TimeSpan)base._lector["TiempoEstimadoPreparacion"],
                         (string)base._lector["TipoOrden"],
                         (int)base._lector["IDMesa"], (TimeSpan)base._lector["TiempoInicio"],
-                        (TimeSpan)base._lector["TiempoFin"]));
+                        (TimeSpan)base._lector["TiempoFin"],
+                        (double)base._lector["CostoTotal"]));
                 }
             }
             catch (Exception)
@@ -155,14 +158,13 @@ namespace Entidades.DB
 
                 base._lector.Read();
 
-                pedido = new Pedido(
-                                    (int)base._lector["IDPedido"],
-                                    (string)base._lector["CodigoPedido"], (string)base._lector["Estado"],
-                                    (TimeSpan)base._lector["TiempoEstimadoPreparacion"],
-                                    (string)base._lector["TipoOrden"],
-                                    (int)base._lector["IDMesa"], (TimeSpan)base._lector["TiempoInicio"],
-                                    (TimeSpan)base._lector["TiempoFin"]
-                        );
+                pedido = new Pedido((int)base._lector["IDPedido"],
+                        (string)base._lector["CodigoPedido"], (string)base._lector["Estado"],
+                        (TimeSpan)base._lector["TiempoEstimadoPreparacion"],
+                        (string)base._lector["TipoOrden"],
+                        (int)base._lector["IDMesa"], (TimeSpan)base._lector["TiempoInicio"],
+                        (TimeSpan)base._lector["TiempoFin"],
+                        (double)base._lector["CostoTotal"]);
 
                 base._lector.Close();
             }
@@ -195,7 +197,7 @@ namespace Entidades.DB
             {
                 base._comando = new SqlCommand();
 
-                base._comando.CommandText = $"SELECT * FROM Pedidos WHERE CodigoPedido= {codigo}"; //-->La query
+                base._comando.CommandText = $"SELECT * FROM Pedidos WHERE CodigoPedido= '{codigo}'"; //-->La query
 
                 base._comando.Connection = base._conexion;
 
@@ -205,14 +207,13 @@ namespace Entidades.DB
 
                 base._lector.Read();
 
-                pedido = new Pedido(
-                                    (int)base._lector["IDPedido"],
-                                    (string)base._lector["CodigoPedido"], (string)base._lector["Estado"],
-                                    (TimeSpan)base._lector["TiempoEstimadoPreparacion"],
-                                    (string)base._lector["TipoOrden"],
-                                    (int)base._lector["IDMesa"], (TimeSpan)base._lector["TiempoInicio"],
-                                    (TimeSpan)base._lector["TiempoFin"]
-                        );
+                pedido = new Pedido((int)base._lector["IDPedido"],
+                        (string)base._lector["CodigoPedido"], (string)base._lector["Estado"],
+                        (TimeSpan)base._lector["TiempoEstimadoPreparacion"],
+                        (string)base._lector["TipoOrden"],
+                        (int)base._lector["IDMesa"], (TimeSpan)base._lector["TiempoInicio"],
+                        (TimeSpan)base._lector["TiempoFin"],
+                        (double)base._lector["CostoTotal"]);
 
                 base._lector.Close();
             }

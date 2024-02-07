@@ -22,6 +22,9 @@ namespace Aplicacion.Socio
         #region ATRIBUTOS
         private List<Tuple<int, string>> listaCategorias;
         private List<Producto> listaProductos;
+        private List<Pedido> listaPedidos = new List<Pedido>();
+        private List<PedidoProducto> listaPedidosProducto;
+        private string codPedido;
         #endregion
 
         #region CONSTRUCTOR
@@ -31,6 +34,7 @@ namespace Aplicacion.Socio
             this.listaCategorias = new CategoriasDAO().ObtenerTodos();
             this.lblTipoPedido.Visible = false;//-->Oculto el tipo de pedido
             this.listaProductos = new List<Producto>();
+
         }
         #endregion
 
@@ -119,7 +123,7 @@ namespace Aplicacion.Socio
                 if (this.lblTipoPedido.Text == TiposPedidos.Pedido.ToString())//-->Se selecciono una mesa xq es un pedido
                 {
                     Mesa mesa = new MesaDAO().ObtenerEspecifico(int.Parse(this.lblMesa.Text));//-->Obtengo la mesa mediante su ID
-                    
+
                     //-->Asigno el id al pedido
                     pedido.IDMesa = mesa.IDMesa;
 
@@ -128,7 +132,7 @@ namespace Aplicacion.Socio
                     if (!new MesaDAO().UpdateDato(mesa))
                         throw new UpdateSQLException("No se ha podido modificar el estado de la mesa, reintente!");
                 }
-                
+
                 TimeSpan tiempoEstimado = new TimeSpan();
                 double totalPedido = 0;
 
@@ -179,9 +183,13 @@ namespace Aplicacion.Socio
                     }
                 }
 
+                this.codPedido = pedido.CodPedido;//-->Asigno el codigo de pedido
+
                 this.guna2MessageDialog1.Icon = MessageDialogIcon.Information;
                 this.guna2MessageDialog1.Caption = "Información";
                 this.guna2MessageDialog1.Show("Pedido generado!");
+
+                this.dtgv.Rows.Clear();
             }
             catch (AgregarDatoSQLException ex)
             {
@@ -202,6 +210,71 @@ namespace Aplicacion.Socio
             }
         }
 
+        private void btnBillList_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FrmBillList frmBillList = new FrmBillList();
+                frmBillList.ShowDialog();
+                this.lblMozo.Visible = false;
+
+                this.listaPedidos = new PedidoDAO().ObtenerTodos();
+                this.listaPedidosProducto = new PedidoProductoDAO().ObtenerTodos();
+                this.listaProductos = new ProductoDAO().ObtenerTodos();
+
+                if (frmBillList.IDPedido > 0)
+                {
+                    //-->Recorro la lista de pedidos en coincidencia de IDs
+                    foreach (Pedido pedido in this.listaPedidos)
+                    {
+                        if (pedido.IDPedido == frmBillList.IDPedido)//-->Coinciden las IDs, cargo
+                        {
+                            foreach (PedidoProducto ped in this.listaPedidosProducto)
+                            {
+                                if (pedido.CodPedido == ped.CodigoPedido)
+                                {
+                                    foreach (Producto producto in this.listaProductos)
+                                    {
+                                        if (ped.IDProducto == producto.IDProducto)
+                                        {
+                                            this.codPedido = pedido.CodPedido;
+
+                                            if (pedido.TipoOrden == "Pedido")
+                                            {
+                                                this.lblMesa.Text = pedido.IDMesa.ToString();
+                                                this.btnPedido.Checked = true;
+                                            }
+                                            else if (pedido.TipoOrden == "Para Llevar")
+                                            {
+                                                this.lblMesa.Visible = false;
+                                                this.btnParaLlevar.Checked = true;
+                                            }
+                                            else
+                                            {
+                                                this.lblMesa.Visible = false;
+                                                this.btnDelivery.Checked = true;
+                                            }
+
+                                            //-->Creo el Objeto
+                                            object[] obj = { 0, producto.Nombre, ped.Cantidad, producto.Precio, producto.Precio * ped.Cantidad };
+                                            this.dtgv.Rows.Add(obj);//-->Lo guardo
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                this.ImprimirTotal();
+            }
+            catch (Exception)
+            {
+                this.guna2MessageDialog1.Caption = "Error";
+                this.guna2MessageDialog1.Show("Ocurrio un error en la aplicación. Reintente!");
+            }
+        }
+
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -219,6 +292,25 @@ namespace Aplicacion.Socio
             this.lblMozo.Visible = false;
             this.dtgv.Rows.Clear();
             this.lblTotal.Text = "0.00";
+        }
+
+        /// <summary>
+        /// Para pagar un pedido seleccionado
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnCheckOut_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(this.codPedido))//-->Chequeo que no este vacio.
+            {
+                FrmCheckOut frmCheckOut = new FrmCheckOut(this.codPedido);
+                frmCheckOut.ShowDialog();
+            }
+            else
+            {
+                this.guna2MessageDialog1.Caption = "Error";
+                this.guna2MessageDialog1.Show("No hay pedido seleccionado!");
+            }
         }
         #endregion
 
@@ -393,6 +485,7 @@ namespace Aplicacion.Socio
         {
 
         }
-        #endregion 
+        #endregion
+
     }
 }

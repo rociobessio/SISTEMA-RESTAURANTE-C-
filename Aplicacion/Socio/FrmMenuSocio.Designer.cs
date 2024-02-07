@@ -390,7 +390,7 @@
             guna2ControlBox3.Animated = true;
             guna2ControlBox3.ControlBoxType = Guna.UI2.WinForms.Enums.ControlBoxType.MaximizeBox;
             guna2ControlBox3.CustomizableEdges = customizableEdges19;
-            guna2ControlBox3.FillColor = Color.FromArgb(139, 152, 166);
+            guna2ControlBox3.FillColor = Color.LightCoral;
             guna2ControlBox3.IconColor = Color.White;
             guna2ControlBox3.Location = new Point(1055, 12);
             guna2ControlBox3.Name = "guna2ControlBox3";
@@ -404,7 +404,7 @@
             guna2ControlBox2.Animated = true;
             guna2ControlBox2.ControlBoxType = Guna.UI2.WinForms.Enums.ControlBoxType.MinimizeBox;
             guna2ControlBox2.CustomizableEdges = customizableEdges21;
-            guna2ControlBox2.FillColor = Color.FromArgb(139, 152, 166);
+            guna2ControlBox2.FillColor = Color.LightCoral;
             guna2ControlBox2.IconColor = Color.White;
             guna2ControlBox2.Location = new Point(981, 12);
             guna2ControlBox2.Name = "guna2ControlBox2";
@@ -418,7 +418,7 @@
             btnCerrar.Animated = true;
             btnCerrar.CustomClick = true;
             btnCerrar.CustomizableEdges = customizableEdges23;
-            btnCerrar.FillColor = Color.FromArgb(139, 152, 166);
+            btnCerrar.FillColor = Color.IndianRed;
             btnCerrar.IconColor = Color.White;
             btnCerrar.Location = new Point(1129, 12);
             btnCerrar.Name = "btnCerrar";

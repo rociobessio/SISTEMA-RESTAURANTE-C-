@@ -109,8 +109,8 @@ C:\Users\Rocio\Desktop\COMANDA .NET\MANEJO-RESTAURANTE\TestUnitarios\bin\Debug\n
 C:\Users\Rocio\Desktop\COMANDA .NET\MANEJO-RESTAURANTE\TestUnitarios\bin\Debug\net6.0\Entidades.pdb
 C:\Users\Rocio\Desktop\COMANDA .NET\MANEJO-RESTAURANTE\TestUnitarios\bin\Debug\net6.0\Excepciones.pdb
 C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\TestUnitarios\bin\Debug\net6.0\CoverletSourceRootsMapping
-C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\TestUnitarios\bin\Debug\net6.0\testhost.exe
 C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\TestUnitarios\bin\Debug\net6.0\testhost.dll
+C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\TestUnitarios\bin\Debug\net6.0\testhost.exe
 C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\TestUnitarios\bin\Debug\net6.0\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
 C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\TestUnitarios\bin\Debug\net6.0\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
 C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\TestUnitarios\bin\Debug\net6.0\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
@@ -203,9 +203,11 @@ C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\TestUnitarios\bin
 C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\TestUnitarios\bin\Debug\net6.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\TestUnitarios\bin\Debug\net6.0\Entidades.dll
 C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\TestUnitarios\bin\Debug\net6.0\Excepciones.dll
+C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\TestUnitarios\bin\Debug\net6.0\Interfaces.dll
 C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\TestUnitarios\bin\Debug\net6.0\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
 C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\TestUnitarios\bin\Debug\net6.0\Entidades.pdb
 C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\TestUnitarios\bin\Debug\net6.0\Excepciones.pdb
+C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\TestUnitarios\bin\Debug\net6.0\Interfaces.pdb
 C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\TestUnitarios\bin\Debug\net6.0\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
 C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\TestUnitarios\obj\Debug\net6.0\TestUnitarios.csproj.AssemblyReference.cache
 C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\TestUnitarios\obj\Debug\net6.0\TestUnitarios.GeneratedMSBuildEditorConfig.editorconfig
@@ -218,5 +220,3 @@ C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\TestUnitarios\obj
 C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\TestUnitarios\obj\Debug\net6.0\TestUnitarios.pdb
 C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\TestUnitarios\obj\Debug\net6.0\TestUnitarios.genruntimeconfig.cache
 C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\TestUnitarios\obj\Debug\net6.0\ref\TestUnitarios.dll
-C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\TestUnitarios\bin\Debug\net6.0\Interfaces.dll
-C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\TestUnitarios\bin\Debug\net6.0\Interfaces.pdb

@@ -35,13 +35,14 @@ namespace Entidades
         #endregion
 
         #region CONSTRUCTOR
-        public Pedido(string cod,string estado,TimeSpan tiempoPreparacionTotal,string tipoOrden,int idMesa)
+        public Pedido(string cod,string estado,TimeSpan tiempoPreparacionTotal,string tipoOrden,int idMesa, double total)
         {
             this._codPedido = cod;
             this._estado = estado;
             this._tiempoEstimadoPreparacion = tiempoPreparacionTotal;
             this._tipoOrden = tipoOrden;
             this._IDMesa = idMesa;
+            this._totalPedido = total;
         }
 
         public Pedido(string cod, string estado, TimeSpan tiempoPreparacionTotal, string tipoOrden)
@@ -52,8 +53,9 @@ namespace Entidades
             this._tipoOrden = tipoOrden;
         }
 
-        public Pedido(int id, string cod,string estado, TimeSpan tiempoPreparacionTotal, string tipoOrden,int idMesa,TimeSpan tiempoInicio,TimeSpan tiempoFin)
-            : this (cod,estado,tiempoPreparacionTotal,tipoOrden,idMesa)
+        public Pedido(int id, string cod,string estado, TimeSpan tiempoPreparacionTotal, string tipoOrden,int idMesa,
+            TimeSpan tiempoInicio,TimeSpan tiempoFin,double total)
+            : this (cod,estado,tiempoPreparacionTotal,tipoOrden,idMesa,total)
         {
             this._id = id;
             this._tiempoInicio = tiempoInicio;
@@ -62,9 +64,8 @@ namespace Entidades
 
         public Pedido(int id, string cod, string estado, TimeSpan tiempoPreparacionTotal, string tipoOrden, int idMesa,
             TimeSpan tiempoInicio, TimeSpan tiempoFin,double total,bool pagado)
-            : this (id,cod, estado, tiempoPreparacionTotal,tipoOrden,idMesa,tiempoInicio,tiempoFin)
+            : this (id,cod, estado, tiempoPreparacionTotal,tipoOrden,idMesa,tiempoInicio,tiempoFin,total)
         {
-            this._totalPedido = total;
             this._pedioFacturado = pagado;
         }
         #endregion

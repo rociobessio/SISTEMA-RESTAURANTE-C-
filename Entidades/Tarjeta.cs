@@ -54,15 +54,22 @@ namespace Entidades
         /// <param name="entidadEmisora"></param>
         /// <param name="saldo"></param>
         public Tarjeta(DateTime vencimiento, string titular, string cvv, string numeroTarjeta,
-            string entidadEmisora, double saldo, bool esDebito)
+            string entidadEmisora,bool esDebito)
         {
             this._fechaVencimiento = vencimiento;
             this._titular = titular;
             this._cvv = cvv;
             this._numeroTarjeta = numeroTarjeta;
             this._entidadEmisora = entidadEmisora;
-            this._dineroDisponible = saldo;
+            
             this._esDebito = esDebito;
+        }
+
+        public Tarjeta(DateTime vencimiento, string titular, string cvv, string numeroTarjeta,
+            string entidadEmisora, bool esDebito, double saldo)
+            :this(vencimiento,titular,cvv,numeroTarjeta,entidadEmisora,esDebito)
+        {
+            this._dineroDisponible = saldo;
         }
         #endregion
 
@@ -82,7 +89,7 @@ namespace Entidades
             {
                 if (tarjetaValidar._numeroTarjeta.Length < 16 ||
                     tarjetaValidar._numeroTarjeta.Length > 16 ||
-                    tarjetaValidar._dineroDisponible <= 0 ||
+                    //tarjetaValidar._dineroDisponible <= 0 ||
                     tarjetaValidar._fechaVencimiento < DateTime.Now ||
                     tarjetaValidar._cvv.Length < 4 || tarjetaValidar._cvv.Length > 4)
                 {
