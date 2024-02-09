@@ -1,12 +1,11 @@
 ********* LOGIN *************************
-1. Primero el registro de Usuarios Empleados se realizara.
-
 2.Luego al final se realizara la parte de cliente.
+3. Realizar la parte de empleados
 
 
 ***************** CLIENTE *********************************
 1. La parte de cliente podrá encargar comida y será enviada.
-2. Podrá pagar con debito o credito.
+2. Podrá pagar con debito o efectivo
 3. Es otro perfil
 
 ***************** BUSCAR *********************************
@@ -16,16 +15,26 @@
 
 
 ***************** Hacer EL RECORRIDO DE LOS PEDIDOS *********************************
-1. Se debera de realizar todo el circuito de los productos.
 2. Intentar utilizar: Multihilos, hilos, concurrencia y delegados.
 
 
 
-**************************** OTRO ****************************
-1. Ver JWT.
-2. Mejorar Formularios. 
+**********************************************************************************
+3. Capaz otro boton que sea despachar pedido de tipo 'Delivery o Para Llevar' de 
+esta forma quizas antes de entregarlo en la cocina lo que hago es si tienen estado
+'Entregar' NO mostrarlos. Directamente despachar los pedidos mostrara con la misma 
+mecanica que la cocina las cards de los pedidos. Al apretar el boton se entregara y
+se realizara el pago alli mismo. Si es un delivery activaria un combobox para elegir al
+conductor.
+
+1. Dentro de cocina, antes de entregar un pedido (o plantearlo mejor) podria
+llamar al delivery si su tipo de orden lo requiere. asi lo despacha y lo lleva.
+De esta forma facturamos el pedido asi no queda colgado.
+Tambien podria instanciar el formulario de añadir info cliente que tiene lo necesario
+para realizar un delivery. O directamente un mini form con un combobox 
+para chequear al conductor y generar el pago.
 
 
-TENDRIA QUE MEJORAR LA PARTE VISUAL DE LA COCINA.
-Fijarse si hay alguna query para que los pedidos con estado Entregado
-no los traiga, que solo traiga los demas estados.
+2. Plantear la parte de deliverys y su facturacion. Dentro de POS deberia de 
+realizarlo.
+

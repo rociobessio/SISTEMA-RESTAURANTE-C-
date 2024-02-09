@@ -3,5 +3,6 @@
     Pendiente,
     En_Preparacion,
     Listo_Para_Servir,
-    Entregado
+    Entregado,
+    Entregar
 }

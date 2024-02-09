@@ -17,7 +17,7 @@ namespace Entidades
         private int _idCliente;
         private double _dineroEfectivoDisponible;
         private Tarjeta _tarjeta;
-        private Carrito _carritoCompra;
+        //private Carrito _carritoCompra;
         private bool _esConTarjeta;
         private Usuario usuario;
         #endregion
@@ -36,7 +36,7 @@ namespace Entidades
         /// <summary>
         /// Propiedad de lectura y escritura del atributo _carritoCompra
         /// </summary>
-        public Carrito CarritoCompra { get { return this._carritoCompra; } set { this.CarritoCompra = value; } }
+        //public Carrito CarritoCompra { get { return this._carritoCompra; } set { this.CarritoCompra = value; } }
         /// <summary>
         /// Retornara un booleano si usa tarjeta o no.
         /// </summary>
@@ -66,11 +66,16 @@ namespace Entidades
         /// <param name="user"></param>
         /// <param name="carrito"></param>
         public Cliente(string nombre, string apellido, Genero sexo, DateTime fechaNacimiento,
-                       string dni, string domicilio, string telefono, Carrito carrito, Usuario usuario)
+                       string dni, string domicilio, string telefono, Usuario usuario)
             : base(nombre, apellido, sexo, fechaNacimiento, dni, domicilio, telefono)
-        {
-            this._carritoCompra = carrito;
+        { 
             this.usuario = usuario;
+        }
+
+        public Cliente(string nombre, string apellido, string domicilio, string telefono)
+            : base(nombre,apellido,domicilio,telefono)
+        {
+
         }
 
         /// <summary>
@@ -90,8 +95,8 @@ namespace Entidades
         /// <param name="tarjeta"></param>
         /// <param name="usaTarjeta"></param>
         public Cliente(string nombre, string apellido, Genero sexo, DateTime fechaNacimiento,
-                       string dni, string domicilio, string telefono, Usuario user, Carrito carrito, Tarjeta tarjeta, bool usaTarjeta)
-            : this(nombre, apellido, sexo, fechaNacimiento, dni, domicilio, telefono, carrito, user)
+                       string dni, string domicilio, string telefono, Usuario user, Tarjeta tarjeta, bool usaTarjeta)
+            : this(nombre, apellido, sexo, fechaNacimiento, dni, domicilio, telefono, user)
         {
             this._tarjeta = tarjeta;
             this._esConTarjeta = usaTarjeta;
@@ -114,23 +119,28 @@ namespace Entidades
         /// <param name="efectivo"></param>
         /// <param name="usaTarjeta"></param>
         public Cliente(string nombre, string apellido, Genero sexo, DateTime fechaNacimiento,
-                       string dni, string domicilio, string telefono, Usuario user, Carrito carrito, double efectivo, bool usaTarjeta)
-            : this(nombre, apellido, sexo, fechaNacimiento, dni, domicilio, telefono, carrito, user)
+                       string dni, string domicilio, string telefono, Usuario user, double efectivo, bool usaTarjeta)
+            : this(nombre, apellido, sexo, fechaNacimiento, dni, domicilio, telefono, user)
         {
             this._dineroEfectivoDisponible = efectivo;
             this._esConTarjeta = usaTarjeta;
         }
 
-        /// <summary>
-        /// Constructor que me permite recibir un usuario, y
-        /// pasarselo al base.
-        /// </summary>
-        /// <param name="user"></param>
-        //public Cliente(Usuario user)
-        //            : base(user)
-        //{
-        //    this._carritoCompra = new Carrito();
-        //}
+        public Cliente(int id, string nombre, string apellido, Genero sexo, DateTime fechaNacimiento,
+                       string dni, string domicilio, string telefono, Usuario user, double efectivo, bool usaTarjeta, Tarjeta tarjeta)
+            : this(nombre, apellido, sexo, fechaNacimiento, dni, domicilio, telefono, user,efectivo,usaTarjeta,tarjeta)
+        {
+            this._idCliente = id;
+        }
+
+        public Cliente(string nombre, string apellido, Genero sexo, DateTime fechaNacimiento,
+               string dni, string domicilio, string telefono, Usuario user, double efectivo, bool usaTarjeta, Tarjeta tarjeta)
+            :this(nombre,apellido,sexo,fechaNacimiento,dni,domicilio,telefono,user,efectivo,usaTarjeta)
+        {
+            this._tarjeta = tarjeta;
+        }
+
+
         #endregion 
 
         #region SOBRECARGA DE OPERADORES
@@ -157,28 +167,6 @@ namespace Entidades
         #endregion
 
         #region POLIMORFISMO
-        /// <summary>
-        /// Sobrecarga del metodo .ToString()
-        /// </summary>
-        /// <returns></returns>
-        public override string ToString()
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.AppendLine(base.ToString());
-            if (this._esConTarjeta)
-            {
-                sb.AppendLine("DATOS DE LA TARJETA:");
-                sb.AppendLine(this._tarjeta.ToString());
-            }
-            else
-            {
-                sb.AppendLine($"Efectivo: ${this._dineroEfectivoDisponible:f}");
-            }
-            sb.AppendLine("CARRITO:");
-            sb.AppendLine(this._carritoCompra.ToString());
-
-            return sb.ToString();
-        }
 
         /// <summary>
         /// Compara si el objeto this actual es igual al pasaddo por parametro

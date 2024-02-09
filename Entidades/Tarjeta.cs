@@ -32,7 +32,7 @@ namespace Entidades
         /// <summary>
         /// Este constructor privado me permite crear una instancia de tarjeta por defecto. 
         /// </summary>
-        private Tarjeta()
+        public Tarjeta()
         {
             this._fechaVencimiento = DateTime.Now;
             this._titular = "AAAA AAAA";

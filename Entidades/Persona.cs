@@ -51,6 +51,16 @@ namespace Entidades
             this._numeroTelefono = "000";
         }
 
+        protected Persona(string nombre, string apellido,
+            string domicilio, string telefono)
+            :this()
+        {
+            this._direccion = domicilio;
+            this._apellido = apellido;
+            this._nombre = nombre;
+            this._numeroTelefono = telefono;
+        }
+
         protected Persona(string nombre, string apellido, Genero sexo, DateTime fechaNacimiento,
             string dni, string domicilio, string telefono)
         {

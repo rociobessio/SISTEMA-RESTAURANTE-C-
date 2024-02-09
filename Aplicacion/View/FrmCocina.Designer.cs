@@ -28,17 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            flowLayoutPanel1 = new FlowLayoutPanel();
             guna2MessageDialog1 = new Guna.UI2.WinForms.Guna2MessageDialog();
+            flowLayoutPanel1 = new FlowLayoutPanel();
             SuspendLayout();
-            // 
-            // flowLayoutPanel1
-            // 
-            flowLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            flowLayoutPanel1.Location = new Point(13, 70);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(1462, 901);
-            flowLayoutPanel1.TabIndex = 0;
             // 
             // guna2MessageDialog1
             // 
@@ -49,11 +41,19 @@
             guna2MessageDialog1.Style = Guna.UI2.WinForms.MessageDialogStyle.Dark;
             guna2MessageDialog1.Text = null;
             // 
+            // flowLayoutPanel1
+            // 
+            flowLayoutPanel1.Location = new Point(91, 105);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(1546, 1114);
+            flowLayoutPanel1.TabIndex = 0;
+            flowLayoutPanel1.Paint += flowLayoutPanel1_Paint;
+            // 
             // FrmCocina
             // 
             AutoScaleMode = AutoScaleMode.None;
             BackColor = Color.White;
-            ClientSize = new Size(1486, 983);
+            ClientSize = new Size(1644, 1231);
             Controls.Add(flowLayoutPanel1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "FrmCocina";
@@ -63,8 +63,7 @@
         }
 
         #endregion
-
-        private FlowLayoutPanel flowLayoutPanel1;
         private Guna.UI2.WinForms.Guna2MessageDialog guna2MessageDialog1;
+        private FlowLayoutPanel flowLayoutPanel1;
     }
 }

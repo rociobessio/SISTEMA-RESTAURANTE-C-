@@ -6,5 +6,6 @@
     Bartender = 7,
     CandyBar = 3,
     Cervecero = 1,
-    Cliente = 6
+    Cliente = 6,
+    Conductor = 8
 }

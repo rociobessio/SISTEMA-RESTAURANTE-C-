@@ -12,6 +12,7 @@ namespace Aplicacion
         #region ATRIBUTOS
         private UsuarioDAO usuarioDAO;
         private FrmMenuSocio frmMenuSocio;
+        private bool mostrarClave;
         #endregion
 
         #region CONSTRUCTOR
@@ -19,9 +20,9 @@ namespace Aplicacion
         {
             InitializeComponent();
             this.usuarioDAO = new UsuarioDAO();
+            this.mostrarClave = false;
         }
         #endregion
-
 
         #region EVENTOS
         /// <summary>
@@ -48,18 +49,13 @@ namespace Aplicacion
                         throw new IngresoUsuarioException("Usuario ingresado NO valido, reintente!");
                     }
 
-                    if (esCliente == Rol.Cliente.ToString())//-->Si es true es CLIENTE
-                    {
-                        this.guna2MessageDialog1.Show("Es Cliente", "Error");
-                        //MessageBox.Show("Es CLIENTE", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else if (esCliente == Rol.Socio.ToString())//-->Es Socio abro el menu.
+                    if (esCliente == Rol.Socio.ToString())//-->Es Socio abro el menu.
                     {
                         //MessageBox.Show("ES SOCIO", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.guna2MessageDialog1.Icon = MessageDialogIcon.None;
                         this.guna2MessageDialog1.Show("Es SOCIO", "OK");
                         this.Hide();
-                        this.frmMenuSocio = new FrmMenuSocio(new Usuario(this.txtEmail.Text,this.txtClave.Text));
+                        this.frmMenuSocio = new FrmMenuSocio(new Usuario(this.txtEmail.Text, this.txtClave.Text));
                         this.frmMenuSocio.Show();
                     }
 
@@ -76,6 +72,26 @@ namespace Aplicacion
                 //MessageBox.Show("Algo salio mal.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        /// <summary>
+        /// Me permitira mostrar la clave sin
+        /// ser ocultada.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnMostrarClave_Click(object sender, EventArgs e)
+        {
+            if (!this.mostrarClave)
+            {
+                this.txtClave.PasswordChar = '\0';//-->Para que se muestren los caracteres
+                this.mostrarClave = true;
+            }
+            else
+            {
+                this.txtClave.PasswordChar = '*';//-->Para NO mostrar los caracteres
+                this.mostrarClave = false;
+            }
+        }
         #endregion
 
         #region OTROS EVENTOS
@@ -89,7 +105,6 @@ namespace Aplicacion
 
         }
         #endregion
-
 
         #region METODOS
         /// <summary>
@@ -146,7 +161,6 @@ namespace Aplicacion
             }
         }
         #endregion
-
 
     }
 }

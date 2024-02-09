@@ -22,10 +22,10 @@ namespace Entidades.DB
         /// <param name="contrasenia"></param>
         /// <param name="esCliente"></param>
         /// <returns>Devuelve true si es esCliente, false sino</returns>
-        public bool VerificarUsuario(string email, string contrasenia, out string esCliente)
+        public bool VerificarUsuario(string email, string contrasenia, out string roles)
         {
             //esCliente = false;
-            esCliente = null;
+            roles = null;
             bool verificado = false;
 
             try
@@ -36,7 +36,7 @@ namespace Entidades.DB
                 base._comando.Parameters.AddWithValue("@Clave", contrasenia);
 
                 base._comando.CommandType = CommandType.Text;
-                base._comando.CommandText = $"SELECT R.Rol FROM EmpleadosClientes EC " +
+                base._comando.CommandText = $"SELECT R.Rol FROM EmpleadosTablaIntermedia EC " +
                                             $"INNER JOIN Usuarios U ON EC.IDUsuario = U.IDUsuario " +
                                             $"INNER JOIN Roles R ON EC.IDRol = R.IDRol " +
                                             $"WHERE U.Email = @Email AND U.Clave = @Clave";
@@ -52,7 +52,7 @@ namespace Entidades.DB
 
                         if (!string.IsNullOrEmpty(rol))//-->Quiere decir que en la tabla Roles es 'Cliente'
                         {
-                            esCliente = rol;
+                            roles = rol;
                         }
                         //return true;
                         verificado = true;

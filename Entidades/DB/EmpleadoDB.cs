@@ -30,7 +30,7 @@ namespace Entidades.DB
                 base._comando.CommandType = System.Data.CommandType.Text;
                 base._comando.CommandText = "SELECT e.IDEmpleado, p.Nombre, p.Apellido, p.Telefono, p.DNI, p.Direccion, p.Genero, p.FechaNacimiento," +
                                                     "e.FechaAlta, e.FechaBaja, r.Rol, u.Email, u.Clave " +
-                                                    "FROM EmpleadosClientes ec " +
+                                                    "FROM EmpleadosTablaIntermedia ec " +
                                                     "INNER JOIN Personas p ON ec.IDPersona = p.IDPersona " +
                                                     "INNER JOIN Empleados e ON ec.IDEmpleado = e.IDEmpleado " +
                                                     "INNER JOIN Roles r ON ec.IDRol = r.IDRol " +
@@ -90,7 +90,7 @@ namespace Entidades.DB
 
                 base._comando.CommandText = "SELECT e.IDEmpleado, p.Nombre, p.Apellido, p.Telefono, p.DNI, p.Direccion, p.Genero, p.FechaNacimiento," +
                                             "e.FechaAlta, e.FechaBaja, r.Rol, u.Email, u.Clave " +
-                                            "FROM EmpleadosClientes ec " +
+                                            "FROM EmpleadosTablaIntermedia ec " +
                                             "INNER JOIN Personas p ON ec.IDPersona = p.IDPersona " +
                                             "INNER JOIN Empleados e ON ec.IDEmpleado = e.IDEmpleado " +
                                             "INNER JOIN Roles r ON ec.IDRol = r.IDRol " +
@@ -183,7 +183,7 @@ namespace Entidades.DB
                                 int idUsuario = Convert.ToInt32(comandoInsertUsuario.ExecuteScalar());//-->Obtengo el ID del Usuario
 
                                 //-->Cuarto hago el INSERT en la tabla INTERMEDIA:
-                                string queryEmpleadosClientes = "INSERT INTO EmpleadosClientes (IDPersona, IDEmpleado, IDUsuario, IDRol)" +
+                                string queryEmpleadosClientes = "INSERT INTO EmpleadosTablaIntermedia (IDPersona, IDEmpleado, IDUsuario, IDRol)" +
                                                                 $"VALUES({idPersona},{idEmpleado},{idUsuario},'{(int)empleado.Rol}')";
 
                                 using (SqlCommand comandoInsertEmpleadosClientes = new SqlCommand(queryEmpleadosClientes, base._conexion))
@@ -251,7 +251,7 @@ namespace Entidades.DB
                                                    $"Genero = '{empleado.Genero}', " +
                                                    $"FechaNacimiento = '{empleado.FechaNacimeinto.ToString("yyyy-MM-dd HH:mm:ss")}' " +
                                                    $"FROM Personas P " +
-                                                   $"INNER JOIN EmpleadosClientes EC ON P.IDPersona = EC.IDPersona " +
+                                                   $"INNER JOIN EmpleadosTablaIntermedia EC ON P.IDPersona = EC.IDPersona " +
                                                    $"INNER JOIN Empleados E ON EC.IDEmpleado = E.IDEmpleado " +
                                                    $"WHERE E.IDEmpleado = {empleado.IDEmpleado}";
 
@@ -263,7 +263,7 @@ namespace Entidades.DB
                             //-->Actualizo el ROL
                             string queryRol = $"UPDATE EC " +
                                               $"SET EC.IDRol = '{(int)empleado.Rol}' " +
-                                              $"FROM EmpleadosClientes EC " +
+                                              $"FROM EmpleadosTablaIntermedia EC " +
                                               $"INNER JOIN Empleados E ON EC.IDEmpleado = E.IDEmpleado " +
                                               $"WHERE E.IDEmpleado = {empleado.IDEmpleado}";
 
@@ -369,7 +369,7 @@ namespace Entidades.DB
                     base._comando.CommandType = System.Data.CommandType.Text;
                     base._comando.CommandText = "SELECT e.IDEmpleado, p.Nombre, p.Apellido, p.Telefono, p.DNI, p.Direccion, p.Genero, p.FechaNacimiento," +
                                                         "e.FechaAlta, e.FechaBaja, r.Rol, u.Email, u.Clave " +
-                                                        "FROM EmpleadosClientes ec " +
+                                                        "FROM EmpleadosTablaIntermedia ec " +
                                                         "INNER JOIN Personas p ON ec.IDPersona = p.IDPersona " +
                                                         "INNER JOIN Empleados e ON ec.IDEmpleado = e.IDEmpleado " +
                                                         "INNER JOIN Roles r ON ec.IDRol = r.IDRol " +

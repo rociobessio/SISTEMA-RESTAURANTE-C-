@@ -1,19 +1,8 @@
-﻿using Entidades.DB;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Guna;
-using System.Windows.Forms;
+﻿using Aplicacion.Selection;
 using Entidades;
-using System.Collections.Immutable;
-using Guna.UI2.WinForms;
-using Aplicacion.Selection;
+using Entidades.DB;
 using Excepciones;
+using Guna.UI2.WinForms;
 
 namespace Aplicacion.Socio
 {
@@ -25,6 +14,15 @@ namespace Aplicacion.Socio
         private List<Pedido> listaPedidos = new List<Pedido>();
         private List<PedidoProducto> listaPedidosProducto;
         private string codPedido;
+        private int _idConductor;
+
+        #region Cliente
+        private string _nombreCliente;
+        private string _apellidoCliente;
+        private string _telefonoCliente;
+        private string _direccionCliente;
+        private string _ciudadCliente;
+        #endregion
         #endregion
 
         #region CONSTRUCTOR
@@ -32,20 +30,47 @@ namespace Aplicacion.Socio
         {
             InitializeComponent();
             this.listaCategorias = new CategoriasDAO().ObtenerTodos();
-            this.lblTipoPedido.Visible = false;//-->Oculto el tipo de pedido
             this.listaProductos = new List<Producto>();
 
+
+            #region OCULTO LABELS
+            this.lblNombreConductor.Visible = false;
+            this.lblTipoPedido.Visible = false;//-->Oculto el tipo de pedido
+            this.lblTituloMesa.Visible = false;
+            this.lblTituloMozo.Visible = false;
+            this.lblMozo.Visible = false;
+            this.lblMesa.Visible = false;
+            #endregion
         }
         #endregion
 
         #region BOTONES
 
-
         private void btnDelivery_Click(object sender, EventArgs e)
         {
             try
             {
+                this.OcultarLabels();
+
                 this.lblTipoPedido.Text = TiposPedidos.Delivery.ToString();
+
+                FrmAgregarCliente frmAgregarCliente = new FrmAgregarCliente(TiposPedidos.Delivery.ToString());
+                frmAgregarCliente.codigoPedido = codPedido;
+                frmAgregarCliente.ShowDialog();
+
+                if (!string.IsNullOrEmpty(frmAgregarCliente.txtNombre.Text))
+                {
+                    this._idConductor = frmAgregarCliente._idConductor;
+                    this.lblNombreConductor.Visible = true;
+                    this.lblNombreConductor.Text = $"Nombre Cliente: {frmAgregarCliente.txtNombre.Text} - Celular: {frmAgregarCliente.txtTelefono.Text} - Conductor: {frmAgregarCliente.cbConductor.Text}";
+                    this._nombreCliente = frmAgregarCliente.txtNombre.Text;
+                    this._telefonoCliente = frmAgregarCliente.txtTelefono.Text;
+                    this._direccionCliente = frmAgregarCliente.txtDireccion.Text;
+                    this._ciudadCliente = frmAgregarCliente.txtCiudad.Text;
+                    this._apellidoCliente = frmAgregarCliente.txtApellido.Text;
+
+                }
+
             }
             catch (Exception)
             {
@@ -58,7 +83,24 @@ namespace Aplicacion.Socio
         {
             try
             {
+                this.OcultarLabels();
+
                 this.lblTipoPedido.Text = TiposPedidos.Para_Llevar.ToString();
+                FrmAgregarCliente frmAgregarCliente = new FrmAgregarCliente(TiposPedidos.Para_Llevar.ToString().Replace("_", " "));
+                frmAgregarCliente.codigoPedido = codPedido;
+                frmAgregarCliente.ShowDialog();
+
+                if (!string.IsNullOrEmpty(frmAgregarCliente.txtNombre.Text))
+                {
+                    this._idConductor = frmAgregarCliente._idConductor;
+                    this.lblNombreConductor.Visible = true;
+                    this.lblNombreConductor.Text = $"Nombre Cliente: {frmAgregarCliente.txtNombre.Text} - Celular: {frmAgregarCliente.txtTelefono.Text}";
+                    this._nombreCliente = frmAgregarCliente.txtNombre.Text;
+                    this._telefonoCliente = frmAgregarCliente.txtTelefono.Text;
+                    this._direccionCliente = frmAgregarCliente.txtDireccion.Text;
+                    this._ciudadCliente = frmAgregarCliente.txtCiudad.Text;
+                    this._apellidoCliente = frmAgregarCliente.txtApellido.Text;
+                }
 
             }
             catch (Exception)
@@ -81,6 +123,7 @@ namespace Aplicacion.Socio
             try
             {
                 this.lblTipoPedido.Text = TiposPedidos.Pedido.ToString();
+
                 FrmElegirMesa frmElegirMesa = new FrmElegirMesa();
                 frmElegirMesa.ShowDialog();//-->Abro el formulario
 
@@ -96,6 +139,8 @@ namespace Aplicacion.Socio
                     this.lblMozo.Text = frmElegirMozo.nombreMozo;
                 else
                     this.lblMozo.Text = string.Empty;
+
+                this.MostrarLabels();
             }
             catch (Exception)
             {
@@ -115,8 +160,6 @@ namespace Aplicacion.Socio
         {
             try
             {
-                //if (!string.IsNullOrEmpty(this.lblMesa.Text))
-                //    throw new MesaNoSeleccionadaException("Debe de seleccionar una mesa");
 
                 Pedido pedido = new Pedido(Herramientas.CrearCodigo(5), EstadosComidas.Pendiente.ToString(), TimeSpan.Zero, this.lblTipoPedido.Text);
 
@@ -185,9 +228,22 @@ namespace Aplicacion.Socio
 
                 this.codPedido = pedido.CodPedido;//-->Asigno el codigo de pedido
 
+                //-->Deberia de generar al Cliente:
+                int idCliente = 0;
+                if (!new ClienteDAO().AgregarDato(new Cliente(this._nombreCliente,this._apellidoCliente,Genero.Otro,new DateTime(),"",this._direccionCliente,
+                    this._telefonoCliente,new Usuario("",""),0,false, new Tarjeta()),out idCliente))
+                    throw new AgregarDatoSQLException("No se ha podido generar al Cliente!");
+
+                //-->Asigno la tabla intermedia
+                if (!new ClientePedidoDAO().AgregarDato(new ClientePedido(this.codPedido, idCliente)))
+                    throw new AgregarDatoSQLException("No se ha podido guardar en la tabla Cliente-Pedido!");
+
+                //-->Podria ya guardar si es un delivery?
+
+
                 this.guna2MessageDialog1.Icon = MessageDialogIcon.Information;
                 this.guna2MessageDialog1.Caption = "Información";
-                this.guna2MessageDialog1.Show("Pedido generado!");
+                this.guna2MessageDialog1.Show("Pedido generado correctamente!");
 
                 this.dtgv.Rows.Clear();
             }
@@ -341,6 +397,27 @@ namespace Aplicacion.Socio
         #endregion
 
         #region METODOS
+
+        private void MostrarLabels()
+        {
+            #region MUESTRO LABELS
+            this.lblTituloMesa.Visible = true;
+            this.lblTituloMozo.Visible = true;
+            this.lblMozo.Visible = true;
+            this.lblMesa.Visible = true;
+            #endregion
+        }
+
+        private void OcultarLabels()
+        {
+            #region Oculto LABELS
+            this.lblTituloMesa.Visible = false;
+            this.lblTituloMozo.Visible = false;
+            this.lblMozo.Visible = false;
+            this.lblMesa.Visible = false;
+            #endregion
+        }
+
         /// <summary>
         /// Me permitira imprimir el valor
         /// total de los productos sumados 
@@ -470,6 +547,10 @@ namespace Aplicacion.Socio
 
         #region OTROS
         private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void label3_Click_2(object sender, EventArgs e)
         {
 
         }

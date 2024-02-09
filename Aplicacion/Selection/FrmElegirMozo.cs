@@ -55,6 +55,13 @@ namespace Aplicacion.Selection
             this.nombreMozo = (sender as Guna.UI2.WinForms.Guna2Button).Text.ToString();
             this.Close();//-->Cierro una vez que tengo el ID/Nombre
         }
+
+        private void guna2ControlBox1_Click(object sender, EventArgs e)
+        {
+
+        }
         #endregion
+
+
     }
 }
