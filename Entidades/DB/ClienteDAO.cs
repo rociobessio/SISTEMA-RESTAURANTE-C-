@@ -51,13 +51,13 @@ namespace Entidades.DB
 
                         // Insertar en la tabla Clientes y obtener el ID generado
                         string queryInsertCliente = "INSERT INTO Clientes (ConTarjeta, EfectivoDisponible, TarjetaVencimiento, TarjetaEntidadEmisora, TarjetaTitular, " +
-                                                    "TarjetaNumTarjeta, TarjetaCVV, TarjetaDineroDisponible, TarjetaEsDebito) " +
+                                                    "TarjetaNumTarjeta, TarjetaCVV, TarjetaDineroDisponible, TarjetaEsDebito,ImagenCliente) " +
                                                     "OUTPUT INSERTED.IDCliente " +
                                                     "VALUES (@ConTarjeta, @EfectivoDisponible, @TarjetaVencimiento, @TarjetaEntidadEmisora, @TarjetaTitular, " +
-                                                    "@TarjetaNumTarjeta, @TarjetaCVV, @TarjetaDineroDisponible, @TarjetaEsDebito)";
+                                                    "@TarjetaNumTarjeta, @TarjetaCVV, @TarjetaDineroDisponible, @TarjetaEsDebito, @ImagenCliente)";
 
                         using (SqlCommand comandoInsertCliente = new SqlCommand(queryInsertCliente, base._conexion))
-                        { 
+                        {
                             comandoInsertCliente.Parameters.AddWithValue("@ConTarjeta", cliente.ConTarjeta);
                             comandoInsertCliente.Parameters.AddWithValue("@EfectivoDisponible", cliente.DineroEfectivoDisponible);
                             DateTime fechaVencimientoTarjeta = (cliente.Tarjeta.FechaVencimiento != null && cliente.Tarjeta.FechaVencimiento > DateTime.MinValue) ? (DateTime)cliente.Tarjeta.FechaVencimiento : new DateTime(1900, 1, 1);
@@ -68,6 +68,7 @@ namespace Entidades.DB
                             comandoInsertCliente.Parameters.AddWithValue("@TarjetaCVV", cliente.Tarjeta.CVV);
                             comandoInsertCliente.Parameters.AddWithValue("@TarjetaDineroDisponible", cliente.Tarjeta.DineroDisponible);
                             comandoInsertCliente.Parameters.AddWithValue("@TarjetaEsDebito", cliente.Tarjeta.EsDebito);
+                            comandoInsertCliente.Parameters.AddWithValue("@ImagenCliente", cliente.Imagen);
 
                             // Obtener el ID del cliente insertado
                             idCliente = Convert.ToInt32(comandoInsertCliente.ExecuteScalar());
@@ -105,7 +106,6 @@ namespace Entidades.DB
                         }
                     }
                 }
-
                 return true;
             }
             catch (Exception)
@@ -167,7 +167,8 @@ namespace Entidades.DB
                             (string)base._lector["TarjetaEntidadEmisora"],
                             (bool)base._lector["TarjetaEsDebito"],
                             (double)base._lector["TarjetaDineroDisponible"]
-                       )));
+                       ),
+                       (Byte[])base._lector["ImagenCliente"]));
                 }
             }
             catch (Exception)
@@ -230,8 +231,8 @@ namespace Entidades.DB
                             (string)base._lector["TarjetaNumTarjeta"],
                             (string)base._lector["TarjetaEntidadEmisora"],
                             (bool)base._lector["TarjetaEsDebito"],
-                            (double)base._lector["TarjetaDineroDisponible"]
-                       ));
+                            (double)base._lector["TarjetaDineroDisponible"]),
+                       (Byte[])base._lector["ImagenCliente"]);
                 base._lector.Close();
             }
             catch (Exception e)

@@ -111,6 +111,11 @@ namespace Aplicacion.Socio
             this.AgregarControles(new FrmCocina());
         }
 
+        private void btnDespachar_Click(object sender, EventArgs e)
+        {
+            this.AgregarControles(new FrmDespachar());
+        }
+
         /// <summary>
         /// Me permitira cerrar la aplicacion.
         /// </summary>

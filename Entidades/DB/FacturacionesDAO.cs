@@ -55,6 +55,45 @@ namespace Entidades.DB
             return true;
         }
 
+        public bool AgregarFacturacionRetornarID(Facturaciones factura,out int id)
+        {
+
+            try
+            {
+                using (base._conexion = new SqlConnection(AccesoDB.CadenaDeConexion))//-->Le paso la cadena de la DB
+                {
+                    base._conexion.Open();//-->Abro la conexion
+
+                    string qryInsertProd = "INSERT INTO Facturaciones (MetodoPago,Total,Recibido,Cambio,FechaFacturacion,pagada,CodPedido) " +
+                        "OUTPUT INSERTED.IDFacturacion " +
+                        "VALUES (@MetodoPago,@Total,@Recibido,@Cambio,@FechaFacturacion,@pagada,@CodPedido)";
+
+                    base._comando = new SqlCommand(qryInsertProd, this._conexion);
+                    base._comando.Parameters.AddWithValue("@MetodoPago", factura.MetodoPago);
+                    base._comando.Parameters.AddWithValue("@Total", factura.Total);
+                    base._comando.Parameters.AddWithValue("@Recibido", factura.Recibido);
+                    base._comando.Parameters.AddWithValue("@Cambio", factura.Cambio);
+                    base._comando.Parameters.AddWithValue("@FechaFacturacion", factura.FechaFacturacion);
+                    base._comando.Parameters.AddWithValue("@pagada", factura.Pagado);
+                    base._comando.Parameters.AddWithValue("@CodPedido", factura.CodigoPedido);
+
+                    id = Convert.ToInt32(base._comando.ExecuteScalar());//-->Obtengo el ID
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+            finally
+            {
+                if (base._conexion.State == ConnectionState.Open)
+                {
+                    base._conexion.Close();
+                }
+            }
+            return true;
+        }
+
         public List<Facturaciones> ObtenerTodos()
         {
             List<Facturaciones> listaFacturaciones = new List<Facturaciones>();

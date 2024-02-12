@@ -20,6 +20,7 @@ namespace Entidades
         //private Carrito _carritoCompra;
         private bool _esConTarjeta;
         private Usuario usuario;
+        private Byte[] _imagen;
         #endregion
 
         #region PROPIEDADES
@@ -47,6 +48,7 @@ namespace Entidades
         /// </summary>
         public override bool EsCliente { get { return true; } }
         public Usuario Usuario { get { return this.usuario; } set { this.usuario = value; } }
+        public Byte[] Imagen { get { return this._imagen; } set { this._imagen = value; } }
         #endregion
 
         #region CONSTRUCTORES
@@ -127,10 +129,11 @@ namespace Entidades
         }
 
         public Cliente(int id, string nombre, string apellido, Genero sexo, DateTime fechaNacimiento,
-                       string dni, string domicilio, string telefono, Usuario user, double efectivo, bool usaTarjeta, Tarjeta tarjeta)
+                       string dni, string domicilio, string telefono, Usuario user, double efectivo, bool usaTarjeta, Tarjeta tarjeta, Byte[] imagen)
             : this(nombre, apellido, sexo, fechaNacimiento, dni, domicilio, telefono, user,efectivo,usaTarjeta,tarjeta)
         {
             this._idCliente = id;
+            this.Imagen = imagen;
         }
 
         public Cliente(string nombre, string apellido, Genero sexo, DateTime fechaNacimiento,

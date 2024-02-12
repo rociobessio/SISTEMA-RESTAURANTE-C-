@@ -80,17 +80,21 @@ namespace Aplicacion.Socio
 
             foreach (Pedido pedido in this.listaPedidos)
             {
-                this.auxFila = this.tabla.NewRow();
-                this.auxFila[0] = sr;
-                this.auxFila[1] = pedido.IDPedido;
-                this.auxFila[2] = pedido.IDMesa == 0 ? "-" : pedido.IDMesa.ToString();
-                this.auxFila[3] = pedido.TipoOrden.Replace("_", " ");
-                this.auxFila[4] = pedido.Estado;
-                this.auxFila[5] = pedido.TotalPedido;
-                this.auxFila[6] = pedido.PedidoPagado ? "SI" : "NO";
+                //-->Discrimino entre los pedidos que ya se entregaron y pagaron.
+                if (pedido.Estado != "Entregado" || !pedido.PedidoPagado)
+                {
+                    this.auxFila = this.tabla.NewRow();
+                    this.auxFila[0] = sr;
+                    this.auxFila[1] = pedido.IDPedido;
+                    this.auxFila[2] = pedido.IDMesa == 0 ? "-" : pedido.IDMesa.ToString();
+                    this.auxFila[3] = pedido.TipoOrden.Replace("_", " ");
+                    this.auxFila[4] = pedido.Estado;
+                    this.auxFila[5] = pedido.TotalPedido;
+                    this.auxFila[6] = pedido.PedidoPagado ? "SI" : "NO";
 
-                sr++;
-                this.tabla.Rows.Add(this.auxFila);//-->Añado las Filas 
+                    sr++;
+                    this.tabla.Rows.Add(this.auxFila);//-->Añado las Filas 
+                }
             }
             this.dtgvBillList.DataSource = this.tabla;//-->Al dataGrid le paso la lista  
         }

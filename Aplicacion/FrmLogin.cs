@@ -1,5 +1,7 @@
 using System.Text;
+using Aplicacion.Cliente;
 using Aplicacion.Socio;
+using Aplicacion.Vista_Cliente;
 using Entidades;
 using Entidades.DB;
 using Excepciones;
@@ -51,25 +53,25 @@ namespace Aplicacion
 
                     if (esCliente == Rol.Socio.ToString())//-->Es Socio abro el menu.
                     {
-                        //MessageBox.Show("ES SOCIO", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        this.guna2MessageDialog1.Icon = MessageDialogIcon.None;
-                        this.guna2MessageDialog1.Show("Es SOCIO", "OK");
                         this.Hide();
                         this.frmMenuSocio = new FrmMenuSocio(new Usuario(this.txtEmail.Text, this.txtClave.Text));
                         this.frmMenuSocio.Show();
+                    }
+                    else if(esCliente == Rol.Cliente.ToString())
+                    {
+                        this.Hide();
+                        new FrmMenuCliente().Show();
                     }
 
                 }
             }
             catch (IngresoUsuarioException ex)
             {
-                //MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.guna2MessageDialog1.Show(ex.Message, "Error");
             }
             catch (Exception)
             {
                 this.guna2MessageDialog1.Show("Algo salio mal!", "Error");
-                //MessageBox.Show("Algo salio mal.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -91,6 +93,18 @@ namespace Aplicacion
                 this.txtClave.PasswordChar = '*';//-->Para NO mostrar los caracteres
                 this.mostrarClave = false;
             }
+        }
+
+        /// <summary>
+        /// Me permitira abrir un formulario
+        /// para que un nuevo cliente 
+        /// se registre en la aplicacion.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnRegistrarse_Click(object sender, EventArgs e)
+        {
+            new FrmRegistrarCliente().ShowDialog();
         }
         #endregion
 

@@ -86,3 +86,8 @@ C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\Aplicacion\obj\De
 C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\Aplicacion\obj\Debug\net6.0-windows\ref\Aplicacion.dll
 C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\Aplicacion\obj\Debug\net6.0-windows\Aplicacion.Socio.FrmCheckOut.resources
 C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\Aplicacion\obj\Debug\net6.0-windows\Aplicacion.Socio.FrmAgregarCliente.resources
+C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\Aplicacion\obj\Debug\net6.0-windows\Aplicacion.Socio.FrmDespachar.resources
+C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\Aplicacion\obj\Debug\net6.0-windows\Aplicacion.Cliente.FrmMenuCliente.resources
+C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\Aplicacion\obj\Debug\net6.0-windows\Aplicacion.Controles.ucProductoCliente.resources
+C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\Aplicacion\obj\Debug\net6.0-windows\Aplicacion.Controles.ucPago.resources
+C:\Users\Rocio\Desktop\COMANDA .NET\SISTEMA-RESTAURANTE-CSHARP\Aplicacion\obj\Debug\net6.0-windows\Aplicacion.Vista_Cliente.FrmRegistrarCliente.resources

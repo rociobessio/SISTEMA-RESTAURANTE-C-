@@ -1,6 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Compile Update="Controles\ucPago.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Controles\ucProductoCliente.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Vista Cliente\FrmMenuCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -34,6 +43,9 @@
     <Compile Update="Socio\FrmCheckOut.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Socio\FrmDespachar.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Socio\FrmHome.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -46,7 +58,7 @@
     <Compile Update="Socio\FrmPOS.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Socio\ucProducto.cs">
+    <Compile Update="Controles\ucProducto.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="View\FrmCategoriasView.cs">
@@ -62,6 +74,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="View\FrmProductosView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Vista Cliente\FrmRegistrarCliente.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

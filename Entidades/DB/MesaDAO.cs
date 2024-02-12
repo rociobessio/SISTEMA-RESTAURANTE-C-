@@ -82,21 +82,25 @@ namespace Entidades.DB
         /// <returns></returns>
         public bool UpdateDato(Mesa mesa)
         {
-                try
+            try
+            {
+                using (base._conexion = new SqlConnection(AccesoDB.CadenaDeConexion))
                 {
-                    using (base._conexion = new SqlConnection(AccesoDB.CadenaDeConexion))
+                    base._conexion.Open();//-->Abro la conexion.
+
+                    string nuevoEstado = mesa.Estado;
+
+                    mesa.Estado = nuevoEstado; // Asigna el nuevo estado a la mesa antes de la consulta de actualización
+
+                    string queryUpdateMesa = $"UPDATE Mesas SET Estado = '{mesa.Estado}', CodigoMesa = '{mesa.CodigoMesa}' " +
+                                           $"WHERE IDMesa = {mesa.IDMesa}";
+
+                    using (SqlCommand cmdUpdateMesa = new SqlCommand(queryUpdateMesa, base._conexion))
                     {
-                        base._conexion.Open();//-->Abro la conexion.
-
-                        string queryUpdateMesa = $"UPDATE Mesas SET Estado = '{mesa.Estado}', CodigoMesa = '{mesa.CodigoMesa}' " +
-                            $"WHERE IDMesa = {mesa.IDMesa}";
-
-                        using (SqlCommand cmdUpdateMesa = new SqlCommand(queryUpdateMesa, base._conexion))
-                        {
-                            cmdUpdateMesa.ExecuteNonQuery();//-->Ejecuto
-                        }
+                        cmdUpdateMesa.ExecuteNonQuery();//-->Ejecuto
                     }
                 }
+            }
             catch (Exception)
             {
                 return false;
@@ -214,8 +218,8 @@ namespace Entidades.DB
                 {
                     // Se encontró una fila, podemos leer los datos
                     mesa = new Mesa((int)base._lector["IDMesa"],
-                            (string)base._lector["Estado"],
-                            (string)base._lector["CodigoMesa"]);
+                            (string)base._lector["CodigoMesa"],
+                            (string)base._lector["Estado"]);
                 }
             }
             catch (Exception ex)

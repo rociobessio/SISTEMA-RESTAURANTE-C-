@@ -40,5 +40,18 @@ namespace Entidades
             this._idMesa = id;
         }
         #endregion
+
+        #region METODOS
+        /// <summary>
+        /// Me permitira si el estado de 
+        /// una mesa es valida para seleccionarla.
+        /// </summary>
+        /// <param name="mesa"></param>
+        /// <returns></returns>
+        public static bool EsValidaParaUsar(Mesa mesa)
+        {
+            return mesa.Estado != "Cerrada" ? false : true;
+        }
+        #endregion
     }
 }

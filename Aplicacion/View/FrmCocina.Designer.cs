@@ -45,7 +45,7 @@
             // 
             flowLayoutPanel1.Location = new Point(91, 105);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(1546, 1114);
+            flowLayoutPanel1.Size = new Size(1546, 1051);
             flowLayoutPanel1.TabIndex = 0;
             flowLayoutPanel1.Paint += flowLayoutPanel1_Paint;
             // 
@@ -64,6 +64,6 @@
 
         #endregion
         private Guna.UI2.WinForms.Guna2MessageDialog guna2MessageDialog1;
-        private FlowLayoutPanel flowLayoutPanel1;
+        public FlowLayoutPanel flowLayoutPanel1;
     }
 }

@@ -15,13 +15,14 @@ namespace Aplicacion.Socio
         private List<PedidoProducto> listaPedidosProducto;
         private string codPedido;
         private int _idConductor;
+        private Pedido pedido;
 
         #region Cliente
         private string _nombreCliente;
         private string _apellidoCliente;
         private string _telefonoCliente;
         private string _direccionCliente;
-        private string _ciudadCliente;
+        private Empleado _conductor;
         #endregion
         #endregion
 
@@ -66,7 +67,7 @@ namespace Aplicacion.Socio
                     this._nombreCliente = frmAgregarCliente.txtNombre.Text;
                     this._telefonoCliente = frmAgregarCliente.txtTelefono.Text;
                     this._direccionCliente = frmAgregarCliente.txtDireccion.Text;
-                    this._ciudadCliente = frmAgregarCliente.txtCiudad.Text;
+                    this._conductor = new EmpleadoDAO().ObtenerConductor(frmAgregarCliente.cbConductor.Text);
                     this._apellidoCliente = frmAgregarCliente.txtApellido.Text;
 
                 }
@@ -98,7 +99,6 @@ namespace Aplicacion.Socio
                     this._nombreCliente = frmAgregarCliente.txtNombre.Text;
                     this._telefonoCliente = frmAgregarCliente.txtTelefono.Text;
                     this._direccionCliente = frmAgregarCliente.txtDireccion.Text;
-                    this._ciudadCliente = frmAgregarCliente.txtCiudad.Text;
                     this._apellidoCliente = frmAgregarCliente.txtApellido.Text;
                 }
 
@@ -161,91 +161,16 @@ namespace Aplicacion.Socio
             try
             {
 
-                Pedido pedido = new Pedido(Herramientas.CrearCodigo(5), EstadosComidas.Pendiente.ToString(), TimeSpan.Zero, this.lblTipoPedido.Text);
+                Pedido pedido = this.CrearPedido();
+                this.InsertarPedidoEnBaseDatos(pedido, pedido.TiempoPreparacionTotal);
 
-                if (this.lblTipoPedido.Text == TiposPedidos.Pedido.ToString())//-->Se selecciono una mesa xq es un pedido
-                {
-                    Mesa mesa = new MesaDAO().ObtenerEspecifico(int.Parse(this.lblMesa.Text));//-->Obtengo la mesa mediante su ID
+                if(pedido.TipoOrden != "Pedido")//-->Si es Delivery o Para Llevar
+                    this.AsignarCliente(pedido);
 
-                    //-->Asigno el id al pedido
-                    pedido.IDMesa = mesa.IDMesa;
+                this.pedido = pedido;
+                this.codPedido = pedido.CodPedido;
 
-                    //-->Cambio el estado de la mesa si el tipo de orden lo requiere
-                    mesa.Estado = Estados.Con_Cliente_Esperando_Pedido.ToString().Replace("_", " ");
-                    if (!new MesaDAO().UpdateDato(mesa))
-                        throw new UpdateSQLException("No se ha podido modificar el estado de la mesa, reintente!");
-                }
-
-                TimeSpan tiempoEstimado = new TimeSpan();
-                double totalPedido = 0;
-
-                //-->Obtengo los productos, el precio TOTAL y el total del tiempo de preparacion del datagridview.
-                foreach (DataGridViewRow item in this.dtgv.Rows)
-                {
-                    int cantidad = Convert.ToInt32(item.Cells["Cantidad"].Value);
-
-                    //-->Obtengo el producto
-                    Producto producto = new ProductoDAO().ObtenerEspecifico(Convert.ToInt32(item.Cells["ID"].Value));
-
-                    if (producto.TiempoEstimadoPreparacion > tiempoEstimado)
-                        tiempoEstimado = producto.TiempoEstimadoPreparacion;
-
-                    totalPedido += cantidad * producto.Precio;
-
-                    //-->Agrego a la lista de productos el producto
-                    this.listaProductos.Add(producto);
-                }
-
-                //-->Asigno el tiempo de preparacion
-                pedido.TiempoPreparacionTotal = tiempoEstimado;
-                pedido.TotalPedido = totalPedido;
-
-                //-->Inserto el pedido
-                if (!new PedidoDAO().AgregarDato(pedido))
-                    throw new AgregarDatoSQLException("No se ha podido generar el pedido, reintente!");
-
-                //-->Guardo en la tabla intermedia.
-                foreach (Producto prod in this.listaProductos)
-                {
-                    int cantidadProducto = 0;
-
-                    //-->Obtengo la cantidad
-                    foreach (DataGridViewRow row in this.dtgv.Rows)
-                    {
-                        if (row.Cells["ID"].Value != null && Convert.ToInt32(row.Cells["ID"].Value) == prod.IDProducto)
-                        {
-                            cantidadProducto = Convert.ToInt32(row.Cells["Cantidad"].Value);
-                            break;
-                        }
-                    }
-
-                    if (!new PedidoProductoDAO().AgregarDato(
-                        new PedidoProducto(pedido.CodPedido, prod.IDProducto, EstadosComidas.Pendiente.ToString(), cantidadProducto)))
-                    {
-                        throw new AgregarDatoSQLException("No se pudo agregar a la tabla intermedia, reintente!");
-                    }
-                }
-
-                this.codPedido = pedido.CodPedido;//-->Asigno el codigo de pedido
-
-                //-->Deberia de generar al Cliente:
-                int idCliente = 0;
-                if (!new ClienteDAO().AgregarDato(new Cliente(this._nombreCliente,this._apellidoCliente,Genero.Otro,new DateTime(),"",this._direccionCliente,
-                    this._telefonoCliente,new Usuario("",""),0,false, new Tarjeta()),out idCliente))
-                    throw new AgregarDatoSQLException("No se ha podido generar al Cliente!");
-
-                //-->Asigno la tabla intermedia
-                if (!new ClientePedidoDAO().AgregarDato(new ClientePedido(this.codPedido, idCliente)))
-                    throw new AgregarDatoSQLException("No se ha podido guardar en la tabla Cliente-Pedido!");
-
-                //-->Podria ya guardar si es un delivery?
-
-
-                this.guna2MessageDialog1.Icon = MessageDialogIcon.Information;
-                this.guna2MessageDialog1.Caption = "Información";
-                this.guna2MessageDialog1.Show("Pedido generado correctamente!");
-
-                this.dtgv.Rows.Clear();
+                this.MostrarMensajeExito();
             }
             catch (AgregarDatoSQLException ex)
             {
@@ -348,6 +273,7 @@ namespace Aplicacion.Socio
             this.lblMozo.Visible = false;
             this.dtgv.Rows.Clear();
             this.lblTotal.Text = "0.00";
+            this.lblNombreConductor.Text = string.Empty;
         }
 
         /// <summary>
@@ -357,15 +283,48 @@ namespace Aplicacion.Socio
         /// <param name="e"></param>
         private void btnCheckOut_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(this.codPedido))//-->Chequeo que no este vacio.
+            try
             {
-                FrmCheckOut frmCheckOut = new FrmCheckOut(this.codPedido);
-                frmCheckOut.ShowDialog();
+                if (!string.IsNullOrEmpty(this.codPedido))//-->Chequeo que no este vacio.
+                {
+                    FrmCheckOut frmCheckOut = new FrmCheckOut(this.codPedido);
+                    frmCheckOut.ShowDialog();
+
+                    if (frmCheckOut.pudoPagar)//-->Si pudo pagar, me fijo si es delivery
+                    {
+                        //-->Si es delivery asigno un delivery al pedido.
+                        this.pedido = new PedidoDAO().ObtenerPedidoPorCodigoPedido(this.codPedido);
+                        if (this.pedido.TipoOrden == "Delivery")
+                        {
+                            Pedido pedidoDelivery = new PedidoDAO().ObtenerPedidoPorCodigoPedido(this.codPedido);
+                            if (!new DeliveryDAO().AgregarDato(new Delivery(this._direccionCliente, pedidoDelivery.IDPedido,
+                                frmCheckOut.idFacturacion, this._conductor.IDEmpleado)))
+                                throw new AgregarDatoSQLException("No se ha podido asignar un delivery");
+                        }
+                        else if(this.pedido.TipoOrden == "Pedido" && this.pedido.Estado == "Entregado")
+                        {
+                            Mesa mesa = new MesaDAO().ObtenerEspecifico(this.pedido.IDMesa);
+                            mesa.Estado = Estados.Cerrada.ToString().Replace("_", " ");
+                            if (!new MesaDAO().UpdateDato(mesa))//-->Actualizo
+                                throw new UpdateSQLException("No se ha podido actualizar el estado de la mesa.");
+                        }
+                    }
+                }
+                else
+                {
+                    this.guna2MessageDialog1.Caption = "Error";
+                    this.guna2MessageDialog1.Show("No hay pedido seleccionado!");
+                }
             }
-            else
+            catch (AgregarDatoSQLException ex)
             {
                 this.guna2MessageDialog1.Caption = "Error";
-                this.guna2MessageDialog1.Show("No hay pedido seleccionado!");
+                this.guna2MessageDialog1.Show(ex.Message);
+            }
+            catch (Exception)
+            {
+                this.guna2MessageDialog1.Caption = "Error";
+                this.guna2MessageDialog1.Show("Ocurrio un error dentro de la aplicacion!");
             }
         }
         #endregion
@@ -397,6 +356,91 @@ namespace Aplicacion.Socio
         #endregion
 
         #region METODOS
+        private void InsertarPedidoEnBaseDatos(Pedido pedido, TimeSpan tiempoEstimado)
+        {
+            //-->Guardo el pedido.
+            if (!new PedidoDAO().AgregarDato(pedido))
+                throw new AgregarDatoSQLException("No se ha podido generar el pedido, reintente!");
+
+            foreach (Producto prod in this.listaProductos)
+            {
+                int cantidadProducto = ObtenerCantidadProducto(prod.IDProducto);
+                if (!new PedidoProductoDAO().AgregarDato(new PedidoProducto(pedido.CodPedido, prod.IDProducto, EstadosComidas.Pendiente.ToString(), cantidadProducto)))
+                {
+                    throw new AgregarDatoSQLException("No se pudo agregar a la tabla intermedia, reintente!");
+                }
+            }
+        }
+
+        private int ObtenerCantidadProducto(int idProducto)
+        {
+            foreach (DataGridViewRow row in this.dtgv.Rows)
+            {
+                if (row.Cells["ID"].Value != null && Convert.ToInt32(row.Cells["ID"].Value) == idProducto)
+                {
+                    return Convert.ToInt32(row.Cells["Cantidad"].Value);
+                }
+            }
+            return 0;
+        }
+
+        private void AsignarCliente(Pedido pedido)
+        {
+            this.codPedido = pedido.CodPedido;
+            this.pedido = pedido;
+            int idCliente = 0;
+            if (!new ClienteDAO().AgregarDato(new Entidades.Cliente(this._nombreCliente, this._apellidoCliente, Genero.Otro, new DateTime(), "", this._direccionCliente,
+                this._telefonoCliente, new Usuario("", ""), 0, false, new Tarjeta()), out idCliente))
+            {
+                throw new AgregarDatoSQLException("No se ha podido generar al Cliente!");
+            }
+
+            if (!new ClientePedidoDAO().AgregarDato(new ClientePedido(this.codPedido, idCliente)))
+            {
+                throw new AgregarDatoSQLException("No se ha podido guardar en la tabla Cliente-Pedido!");
+            }
+        }
+
+
+        private void MostrarMensajeExito()
+        {
+            this.lblTotal.Text = "00.0";
+            this.guna2MessageDialog1.Icon = MessageDialogIcon.Information;
+            this.guna2MessageDialog1.Caption = "Información";
+            this.guna2MessageDialog1.Show("Pedido generado correctamente!");
+            this.dtgv.Rows.Clear();
+        }
+
+        private Pedido CrearPedido()
+        {
+            Pedido pedido = new Pedido(Herramientas.CrearCodigo(5), EstadosComidas.Pendiente.ToString(), TimeSpan.Zero, this.lblTipoPedido.Text);
+
+            if (this.lblTipoPedido.Text == TiposPedidos.Pedido.ToString())
+            {
+                Mesa mesa = new MesaDAO().ObtenerEspecifico(int.Parse(this.lblMesa.Text));
+                pedido.IDMesa = mesa.IDMesa;
+                mesa.Estado = Estados.Con_Cliente_Esperando_Pedido.ToString().Replace("_", " ");
+                if (!new MesaDAO().UpdateDato(mesa))
+                {
+                    throw new UpdateSQLException("No se ha podido modificar el estado de la mesa, reintente!");
+                }
+            }
+
+            foreach (DataGridViewRow item in this.dtgv.Rows)
+            {
+                int cantidad = Convert.ToInt32(item.Cells["Cantidad"].Value);
+                Producto producto = new ProductoDAO().ObtenerEspecifico(Convert.ToInt32(item.Cells["ID"].Value));
+                if (producto.TiempoEstimadoPreparacion > pedido.TiempoPreparacionTotal)
+                {
+                    pedido.TiempoPreparacionTotal = producto.TiempoEstimadoPreparacion;
+                }
+                pedido.TotalPedido += cantidad * producto.Precio;
+                this.listaProductos.Add(producto);
+            }
+
+            return pedido;
+        }
+
 
         private void MostrarLabels()
         {

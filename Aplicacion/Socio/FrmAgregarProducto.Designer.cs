@@ -47,6 +47,7 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAgregarProducto));
             txtNombre = new Guna.UI2.WinForms.Guna2TextBox();
             label2 = new Label();
             label3 = new Label();
@@ -339,6 +340,7 @@
             Controls.Add(txtPrecio);
             Controls.Add(label2);
             Controls.Add(txtNombre);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "FrmAgregarProducto";
             Text = "FrmAgregarProducto";
             Load += FrmAgregarProducto_Load;

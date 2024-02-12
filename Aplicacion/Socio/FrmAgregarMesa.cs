@@ -70,7 +70,7 @@ namespace Aplicacion.Socio
             {
                 try
                 {
-                    if (!this.mesaDAO.UpdateDato( new Mesa(this.id, this.cbEstadoMesa.SelectedItem.ToString(), this.txtCodigoMesa.Text)))
+                    if (!this.mesaDAO.UpdateDato( new Mesa(this.id, this.txtCodigoMesa.Text, this.cbEstadoMesa.SelectedItem.ToString())))
                         throw new UpdateSQLException("No se ha podido modificar la mesa, reintente!");
 
                     this.guna2MessageDialog1.Icon = Guna.UI2.WinForms.MessageDialogIcon.Information;

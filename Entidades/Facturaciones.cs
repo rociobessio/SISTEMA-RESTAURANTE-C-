@@ -67,7 +67,7 @@ namespace Entidades
             : this(metodo, total, fechaFacturacion, pagado, codPedido,recibido,cambio)
         {
             this._id = id;
-        }
+        }  
         #endregion
     }
 }

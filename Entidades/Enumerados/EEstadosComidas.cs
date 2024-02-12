@@ -4,5 +4,6 @@
     En_Preparacion,
     Listo_Para_Servir,
     Entregado,
-    Entregar
+    Entregar,
+    Despachar
 }

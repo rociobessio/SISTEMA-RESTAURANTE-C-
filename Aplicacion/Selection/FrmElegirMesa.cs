@@ -38,17 +38,20 @@ namespace Aplicacion.Socio
             //-->Cargo los botones con las mesas:
             foreach (Mesa mesa in this.listaMesasDisponibles)
             {
-                Guna.UI2.WinForms.Guna2Button b = new Guna.UI2.WinForms.Guna2Button();
-                b.Text = mesa.IDMesa.ToString();//-->Le asigno el ID de la Mesa
-                b.Width = 510;
-                b.Height = 50;
-                b.FillColor = Color.RosyBrown;
-                b.HoverState.FillColor = Color.IndianRed;
+                if (mesa.Estado != Estados.Cerrada.ToString())//-->Se podra seleccionar si la mesa no esta en uso.
+                {
+                    Guna.UI2.WinForms.Guna2Button b = new Guna.UI2.WinForms.Guna2Button();
+                    b.Text = mesa.IDMesa.ToString();//-->Le asigno el ID de la Mesa
+                    b.Width = 510;
+                    b.Height = 50;
+                    b.FillColor = Color.RosyBrown;
+                    b.HoverState.FillColor = Color.IndianRed;
 
-                //-->Adjunto el EVENTO
-                b.Click += new EventHandler(b_Click);
-                //-->Muestro
-                this.flowLayoutPanel1.Controls.Add(b);
+                    //-->Adjunto el EVENTO
+                    b.Click += new EventHandler(b_Click);
+                    //-->Muestro
+                    this.flowLayoutPanel1.Controls.Add(b);
+                }
             }
         }
 

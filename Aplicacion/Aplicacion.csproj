@@ -32,4 +32,8 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Vista Cliente\Controles\" />
+  </ItemGroup>
+
 </Project>

@@ -24,7 +24,6 @@ namespace Entidades.DB
         /// <returns>Devuelve true si es esCliente, false sino</returns>
         public bool VerificarUsuario(string email, string contrasenia, out string roles)
         {
-            //esCliente = false;
             roles = null;
             bool verificado = false;
 
@@ -32,14 +31,24 @@ namespace Entidades.DB
             {
                 base._comando = new SqlCommand();
 
+                //-->Uso una interconsulta para verificar en ambas tablas (clientes y empleados)
+                //el rol y ademas valido la existencia de usuario.
+                base._comando.CommandText = "SELECT R.Rol FROM (" +
+                    "SELECT IDUsuario, IDRol " +
+                    "FROM EmpleadosTablaIntermedia " +
+                    "WHERE IDEmpleado IS NOT NULL " +
+                    "UNION " +
+                    "SELECT IDUsuario, IDRol " +
+                    "FROM ClientesUsuarios) AS EC " +
+                    "INNER JOIN Usuarios U ON EC.IDUsuario = U.IDUsuario " +
+                    "INNER JOIN Roles R ON EC.IDRol = R.IDRol " +
+                    "WHERE U.Email = @Email AND U.Clave = @Clave;";
+
+                base._comando.CommandType = CommandType.Text;
+
                 base._comando.Parameters.AddWithValue("@Email", email);
                 base._comando.Parameters.AddWithValue("@Clave", contrasenia);
 
-                base._comando.CommandType = CommandType.Text;
-                base._comando.CommandText = $"SELECT R.Rol FROM EmpleadosTablaIntermedia EC " +
-                                            $"INNER JOIN Usuarios U ON EC.IDUsuario = U.IDUsuario " +
-                                            $"INNER JOIN Roles R ON EC.IDRol = R.IDRol " +
-                                            $"WHERE U.Email = @Email AND U.Clave = @Clave";
                 base._comando.Connection = base._conexion;
 
                 base._conexion.Open();

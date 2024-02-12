@@ -23,6 +23,8 @@ namespace Aplicacion.Socio
         private double recibido;
         private double cambio;
         private Pedido pedido;
+        public int idFacturacion;
+        public bool pudoPagar = false;
         #endregion
 
         #region CONTRUCTOR
@@ -242,22 +244,22 @@ namespace Aplicacion.Socio
                 {
                     if (!this.pedido.PedidoPagado)
                     {
-
+                        
                         if (this.rbTarjetaDebito.Checked)//-->Si es con tarjeta
                         {
                             if (!Tarjeta.ValidarTarjeta(new Tarjeta(this.dtpVencimientoTarjeta.Value, this.txtTitular.Text,
                                 this.txtNroCVV.Text, this.txtNroTarjeta.Text, this.cbEntidad.SelectedItem.ToString(), true)))
                                 throw new TarjetaNOValidaException("Tarjeta Ingresada NO valida, reintente!");
 
-                            if (!new FacturacionesDAO().AgregarDato(new Facturaciones(MetodosPago.Tarjeta_Debito.ToString().Replace("_", " "),
-                                this.total, DateTime.Now, true, this.codPedido)))
+                            if (!new FacturacionesDAO().AgregarFacturacionRetornarID(new Facturaciones(MetodosPago.Tarjeta_Debito.ToString().Replace("_", " "),
+                                this.total, DateTime.Now, true, this.codPedido),out idFacturacion))
                                 throw new AgregarDatoSQLException("No se ha podido generar la facturación, reintente!");
                         }
 
                         if (this.rbEfectivo.Checked)//-->Si es con Efectivo
                         {
-                            if (!new FacturacionesDAO().AgregarDato(new Facturaciones(MetodosPago.Efectivo.ToString().Replace("_", " "),
-                                this.total, DateTime.Now, true, this.codPedido, this.recibido, this.cambio)))
+                            if (!new FacturacionesDAO().AgregarFacturacionRetornarID(new Facturaciones(MetodosPago.Efectivo.ToString().Replace("_", " "),
+                                this.total, DateTime.Now, true, this.codPedido, this.recibido, this.cambio),out idFacturacion))
                                 throw new AgregarDatoSQLException("No se ha podido generar la facturación, reintente!");
                         }
 
@@ -269,6 +271,7 @@ namespace Aplicacion.Socio
                         this.guna2MessageDialog1.Icon = MessageDialogIcon.Information;
                         this.guna2MessageDialog1.Caption = "Información";
                         this.guna2MessageDialog1.Show("Facturación generada correctamente!");
+                        this.pudoPagar = true;
                     }
                     else
                     {
