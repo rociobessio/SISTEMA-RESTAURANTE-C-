@@ -152,6 +152,7 @@
             label2.Size = new Size(53, 25);
             label2.TabIndex = 5;
             label2.Text = "Total:";
+            label2.Click += label2_Click;
             // 
             // txtTotal
             // 
@@ -415,6 +416,7 @@
             label8.Size = new Size(84, 25);
             label8.TabIndex = 9;
             label8.Text = "Recibido:";
+            label8.Click += label8_Click;
             // 
             // txtRecibido
             // 
@@ -446,6 +448,7 @@
             label9.Size = new Size(78, 25);
             label9.TabIndex = 11;
             label9.Text = "Cambio:";
+            label9.Click += label9_Click;
             // 
             // txtCambio
             // 
@@ -534,29 +537,28 @@
         }
 
         #endregion
-
-        private Guna.UI2.WinForms.Guna2ControlBox guna2ControlBox1;
-        private Label label2;
-        private Guna.UI2.WinForms.Guna2TextBox txtTotal;
-        private Guna.UI2.WinForms.Guna2GroupBox groupBoxTarjeta;
         private Label label5;
-        private Guna.UI2.WinForms.Guna2TextBox txtTitular;
         private Label label4;
-        private Guna.UI2.WinForms.Guna2TextBox txtNroCVV;
         private Label label3;
-        private Guna.UI2.WinForms.Guna2TextBox txtNroTarjeta;
-        private Guna.UI2.WinForms.Guna2ComboBox cbEntidad;
-        private Guna.UI2.WinForms.Guna2DateTimePicker dtpVencimientoTarjeta;
         private Label label6;
         private Label label7;
-        private Guna.UI2.WinForms.Guna2GroupBox groupBoxMetodoPago;
-        private Guna.UI2.WinForms.Guna2RadioButton rbTarjetaDebito;
-        private Guna.UI2.WinForms.Guna2RadioButton rbEfectivo;
-        private Label label8;
-        private Guna.UI2.WinForms.Guna2TextBox txtRecibido;
-        private Label label9;
-        private Guna.UI2.WinForms.Guna2TextBox txtCambio;
-        private Label label10;
-        private Label lblCodPedido;
+        public Label label2;
+        public Guna.UI2.WinForms.Guna2TextBox txtTotal;
+        public Guna.UI2.WinForms.Guna2GroupBox groupBoxTarjeta;
+        public Guna.UI2.WinForms.Guna2TextBox txtTitular;
+        public Guna.UI2.WinForms.Guna2TextBox txtNroCVV;
+        public Guna.UI2.WinForms.Guna2TextBox txtNroTarjeta;
+        public Guna.UI2.WinForms.Guna2ComboBox cbEntidad;
+        public Guna.UI2.WinForms.Guna2DateTimePicker dtpVencimientoTarjeta;
+        public Guna.UI2.WinForms.Guna2GroupBox groupBoxMetodoPago;
+        public Label label8;
+        public Guna.UI2.WinForms.Guna2TextBox txtRecibido;
+        public Label label9;
+        public Guna.UI2.WinForms.Guna2TextBox txtCambio;
+        public Label label10;
+        public Label lblCodPedido;
+        public Guna.UI2.WinForms.Guna2RadioButton rbTarjetaDebito;
+        public Guna.UI2.WinForms.Guna2RadioButton rbEfectivo;
+        public Guna.UI2.WinForms.Guna2ControlBox guna2ControlBox1;
     }
 }

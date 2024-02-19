@@ -165,7 +165,8 @@ namespace Entidades.DB
                         (string)base._lector["TipoOrden"],
                         (int)base._lector["IDMesa"], (TimeSpan)base._lector["TiempoInicio"],
                         (TimeSpan)base._lector["TiempoFin"],
-                        (double)base._lector["CostoTotal"]);
+                        (double)base._lector["CostoTotal"],
+                        (bool)base._lector["PedidoFacturado"]);
 
                 base._lector.Close();
             }
@@ -214,7 +215,8 @@ namespace Entidades.DB
                         (string)base._lector["TipoOrden"],
                         (int)base._lector["IDMesa"], (TimeSpan)base._lector["TiempoInicio"],
                         (TimeSpan)base._lector["TiempoFin"],
-                        (double)base._lector["CostoTotal"]);
+                        (double)base._lector["CostoTotal"],
+                        (bool)base._lector["PedidoFacturado"]);
 
                 base._lector.Close();
             }

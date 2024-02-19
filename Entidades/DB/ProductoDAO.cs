@@ -220,6 +220,52 @@ namespace Entidades.DB
             return prodBuscado;
         }
 
+        public Producto ObtenerPorNombre(string nombre)
+        {
+            Producto prodBuscado = null;
+            try
+            {
+                base._comando = new SqlCommand();
+
+                base._comando.CommandText = "SELECT p.IDProducto, p.Nombre, p.Precio, p.Sector, p.Tipo, p.TiempoEstimado, p.FechaBaja, p.Imagen, p.IDCategoria " +
+                                            "FROM Productos p " +
+                                            "INNER JOIN Categorias c ON p.IDCategoria = c.ID " +
+                                            $"WHERE p.Nombre = '{nombre}'"; //-->La query
+                base._comando.Connection = base._conexion;
+
+                base._conexion.Open();//-->Abro la conexion
+
+                base._lector = base._comando.ExecuteReader();
+
+                base._lector.Read();
+
+                prodBuscado = new Producto((int)base._lector["IDProducto"],
+                    (string)base._lector["Nombre"],
+                    (Sectores)Enum.Parse(typeof(Sectores), (string)base._lector["Sector"]),
+                    (Tipo)Enum.Parse(typeof(Tipo), (string)base._lector["Tipo"]),
+                    (TimeSpan)base._lector["TiempoEstimado"],
+                    (double)base._lector["Precio"],
+                    (int)base._lector["IDCategoria"],
+                    (Byte[])base._lector["Imagen"]
+                    );
+
+                base._lector.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                if (base._conexion.State == ConnectionState.Open)//-->Chequeo si la conexion esta abierta
+                {
+                    base._conexion.Close();//-->La cierro
+                }
+            }
+
+            return prodBuscado;
+        }
+
         /// <summary>
         /// Cargara la lista de productos 
         /// disponibles en la DB.

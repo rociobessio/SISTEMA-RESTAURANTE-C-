@@ -51,10 +51,10 @@ namespace Entidades.DB
 
                         // Insertar en la tabla Clientes y obtener el ID generado
                         string queryInsertCliente = "INSERT INTO Clientes (ConTarjeta, EfectivoDisponible, TarjetaVencimiento, TarjetaEntidadEmisora, TarjetaTitular, " +
-                                                    "TarjetaNumTarjeta, TarjetaCVV, TarjetaDineroDisponible, TarjetaEsDebito,ImagenCliente) " +
+                                                    "TarjetaNumTarjeta, TarjetaCVV, TarjetaEsDebito,ImagenCliente) " +
                                                     "OUTPUT INSERTED.IDCliente " +
                                                     "VALUES (@ConTarjeta, @EfectivoDisponible, @TarjetaVencimiento, @TarjetaEntidadEmisora, @TarjetaTitular, " +
-                                                    "@TarjetaNumTarjeta, @TarjetaCVV, @TarjetaDineroDisponible, @TarjetaEsDebito, @ImagenCliente)";
+                                                    "@TarjetaNumTarjeta, @TarjetaCVV, @TarjetaEsDebito, @ImagenCliente)";
 
                         using (SqlCommand comandoInsertCliente = new SqlCommand(queryInsertCliente, base._conexion))
                         {
@@ -66,7 +66,7 @@ namespace Entidades.DB
                             comandoInsertCliente.Parameters.AddWithValue("@TarjetaTitular", cliente.Tarjeta.Titular);
                             comandoInsertCliente.Parameters.AddWithValue("@TarjetaNumTarjeta", cliente.Tarjeta.NumeroTarjeta);
                             comandoInsertCliente.Parameters.AddWithValue("@TarjetaCVV", cliente.Tarjeta.CVV);
-                            comandoInsertCliente.Parameters.AddWithValue("@TarjetaDineroDisponible", cliente.Tarjeta.DineroDisponible);
+                            //comandoInsertCliente.Parameters.AddWithValue("@TarjetaDineroDisponible", cliente.Tarjeta.DineroDisponible);
                             comandoInsertCliente.Parameters.AddWithValue("@TarjetaEsDebito", cliente.Tarjeta.EsDebito);
                             comandoInsertCliente.Parameters.AddWithValue("@ImagenCliente", cliente.Imagen);
 
@@ -133,7 +133,7 @@ namespace Entidades.DB
                 base._comando.CommandType = System.Data.CommandType.Text;
                 base._comando.CommandText = "SELECT c.IDCliente, p.Nombre, p.Apellido, p.Telefono, p.DNI, p.Direccion, p.Genero, p.FechaNacimiento," +
                                                     "r.Rol, u.Email, u.Clave,c.ConTarjeta,c.EfectivoDisponible,c.TarjetaVencimiento,c.TarjetaEntidadEmisora,c.TarjetaTitular," +
-                                                    "c.TarjetaNumTarjeta,c.TarjetaCVV,c.TarjetaDineroDisponible,c.TarjetaEsDebito " +
+                                                    "c.TarjetaNumTarjeta,c.TarjetaCVV,c.TarjetaEsDebito, p.IDPersona " +
                                                     "FROM ClientesUsuarios cu " +
                                                     "INNER JOIN Personas p ON cu.IDPersona = p.IDPersona " +
                                                     "INNER JOIN Clientes c ON cu.IDCliente = c.IDCliente " +
@@ -165,10 +165,10 @@ namespace Entidades.DB
                             (string)base._lector["TarjetaCVV"],
                             (string)base._lector["TarjetaNumTarjeta"],
                             (string)base._lector["TarjetaEntidadEmisora"],
-                            (bool)base._lector["TarjetaEsDebito"],
-                            (double)base._lector["TarjetaDineroDisponible"]
+                            (bool)base._lector["TarjetaEsDebito"]
                        ),
-                       (Byte[])base._lector["ImagenCliente"]));
+                       (Byte[])base._lector["ImagenCliente"],
+                       (int)base._lector["IDPersona"]));
                 }
             }
             catch (Exception)
@@ -194,7 +194,7 @@ namespace Entidades.DB
 
                 base._comando.CommandText = "SELECT c.IDCliente, p.Nombre, p.Apellido, p.Telefono, p.DNI, p.Direccion, p.Genero, p.FechaNacimiento," +
                                                     "r.Rol, u.Email, u.Clave,c.ConTarjeta,c.EfectivoDisponible,c.TarjetaVencimiento,c.TarjetaEntidadEmisora,c.TarjetaTitular," +
-                                                    "c.TarjetaNumTarjeta,c.TarjetaCVV,c.TarjetaDineroDisponible,c.TarjetaEsDebito " +
+                                                    "c.TarjetaNumTarjeta,c.TarjetaCVV,c.TarjetaEsDebito, p.IDPersona " +
                                                     "FROM ClientesUsuarios cu " +
                                                     "INNER JOIN Personas p ON cu.IDPersona = p.IDPersona " +
                                                     "INNER JOIN Clientes c ON cu.IDCliente = c.IDCliente " +
@@ -219,9 +219,7 @@ namespace Entidades.DB
                         (string)base._lector["DNI"],
                         (string)base._lector["Direccion"],
                         (string)base._lector["Telefono"],
-                        new Usuario(
-                            (string)base._lector["Email"], 
-                            (string)base._lector["Clave"]),
+                        new Usuario((string)base._lector["Email"], (string)base._lector["Clave"]),
                         (double)base._lector["EfectivoDisponible"],
                         (bool)base._lector["ConTarjeta"],
                         new Tarjeta(
@@ -230,9 +228,10 @@ namespace Entidades.DB
                             (string)base._lector["TarjetaCVV"],
                             (string)base._lector["TarjetaNumTarjeta"],
                             (string)base._lector["TarjetaEntidadEmisora"],
-                            (bool)base._lector["TarjetaEsDebito"],
-                            (double)base._lector["TarjetaDineroDisponible"]),
-                       (Byte[])base._lector["ImagenCliente"]);
+                            (bool)base._lector["TarjetaEsDebito"]
+                       ),
+                       (Byte[])base._lector["ImagenCliente"],
+                       (int)base._lector["IDPersona"]);
                 base._lector.Close();
             }
             catch (Exception e)
@@ -248,5 +247,90 @@ namespace Entidades.DB
             }
             return cliente;
         }
+
+        /// <summary>
+        /// Me permitira realizar un update
+        /// de un cliente.
+        /// </summary>
+        /// <param name="cliente"></param>
+        /// <returns></returns>
+        public bool UpdateDato(Cliente cliente)
+        {
+            try
+            {
+                using (base._conexion = new SqlConnection(AccesoDB.CadenaDeConexion))
+                {
+                    base._conexion.Open();
+
+                    //-->Update en personas.
+                    string queryUpdatePersonas = "UPDATE Personas " +
+                                                  "SET Nombre = @Nombre, " +
+                                                      "Apellido = @Apellido, " +
+                                                      "Telefono = @Telefono, " +
+                                                      "Direccion = @Direccion, " +
+                                                      "DNI = @DNI, " +
+                                                      "Genero = @Genero, " +
+                                                      "FechaNacimiento = @FechaNacimiento " +
+                                                  "WHERE IDPersona = @IDPersona";
+
+                    using (SqlCommand comandoUpdatePersona = new SqlCommand(queryUpdatePersonas, base._conexion))
+                    {
+                        comandoUpdatePersona.Parameters.AddWithValue("@IDPersona", cliente.IDPersona);
+                        comandoUpdatePersona.Parameters.AddWithValue("@Nombre", cliente.Nombre);
+                        comandoUpdatePersona.Parameters.AddWithValue("@Apellido", cliente.Apellido);
+                        comandoUpdatePersona.Parameters.AddWithValue("@Telefono", cliente.Telefono);
+                        comandoUpdatePersona.Parameters.AddWithValue("@Direccion", cliente.Direccion);
+                        comandoUpdatePersona.Parameters.AddWithValue("@DNI", cliente.DNI);
+                        comandoUpdatePersona.Parameters.AddWithValue("@Genero", cliente.Genero);
+                        comandoUpdatePersona.Parameters.AddWithValue("@FechaNacimiento", cliente.FechaNacimeinto);
+                        
+                        comandoUpdatePersona.ExecuteNonQuery();
+                    }
+
+                    //-->Update en clientes
+                    string queryUpdateCliente = "UPDATE Clientes " +
+                                                 "SET ConTarjeta = @ConTarjeta, " +
+                                                     "EfectivoDisponible = @EfectivoDisponible, " +
+                                                     "TarjetaVencimiento = @TarjetaVencimiento, " +
+                                                     "TarjetaEntidadEmisora = @TarjetaEntidadEmisora, " +
+                                                     "TarjetaTitular = @TarjetaTitular, " +
+                                                     "TarjetaNumTarjeta = @TarjetaNumTarjeta, " +
+                                                     "TarjetaCVV = @TarjetaCVV, " +
+                                                     "TarjetaEsDebito = @TarjetaEsDebito, " +
+                                                     "ImagenCliente = @ImagenCliente " +
+                                                 "WHERE IDCliente = @IDCliente";
+
+                    using (SqlCommand comandoUpdateCliente = new SqlCommand(queryUpdateCliente, base._conexion))
+                    {
+                        comandoUpdateCliente.Parameters.AddWithValue("@IDCliente", cliente.IDCliente);
+                        comandoUpdateCliente.Parameters.AddWithValue("@ConTarjeta", cliente.ConTarjeta);
+                        comandoUpdateCliente.Parameters.AddWithValue("@EfectivoDisponible", cliente.DineroEfectivoDisponible);
+                        comandoUpdateCliente.Parameters.AddWithValue("@TarjetaVencimiento", cliente.Tarjeta.FechaVencimiento);
+                        comandoUpdateCliente.Parameters.AddWithValue("@TarjetaEntidadEmisora", cliente.Tarjeta.EntidadEmisora);
+                        comandoUpdateCliente.Parameters.AddWithValue("@TarjetaTitular", cliente.Tarjeta.Titular);
+                        comandoUpdateCliente.Parameters.AddWithValue("@TarjetaNumTarjeta", cliente.Tarjeta.NumeroTarjeta);
+                        comandoUpdateCliente.Parameters.AddWithValue("@TarjetaCVV", cliente.Tarjeta.CVV);
+                        comandoUpdateCliente.Parameters.AddWithValue("@TarjetaEsDebito", cliente.Tarjeta.EsDebito);
+                        comandoUpdateCliente.Parameters.AddWithValue("@ImagenCliente", cliente.Imagen);
+                        
+                        comandoUpdateCliente.ExecuteNonQuery();
+                    }
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            finally
+            {
+                if (base._conexion.State == ConnectionState.Open)
+                {
+                    base._conexion.Close();
+                }
+            }
+        }
+
+
     }
 }

@@ -14,7 +14,7 @@ namespace Entidades
         private string _numeroTarjeta;//16 numeros
         private string _cvv;//4 numeros mas importantes
         private DateTime _fechaVencimiento;
-        private double _dineroDisponible;
+        //private double _dineroDisponible;
         private bool _esDebito;//-->Puede ser debito o credito
         #endregion
 
@@ -24,7 +24,7 @@ namespace Entidades
         public string NumeroTarjeta { get { return this._numeroTarjeta; } set { this._numeroTarjeta = value; } }
         public string EntidadEmisora { get { return this._entidadEmisora; } set { this._entidadEmisora = value; } }
         public string Titular { get { return this._titular; } set { this._titular = value; } }
-        public double DineroDisponible { get { return this._dineroDisponible; } set { this._dineroDisponible = value; } }
+        //public double DineroDisponible { get { return this._dineroDisponible; } set { this._dineroDisponible = value; } }
         public bool EsDebito { get { return this._esDebito; } set { this._esDebito = value; } }
         #endregion 
 
@@ -39,7 +39,7 @@ namespace Entidades
             this._cvv = "6666";
             this._numeroTarjeta = "1234";
             this._entidadEmisora = "Banco Nación";
-            this._dineroDisponible = 00;
+            //this._dineroDisponible = 00;
             this._esDebito = true;
         }
 
@@ -65,12 +65,12 @@ namespace Entidades
             this._esDebito = esDebito;
         }
 
-        public Tarjeta(DateTime vencimiento, string titular, string cvv, string numeroTarjeta,
-            string entidadEmisora, bool esDebito, double saldo)
-            :this(vencimiento,titular,cvv,numeroTarjeta,entidadEmisora,esDebito)
-        {
-            this._dineroDisponible = saldo;
-        }
+        //public Tarjeta(DateTime vencimiento, string titular, string cvv, string numeroTarjeta,
+        //    string entidadEmisora, bool esDebito, double saldo)
+        //    :this(vencimiento,titular,cvv,numeroTarjeta,entidadEmisora,esDebito)
+        //{
+        //    this._dineroDisponible = saldo;
+        //}
         #endregion
 
         #region METODOS 
@@ -132,7 +132,7 @@ namespace Entidades
         public override string ToString()
         {
             return $"{this._entidadEmisora}-{this._titular}-{this._fechaVencimiento}-" +
-                $"{this._numeroTarjeta}-{this._cvv}-{this._dineroDisponible}-{this._esDebito}";
+                $"{this._numeroTarjeta}-{this._cvv}-{this._esDebito}";
         }
 
         /// <summary>

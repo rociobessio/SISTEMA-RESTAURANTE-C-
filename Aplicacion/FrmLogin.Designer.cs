@@ -73,8 +73,8 @@
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.Transparent;
-            pictureBox1.Image = Properties.Resources.PikPng_com_restaurant_icon_png_2013813;
-            pictureBox1.Location = new Point(151, 31);
+            pictureBox1.Image = Properties.Resources.restaurant_3866604;
+            pictureBox1.Location = new Point(183, 34);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(252, 216);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;

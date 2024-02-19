@@ -312,19 +312,16 @@ namespace Aplicacion.Socio
                 }
                 else
                 {
-                    this.guna2MessageDialog1.Caption = "Error";
-                    this.guna2MessageDialog1.Show("No hay pedido seleccionado!");
+                    this.guna2MessageDialog1.Show("No hay pedido seleccionado!","Error");
                 }
             }
             catch (AgregarDatoSQLException ex)
             {
-                this.guna2MessageDialog1.Caption = "Error";
-                this.guna2MessageDialog1.Show(ex.Message);
+                this.guna2MessageDialog1.Show(ex.Message,"Error");
             }
             catch (Exception)
             {
-                this.guna2MessageDialog1.Caption = "Error";
-                this.guna2MessageDialog1.Show("Ocurrio un error dentro de la aplicacion!");
+                this.guna2MessageDialog1.Show("Ocurrio un error dentro de la aplicacion!","Error");
             }
         }
         #endregion

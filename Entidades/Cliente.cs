@@ -129,11 +129,12 @@ namespace Entidades
         }
 
         public Cliente(int id, string nombre, string apellido, Genero sexo, DateTime fechaNacimiento,
-                       string dni, string domicilio, string telefono, Usuario user, double efectivo, bool usaTarjeta, Tarjeta tarjeta, Byte[] imagen)
+                       string dni, string domicilio, string telefono, Usuario user, double efectivo, bool usaTarjeta, Tarjeta tarjeta, Byte[] imagen, int idPersona)
             : this(nombre, apellido, sexo, fechaNacimiento, dni, domicilio, telefono, user,efectivo,usaTarjeta,tarjeta)
         {
             this._idCliente = id;
             this.Imagen = imagen;
+            this.IDPersona = idPersona;
         }
 
         public Cliente(string nombre, string apellido, Genero sexo, DateTime fechaNacimiento,

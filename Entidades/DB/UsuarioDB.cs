@@ -127,5 +127,73 @@ namespace Entidades.DB
             return existe;
         }
 
+        public Cliente ObtenerClientePorUsuario(string email,string clave)
+        {
+            Cliente cliente = null;
+
+            try
+            {
+                base._comando = new SqlCommand();
+
+                base._comando.CommandText = "SELECT c.IDCliente, p.Nombre, p.Apellido, p.Telefono, p.DNI, p.Direccion, p.Genero, p.FechaNacimiento, " +
+                    "r.Rol, u.Email, u.Clave, c.ConTarjeta, c.EfectivoDisponible, c.TarjetaVencimiento, c.TarjetaEntidadEmisora, c.TarjetaTitular, c.TarjetaNumTarjeta, " +
+                    "c.TarjetaCVV, c.TarjetaEsDebito, c.ImagenCliente, p.IDPersona " +
+                    "FROM Usuarios u " +
+                    "INNER JOIN ClientesUsuarios cu ON u.IDUsuario = cu.IDUsuario " +
+                    "INNER JOIN Personas p ON cu.IDPersona = p.IDPersona " +
+                    "INNER JOIN Clientes c ON cu.IDCliente = c.IDCliente " +
+                    "INNER JOIN Roles r ON cu.IDRol = r.IDRol " +
+                    "WHERE u.Email = @Email AND u.Clave = @Clave;";//-->La query
+
+                base._comando.Parameters.AddWithValue("@Email", email);
+                base._comando.Parameters.AddWithValue("@Clave", clave);
+
+
+                base._comando.Connection = base._conexion;
+
+                base._conexion.Open();//-->Abro la conexion
+
+                base._lector = base._comando.ExecuteReader();
+
+                base._lector.Read();
+
+                cliente = new Cliente(
+                        (int)base._lector["IDCliente"],
+                        (string)base._lector["Nombre"],
+                        (string)base._lector["Apellido"],
+                        (Genero)Enum.Parse(typeof(Genero), (string)base._lector["Genero"]),
+                        (DateTime)base._lector["FechaNacimiento"],
+                        (string)base._lector["DNI"],
+                        (string)base._lector["Direccion"],
+                        (string)base._lector["Telefono"],
+                        new Usuario((string)base._lector["Email"], (string)base._lector["Clave"]),
+                        (double)base._lector["EfectivoDisponible"],
+                        (bool)base._lector["ConTarjeta"],
+                        new Tarjeta(
+                            (DateTime)base._lector["TarjetaVencimiento"],
+                            (string)base._lector["TarjetaTitular"],
+                            (string)base._lector["TarjetaCVV"],
+                            (string)base._lector["TarjetaNumTarjeta"],
+                            (string)base._lector["TarjetaEntidadEmisora"],
+                            (bool)base._lector["TarjetaEsDebito"]
+                       ),
+                       (Byte[])base._lector["ImagenCliente"],
+                       (int)base._lector["IDPersona"]);
+                base._lector.Close();
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+            finally
+            {
+                if (base._conexion.State == ConnectionState.Open)
+                {
+                    base._conexion.Close();
+                }
+            }
+            return cliente;
+        }
+
     }
 }

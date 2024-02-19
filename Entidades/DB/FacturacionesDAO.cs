@@ -134,5 +134,49 @@ namespace Entidades.DB
             }
             return listaFacturaciones;
         }
+
+
+        public Facturaciones ObtenerFacturacionPorCodigoPedido(string codigo)
+        {
+            Facturaciones facturacion = null;
+            try
+            {
+                base._comando = new SqlCommand();
+
+                base._comando.CommandText = $"SELECT * FROM Facturaciones WHERE CodPedido = '{codigo}'"; //-->La query
+
+                base._comando.Connection = base._conexion;
+
+                base._conexion.Open();//-->Abro la conexion
+
+                base._lector = base._comando.ExecuteReader();
+
+                base._lector.Read();
+
+                facturacion = new Facturaciones(
+                        (int)base._lector["IDFacturacion"],
+                        (string)base._lector["MetodoPago"],
+                        (double)base._lector["Total"],
+                        (DateTime)base._lector["FechaFacturacion"],
+                        (bool)base._lector["pagada"],
+                        (string)base._lector["CodPedido"],
+                        (double)base._lector["Recibido"],
+                        (double)base._lector["Cambio"]);
+
+                base._lector.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                if (base._conexion.State == ConnectionState.Open)//-->Chequeo si la conexion esta abierta
+                {
+                    base._conexion.Close();//-->La cierro
+                }
+            }
+            return facturacion;
+        }
     }
 }

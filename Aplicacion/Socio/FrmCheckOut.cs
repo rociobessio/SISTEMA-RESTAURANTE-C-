@@ -25,6 +25,17 @@ namespace Aplicacion.Socio
         private Pedido pedido;
         public int idFacturacion;
         public bool pudoPagar = false;
+        private Tarjeta tarjeta;
+        private bool esConTarjeta;
+        #endregion
+
+        #region PROPIEDAD
+        /// <summary>
+        /// Me permitira obtener la tarjeta cargada
+        /// para luego preguntar si quiere guardar sus datos.
+        /// </summary>
+        public Tarjeta Tarjeta { get { return this.tarjeta; } }
+        public bool EsConTarjeta { get { return this.esConTarjeta; } }
         #endregion
 
         #region CONTRUCTOR
@@ -35,6 +46,9 @@ namespace Aplicacion.Socio
             //-->Formateo el datetimepicker
             this.dtpVencimientoTarjeta.CustomFormat = "dd/MM/yyyy";
             this.dtpVencimientoTarjeta.Format = DateTimePickerFormat.Custom;
+
+            this.esConTarjeta = false;
+            this.tarjeta = new Tarjeta();
 
             #region DESHABILITO EL INGRESO DE DATOS:
             this.txtRecibido.Enabled = false;
@@ -78,6 +92,27 @@ namespace Aplicacion.Socio
             this.dtpVencimientoTarjeta.Enabled = true;
             this.cbEntidad.Enabled = true;
             this.txtNroCVV.Enabled = true;
+        }
+
+        /// <summary>
+        /// Me permitira abstraer la logica para 
+        /// pagar con tarjeta.
+        /// </summary>
+        /// <exception cref="TarjetaNOValidaException"></exception>
+        /// <exception cref="AgregarDatoSQLException"></exception>
+        private void GenerarPagoConTarjeta()
+        {
+            this.esConTarjeta = true;
+
+            this.tarjeta = new Tarjeta(this.dtpVencimientoTarjeta.Value, this.txtTitular.Text,
+                this.txtNroCVV.Text, this.txtNroTarjeta.Text, this.cbEntidad.SelectedItem.ToString(), true);
+
+            if (!Tarjeta.ValidarTarjeta(this.tarjeta))
+                throw new TarjetaNOValidaException("Tarjeta Ingresada NO valida, reintente!");
+
+            if (!new FacturacionesDAO().AgregarFacturacionRetornarID(new Facturaciones(MetodosPago.Tarjeta_Debito.ToString().Replace("_", " "),
+                this.total, DateTime.Now, true, this.codPedido), out idFacturacion))
+                throw new AgregarDatoSQLException("No se ha podido generar la facturación, reintente!");
         }
         #endregion
 
@@ -244,22 +279,16 @@ namespace Aplicacion.Socio
                 {
                     if (!this.pedido.PedidoPagado)
                     {
-                        
+
                         if (this.rbTarjetaDebito.Checked)//-->Si es con tarjeta
                         {
-                            if (!Tarjeta.ValidarTarjeta(new Tarjeta(this.dtpVencimientoTarjeta.Value, this.txtTitular.Text,
-                                this.txtNroCVV.Text, this.txtNroTarjeta.Text, this.cbEntidad.SelectedItem.ToString(), true)))
-                                throw new TarjetaNOValidaException("Tarjeta Ingresada NO valida, reintente!");
-
-                            if (!new FacturacionesDAO().AgregarFacturacionRetornarID(new Facturaciones(MetodosPago.Tarjeta_Debito.ToString().Replace("_", " "),
-                                this.total, DateTime.Now, true, this.codPedido),out idFacturacion))
-                                throw new AgregarDatoSQLException("No se ha podido generar la facturación, reintente!");
+                            this.GenerarPagoConTarjeta();
                         }
 
                         if (this.rbEfectivo.Checked)//-->Si es con Efectivo
                         {
                             if (!new FacturacionesDAO().AgregarFacturacionRetornarID(new Facturaciones(MetodosPago.Efectivo.ToString().Replace("_", " "),
-                                this.total, DateTime.Now, true, this.codPedido, this.recibido, this.cambio),out idFacturacion))
+                                this.total, DateTime.Now, true, this.codPedido, this.recibido, this.cambio), out idFacturacion))
                                 throw new AgregarDatoSQLException("No se ha podido generar la facturación, reintente!");
                         }
 
@@ -304,5 +333,17 @@ namespace Aplicacion.Socio
 
 
 
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+        }
     }
 }

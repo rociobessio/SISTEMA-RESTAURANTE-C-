@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Diagnostics.SymbolStore;
 using Interfaces;
+using System.Reflection;
 
 namespace Entidades.DB
 {
@@ -119,6 +120,72 @@ namespace Entidades.DB
                         new Usuario((string)base._lector["Email"], (string)base._lector["Clave"]));
 
                 empleado.IDPersona = (int)base._lector["IDPersona"];
+
+                base._lector.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                if (base._conexion.State == ConnectionState.Open)//-->Chequeo si la conexion esta abierta
+                {
+                    base._conexion.Close();//-->La cierro
+                }
+            }
+            return empleado;
+        }
+
+        /// <summary>
+        /// Me permitira obtener un conductor RANDOM
+        /// para asignarselo a un delivery.
+        /// </summary>
+        /// <param name="nombreConductor"></param>
+        /// <returns></returns>
+        public Empleado ObtenerConductorRandom()
+        {
+            Empleado empleado = null;
+            try
+            {
+                base._comando = new SqlCommand();
+
+                base._comando.CommandText =
+                    "SELECT TOP 1 e.IDEmpleado, p.Nombre, p.Apellido, p.Telefono, p.DNI, p.Direccion, p.Genero, p.FechaNacimiento," +
+                    "e.FechaAlta, e.FechaBaja, r.Rol, u.Email, u.Clave " +
+                    "FROM EmpleadosTablaIntermedia ec " +
+                    "INNER JOIN Personas p ON ec.IDPersona = p.IDPersona " +
+                    "INNER JOIN Empleados e ON ec.IDEmpleado = e.IDEmpleado " +
+                    "INNER JOIN Roles r ON ec.IDRol = r.IDRol " +
+                    "INNER JOIN Usuarios u ON ec.IDUsuario = u.IDUsuario " +
+                    "WHERE ec.IDRol = @IDRol " +
+                    "ORDER BY NEWID();";
+
+                base._comando.Parameters.AddWithValue("@IDRol", 8);
+
+
+                base._comando.Connection = base._conexion;
+
+                base._conexion.Open();//-->Abro la conexion
+
+                base._lector = base._comando.ExecuteReader();
+
+                base._lector.Read();
+
+                empleado = new Empleado((int)base._lector["IDEmpleado"],
+                        (Rol)Enum.Parse(typeof(Rol), (string)base._lector["Rol"]),
+                        (DateTime)base._lector["FechaAlta"],
+                        base._lector["FechaBaja"] is DBNull ? DateTime.Now : (DateTime)base._lector["FechaBaja"],
+                        (string)base._lector["Nombre"],
+                        (string)base._lector["Apellido"],
+                        (string)base._lector["Direccion"],
+                        (string)base._lector["DNI"],
+                        (string)base._lector["Telefono"],
+                        (DateTime)base._lector["FechaNacimiento"],
+                        (Genero)Enum.Parse(typeof(Genero), (string)base._lector["Genero"]),
+                        new Usuario((string)base._lector["Email"], (string)base._lector["Clave"]));
+
+                //empleado.IDPersona = (int)base._lector["IDPersona"];
 
                 base._lector.Close();
             }

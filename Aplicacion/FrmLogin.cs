@@ -57,10 +57,11 @@ namespace Aplicacion
                         this.frmMenuSocio = new FrmMenuSocio(new Usuario(this.txtEmail.Text, this.txtClave.Text));
                         this.frmMenuSocio.Show();
                     }
-                    else if(esCliente == Rol.Cliente.ToString())
+                    else if (esCliente == Rol.Cliente.ToString())
                     {
+                        Entidades.Cliente cliente = new UsuarioDAO().ObtenerClientePorUsuario(this.txtEmail.Text, this.txtClave.Text);
                         this.Hide();
-                        new FrmMenuCliente().Show();
+                        new FrmMenuCliente(cliente).Show();
                     }
 
                 }
