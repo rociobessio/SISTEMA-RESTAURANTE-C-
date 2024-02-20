@@ -90,6 +90,7 @@
             // 
             // pictureBoxEliminar
             // 
+            pictureBoxEliminar.Cursor = Cursors.Hand;
             pictureBoxEliminar.Image = Properties.Resources.trash_7874233;
             pictureBoxEliminar.Location = new Point(6, 13);
             pictureBoxEliminar.Name = "pictureBoxEliminar";

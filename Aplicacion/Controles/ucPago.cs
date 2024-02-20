@@ -26,7 +26,7 @@ namespace Aplicacion.Controles
             InitializeComponent();
             this.id = 0;
             this.numericUpDownCantidad.Minimum = 1;
-
+            pictureBoxEliminar.Click += pictureBoxEliminar_Click;
         }
 
         public int Cantidad

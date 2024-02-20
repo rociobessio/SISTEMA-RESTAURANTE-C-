@@ -99,6 +99,7 @@
             // 
             AutoScaleMode = AutoScaleMode.None;
             Controls.Add(guna2ShadowPanel1);
+            Cursor = Cursors.Hand;
             Name = "ucProducto";
             Size = new Size(271, 241);
             guna2ShadowPanel1.ResumeLayout(false);

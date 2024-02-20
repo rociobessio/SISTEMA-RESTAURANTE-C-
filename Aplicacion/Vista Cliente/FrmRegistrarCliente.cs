@@ -28,8 +28,6 @@ namespace Aplicacion.Vista_Cliente
         {
             InitializeComponent();
 
-
-
             foreach (Genero genero in Enum.GetValues(typeof(Genero)))
             {
                 this.cbGenero.Items.Add(genero);

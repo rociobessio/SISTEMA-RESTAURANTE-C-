@@ -113,6 +113,7 @@
             guna2ControlBox3.ShadowDecoration.CustomizableEdges = customizableEdges21;
             guna2ControlBox3.Size = new Size(68, 44);
             guna2ControlBox3.TabIndex = 5;
+            guna2ControlBox3.Click += guna2ControlBox3_Click;
             // 
             // guna2ControlBox2
             // 
@@ -162,6 +163,7 @@
             // btnSettingsCliente
             // 
             btnSettingsCliente.BackColor = Color.Transparent;
+            btnSettingsCliente.Cursor = Cursors.Hand;
             btnSettingsCliente.CustomizableEdges = customizableEdges13;
             btnSettingsCliente.DisabledState.BorderColor = Color.DarkGray;
             btnSettingsCliente.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -236,6 +238,7 @@
             pcImagenUsuario.ShadowDecoration.CustomizableEdges = customizableEdges17;
             pcImagenUsuario.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             pcImagenUsuario.Size = new Size(76, 63);
+            pcImagenUsuario.SizeMode = PictureBoxSizeMode.Zoom;
             pcImagenUsuario.TabIndex = 0;
             pcImagenUsuario.TabStop = false;
             // 
@@ -492,6 +495,7 @@
             // btnVerMisPedidos
             // 
             btnVerMisPedidos.BackColor = Color.Transparent;
+            btnVerMisPedidos.Cursor = Cursors.Hand;
             btnVerMisPedidos.CustomizableEdges = customizableEdges1;
             btnVerMisPedidos.DisabledState.BorderColor = Color.DarkGray;
             btnVerMisPedidos.DisabledState.CustomBorderColor = Color.DarkGray;

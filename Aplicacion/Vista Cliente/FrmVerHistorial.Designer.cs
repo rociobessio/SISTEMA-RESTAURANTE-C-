@@ -130,11 +130,11 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = Color.White;
             label1.Location = new Point(176, 43);
             label1.Name = "label1";
-            label1.Size = new Size(166, 38);
+            label1.Size = new Size(170, 38);
             label1.TabIndex = 1;
             label1.Text = "Mis Pedidos";
             // 
@@ -164,6 +164,7 @@
             // 
             // panelPedidosRealizados
             // 
+            panelPedidosRealizados.Anchor = AnchorStyles.None;
             panelPedidosRealizados.AutoScroll = true;
             panelPedidosRealizados.BorderStyle = BorderStyle.FixedSingle;
             panelPedidosRealizados.ForeColor = Color.Black;
@@ -175,6 +176,7 @@
             // 
             // guna2GradientPanel1
             // 
+            guna2GradientPanel1.Anchor = AnchorStyles.None;
             guna2GradientPanel1.BorderRadius = 3;
             guna2GradientPanel1.Controls.Add(label2);
             customizableEdges9.TopLeft = false;
@@ -202,6 +204,7 @@
             // 
             // scrollBarProductos
             // 
+            scrollBarProductos.Anchor = AnchorStyles.None;
             scrollBarProductos.AutoRoundedCorners = true;
             scrollBarProductos.AutoScroll = true;
             scrollBarProductos.BackColor = Color.Transparent;
@@ -223,6 +226,7 @@
             dtgvProductosPedido.AllowUserToOrderColumns = true;
             dataGridViewCellStyle1.BackColor = Color.White;
             dtgvProductosPedido.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dtgvProductosPedido.Anchor = AnchorStyles.None;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = Color.RosyBrown;
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
@@ -274,6 +278,7 @@
             // 
             // guna2GradientPanel2
             // 
+            guna2GradientPanel2.Anchor = AnchorStyles.None;
             guna2GradientPanel2.BorderRadius = 3;
             guna2GradientPanel2.Controls.Add(lblCodigoPedido);
             guna2GradientPanel2.Controls.Add(label3);

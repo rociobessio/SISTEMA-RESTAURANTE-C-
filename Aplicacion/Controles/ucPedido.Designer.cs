@@ -74,18 +74,19 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label1.ForeColor = Color.IndianRed;
-            label1.Location = new Point(383, 66);
+            label1.Location = new Point(354, 66);
             label1.Name = "label1";
             label1.Size = new Size(22, 25);
             label1.TabIndex = 6;
             label1.Text = "$";
+            label1.Click += label1_Click;
             // 
             // lblTotal
             // 
             lblTotal.AutoSize = true;
             lblTotal.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
             lblTotal.ForeColor = Color.IndianRed;
-            lblTotal.Location = new Point(411, 66);
+            lblTotal.Location = new Point(368, 66);
             lblTotal.Name = "lblTotal";
             lblTotal.Size = new Size(46, 25);
             lblTotal.TabIndex = 7;
@@ -115,7 +116,7 @@
             Controls.Add(lbl);
             Cursor = Cursors.Hand;
             Name = "ucPedido";
-            Size = new Size(488, 102);
+            Size = new Size(454, 102);
             Click += ucPedido_Click;
             ResumeLayout(false);
             PerformLayout();

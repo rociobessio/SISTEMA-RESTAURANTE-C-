@@ -52,7 +52,7 @@ namespace Aplicacion.Controles
                 this.btnSelected.Visible = true;
             }
             else
-            { this.btnSelected.Visible = false;}
+            { this.btnSelected.Visible = false; }
         }
     }
 }

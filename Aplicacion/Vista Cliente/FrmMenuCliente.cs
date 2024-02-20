@@ -56,6 +56,8 @@ namespace Aplicacion.Cliente
         #endregion
 
         #region EVENTOS
+
+
         private void FrmMenuCliente_Load(object sender, EventArgs e)
         {
             this.panelProductos.Controls.Clear();
@@ -216,28 +218,8 @@ namespace Aplicacion.Cliente
                     w.Imagen = Image.FromStream(ms);
                 }
 
-                w.onSelect += (ss, ee) =>
-                {
-                    var wdg = (ucProducto)ss;
-
-                    var controlPedido = new ucPago();
-                    controlPedido.Nombre = wdg.Nombre;
-                    controlPedido.Precio = wdg.Precio.ToString();
-                    controlPedido.Categoria = wdg.Categoria.ToString();
-                    controlPedido.Cantidad = 1;
-
-                    //-->Si los Nombres de los productos coinciden que no lo vuelva a mostrar.
-                    if (!this.productosSeleccionados.Any(p => p.Nombre == controlPedido.Nombre))
-                    {
-
-                        this.productosSeleccionados.Add(controlPedido);
-
-
-                        this.MostrarProductosSeleccionados();
-
-                    }
-                    this.ImprimirTotal();//-->Imprimo el total s
-                };
+                //-->Seleccionar elproducto
+                this.ManejarSeleccionProducto(w);
 
                 this.panelProductos.Controls.Add(w);
             }
@@ -246,6 +228,70 @@ namespace Aplicacion.Cliente
                 MessageBox.Show("Error al agregar el producto.");
             }
         }
+
+        /// <summary>
+        /// Logica para poder seleccionar
+        /// un producto y mostrarlo 
+        /// en control de usuarios (ucPago)
+        /// </summary>
+        /// <param name="producto"></param>
+        private void ManejarSeleccionProducto(ucProducto producto)
+        {
+            producto.onSelect += (ss, ee) =>
+            {
+                var wdg = (ucProducto)ss;
+
+                var controlPedido = new ucPago();
+                controlPedido.Nombre = wdg.Nombre;
+                controlPedido.Precio = wdg.Precio.ToString();
+                controlPedido.Categoria = wdg.Categoria.ToString();
+                controlPedido.Cantidad = 1;
+
+                //-->Suscribo el evento para eliminar un producto del pedido
+                controlPedido.EliminarProductoClick += (sender, args) =>
+                {
+                    try
+                    {
+                        this.EliminarProductoSeleccionado(sender);
+                    }
+                    catch (Exception)
+                    {
+                        this.guna2MessageDialog1.Show("Algo salió mal al intentar eliminar el producto!", "Error");
+                    }
+                };
+
+                //-->Agrego los controles
+                this.productosSeleccionados.Add(controlPedido);
+                this.MostrarProductosSeleccionados();
+                this.ImprimirTotal();
+            };
+        }
+
+        /// <summary>
+        /// Me permitira eliminar un ucPago 
+        /// seleccionado en el panel para asi
+        /// quitarlo del pedido.
+        /// </summary>
+        /// <param name="sender"></param>
+        private void EliminarProductoSeleccionado(object sender)
+        {
+            var ucPago = (ucPago)sender;
+            string nombreProducto = ucPago.Nombre;
+
+            var productoAEliminar = this.listaProductosSeleccionados.FirstOrDefault(p => p.Nombre == nombreProducto);
+            if (productoAEliminar != null)
+            {
+                this.listaProductosSeleccionados.Remove(productoAEliminar);
+            }
+
+            //-->Elimino del panel y vuelvo acargar el total
+            this.productosSeleccionados.Remove(ucPago);
+            this.MostrarProductosSeleccionados();
+            this.ImprimirTotal();
+        }
+
+
+
 
         /// <summary>
         /// Me permitira mostrar los productos seleccionados
@@ -477,11 +523,16 @@ namespace Aplicacion.Cliente
         /// <param name="e"></param>
         private void btnSettingsCliente_Click(object sender, EventArgs e)
         {
-
+            FrmModCliente frmModCliente = new FrmModCliente(this.cliente);
+            frmModCliente.ShowDialog();
         }
         #endregion
 
         #region OTROS EVENTOS
+        private void guna2ControlBox3_Click(object sender, EventArgs e)
+        {
+
+        }
         private void guna2GradientTileButton3_Click(object sender, EventArgs e)
         {
 
@@ -523,6 +574,7 @@ namespace Aplicacion.Cliente
 
         }
         #endregion
+
 
 
     }

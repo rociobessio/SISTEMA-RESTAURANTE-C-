@@ -43,5 +43,11 @@ namespace Aplicacion.Controles
         }
         #endregion
 
+        #region OTROS
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+        #endregion
     }
 }
